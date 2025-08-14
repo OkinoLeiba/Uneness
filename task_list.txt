@@ -1,0 +1,9 @@
+Backend:
+    Review User App
+    Review Serializer
+    Debug update method
+    
+    **Custom User Model**
+    Review override of object 
+
+    Note: may build out templates for learning purpose if time permits 
