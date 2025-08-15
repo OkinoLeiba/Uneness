@@ -19,7 +19,7 @@ class UserSerializer(ModelSerializer):
         )
         return user
     #TODO: validation on the frontend or backend??
-    #TODO: add additional funtionality to update other fields?? Partial argument for instance initializer of serializer
+    #TODO: add additional functionality to update other fields?? Partial argument for instance initializer of serializer
     def update(self, instance: User, validated_data) -> User | None:
         # Issue: could this be caused because is_valid() is not running properly
         new_password = validated_data.pop("new_password", None)

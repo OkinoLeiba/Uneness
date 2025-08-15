@@ -8,7 +8,6 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from .serializers import UserSerializer, ChangePasswordSerializer
 from datetime import datetime, timedelta
-from unenessproj.settings import STATIC_URL
 import os
 
 
@@ -54,8 +53,15 @@ class SignUpView(APIView):
             if serializer.is_valid():
                 user = serializer.save()
                 token, created = Token.objects.get_or_create(user=user)
+                
+                # defensive programming
+                raw_delta = os.environ.get('EXPIRATION_DELTA', '1')  # default to 1 hour
+                try:
+                    hours = int(raw_delta.strip())
+                except (ValueError, AttributeError):
+                    hours = 1  # fallback to default if conversion fails
 
-                life_time = datetime.now() + timedelta(hours=int(str(os.environ.get('EXPIRATION_DELTA')).strip()))
+                life_time = datetime.now() + timedelta(hours=hours)
                 format_life_time = life_time.strftime(format='%a, %d %b %Y %H:%M:%S GMT')
                 response = Response({'user': {'email': serializer.validated_data['email']}}, status=status.HTTP_201_CREATED)  # type: ignore validate_data will have state after is_valid is called 
                 response.set_cookie(key='token', value=token.key, expires=format_life_time, secure=True, httponly=True, samesite='')
@@ -87,7 +93,14 @@ class LoginView(APIView):
             if user:
                 login(request, user)
                 token, created = Token.objects.get_or_create(user=user)
-                life_time = datetime.now() + timedelta(hours=int(str(os.environ.get('EXPIRATION_DELTA')).strip()))
+                
+                # defensive programming
+                raw_delta = os.environ.get('EXPIRATION_DELTA', '1')  # default to 1 hour
+                try:
+                    hours = int(raw_delta.strip())
+                except (ValueError, AttributeError):
+                    hours = 1  # fallback to default if conversion fails
+                life_time = datetime.now() + timedelta(hours=hours)
                 format_life_time = life_time.strftime(format='%a, %d %b %Y %H:%M:%S GMT')
                 response = Response({'user': {'email': data['email']}}, status=status.HTTP_201_CREATED)  # type: ignore validate_data will have state after is_valid is called 
                 response.set_cookie(key='token', value=token.key, expires=format_life_time, secure=True, httponly=True, samesite='')

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './src/App';
-import Layout from './components/Layout';
+import Layout from '../uneness/components/LayOut';
 import HomePage from './pages/HomePage';
 import JourneyPage from './pages/JourneyPage';
 import PillarsPage from './pages/PillarsPage';

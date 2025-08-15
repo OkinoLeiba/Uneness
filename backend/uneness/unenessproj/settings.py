@@ -172,7 +172,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Image URL path in frontend
-IMAGE_URL = os.path.join(BASE_DIR.parent, '/uneness/src/assets/images/')
+IMAGE_URL = os.path.join(BASE_DIR.parent, 'frontend/uneness/src/assets/images/')
 
 
 # Default primary key field type
