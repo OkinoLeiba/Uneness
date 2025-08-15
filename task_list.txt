@@ -2,8 +2,16 @@ Backend:
     Review User App
     Review Serializer
     Debug update method
+    Test Info view in User App
+    Test Change Password view
+    Review
     
     **Custom User Model**
     Review override of object 
 
     Note: may build out templates for learning purpose if time permits 
+
+
+Frontend:
+    Research* or Create Calender
+    Address Issue with router

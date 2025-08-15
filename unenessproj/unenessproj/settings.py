@@ -39,7 +39,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['http://localhost:3000', 'http://localhost:5173', 'http://127.0.0.1:3000', 'http://127.0.0.1:5173', '.localhost', '127.0.0.1', '[::1]']
 # Local host for React frontend
 # Both the Allowed Host and CSRF may need to be replaced with 
-# enviromnet variablies in producion
+# environment variables in production
 CSRF_TRUSTED_ORIGINS = ['http://localhost:5173', 'http://127.0.0.1:5173']
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -170,6 +170,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Image URL path in frontend
+IMAGE_URL = os.path.join(BASE_DIR.parent, '/uneness/src/assets/images/')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -28,9 +28,10 @@ class StatusView(APIView):
     """
     def get(self, request) -> Response:
         return Response({'message': 'Django Server is Running'}, status=status.HTTP_200_OK)
+   
     
 """
-User view to register new user and attach authenication to user email or unique identifer.
+User view to register new user and attach authentication to user email or unique identifier.
 """
 class SignUpView(APIView):
     permission_classes = [permissions.AllowAny]
@@ -64,10 +65,18 @@ class SignUpView(APIView):
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
-
+"""
+Log in user and provide token for authentication.       
+"""
 class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
 
+    """Login user and provide token for authentication.
+    Params:
+        request: http request for resources 
+    Returns:
+        response: json of data and request status
+    """
     def post(self, request) -> Response:
         data = request.data.copy()
         
@@ -80,7 +89,7 @@ class LoginView(APIView):
                 token, created = Token.objects.get_or_create(user=user)
                 life_time = datetime.now() + timedelta(hours=int(str(os.environ.get('EXPIRATION_DELTA')).strip()))
                 format_life_time = life_time.strftime(format='%a, %d %b %Y %H:%M:%S GMT')
-                response = Response({'user': {'email': serializer.validated_data['email']}}, status=status.HTTP_201_CREATED)  # type: ignore validate_data will have state after is_valid is called 
+                response = Response({'user': {'email': data['email']}}, status=status.HTTP_201_CREATED)  # type: ignore validate_data will have state after is_valid is called 
                 response.set_cookie(key='token', value=token.key, expires=format_life_time, secure=True, httponly=True, samesite='')
                 return response
         except Exception as e:
@@ -89,7 +98,9 @@ class LoginView(APIView):
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     
 
-
+"""
+Log out user and delete token associated with specific user.     
+"""
 class LogoutView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -104,13 +115,15 @@ class PasswordChangeView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
     
-    def put (self, request) -> Response:
+    def post(self, request) -> Response:
         data = request.data.copy()
-        print(data)
-        serializer = UserSerializer(data=data)
-        #DEBUG
-        # if not serializer.is_valid():
-            # print(serializer.errors)
+        # print(request)
+        serializer = UserSerializer(User.objects.get(auth_token=request.auth), data=data)
+        
+        print(serializer.data)
+        ##DEBUG##
+        if not serializer.is_valid():
+            print(serializer.errors)
         if serializer.is_valid():
             print(serializer.errors)
             instance = serializer.update(instance=request.user, validated_data=data)
@@ -118,12 +131,14 @@ class PasswordChangeView(APIView):
             return Response({'message': 'Password successfully changed', 'token':token.key}, status=status.HTTP_201_CREATED)
         return Response({'error':'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
     
-    
+"""
+Update both the user's password and token.     
+"""    
 class ChangePasswordView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
     
-    def put(self, request) -> Response:
+    def post(self, request) -> Response:
         data = request.data.copy()
         serializer = ChangePasswordSerializer(data=data, context={'request': request})
 
@@ -139,10 +154,13 @@ class ChangePasswordView(APIView):
 
             return Response({'message': 'Password successfully changed', 'token': token.key}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-class Info(APIView):
+
+"""
+Provide data associated with specific user.     
+"""
+class InfoView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request):
-        return Response({'user': UserSerializer(request=User(request.user)).data}, status=status.HTTP_200_OK)
+    def get(self, request) -> Response:
+        return Response({'user': UserSerializer(User.objects.get(email=request.data.get('email'))).data}, status=status.HTTP_200_OK)

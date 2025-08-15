@@ -5,7 +5,7 @@ import '../styles/pillars.css';
 
 
 interface Props {
-    random: string;
+    random?: string;
 }
 
 

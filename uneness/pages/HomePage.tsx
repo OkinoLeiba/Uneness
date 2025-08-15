@@ -28,6 +28,7 @@ export default class HomePage extends Component<Props>{
 
     render() {
         return (
+            <Layout>
             <div className={'home-container'}>
                 <Ellipse backgroundColor={'lightblue'} className={'home-ellipse'} />
                 <div className={'home-text-container'}>
@@ -62,7 +63,8 @@ export default class HomePage extends Component<Props>{
                         className={'home-button-right'}
                     />
                 </div>
-            </div>
+                </div>
+            </Layout>
         )
     }
 }

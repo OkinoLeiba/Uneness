@@ -9,7 +9,7 @@ import '../styles/navbar.css';
 
 
 export default class Navbar extends Component {
-  user: boolean = false;
+  user: boolean = true;
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.log(`${error}: ${errorInfo}`)
   };
@@ -17,15 +17,15 @@ export default class Navbar extends Component {
     return (
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/'>ICON</Link>
+          <Link to='/homepage'>ICON</Link>
           <div className='navbar-menu'>
             {this.user ? (
             <>
-              <Link to='/'>Home</Link>
-              <Link to='/signup'>Body</Link>
-              <Link to='/page3'>You</Link>
-              <Link to='/page4'>Mind</Link>
-              <Link to='/page5'>Soul</Link>
+              {/* <Link to='/'>Home</Link> */}
+              <Link to='/exercise'>Body</Link>
+              <Link to='/journey'>You</Link>
+              <Link to='/test'>Mind</Link>
+              <Link to='/pillars'>Soul</Link>
             </>) : (
             <>
               <Link to='/signup'>Signup</Link>

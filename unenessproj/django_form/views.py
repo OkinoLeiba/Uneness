@@ -17,12 +17,15 @@ from rest_framework.views import APIView
 from rest_framework.renderers import TemplateHTMLRenderer  
 
 
+
 class IndexView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'index.html'
     
-    def get(self, request):
-        render(request=request, template_name='index.html', status=status.HTTP_200_OK)
+    def get(self, request):  
+        # render(request=request, template_name='index.html', status=status.HTTP_200_OK)
+        return Response(template_name='index.html', status=status.HTTP_200_OK)
+        
 
 class SignUpView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
@@ -57,12 +60,12 @@ class LogInView(APIView):
             login(request, client)
             return redirect('client:password_change')
         return Response({'form': form}, status=status.HTTP_400_BAD_REQUEST)
-
-
+    
+    
+"""
+Simple view to log out and redirect to login.
+"""
 class LogOutView(APIView):
-    """
-    Simple view to log out and redirect to login.
-    """
     def post(self, request):
         logout(request)
         return redirect('client:login')
@@ -91,7 +94,7 @@ class PasswordChangeDoneView(APIView):
     template_name = 'password_change_done.html'
 
     def get(self, request):
-        Response(template_name='password_change_done.html', status=status.HTTP_200_OK)
+        return Response(template_name='password_change_done.html', status=status.HTTP_200_OK)
 
 
 class PasswordResetView(APIView):
@@ -158,4 +161,4 @@ class PasswordResetCompleteView(APIView):
     template_name = 'password_reset_complete.html'
 
     def get(self, request):
-        return Response()
+        return Response(template_name='password_change_complete.html', status=status.HTTP_200_OK)

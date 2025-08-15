@@ -6,7 +6,7 @@ import '../styles/journey.css';
 
 
 interface Props {
-    random: string;
+    random?: string;
 }
 
 
@@ -51,7 +51,7 @@ export default class HomePage extends Component<Props>{
                 </div>
 
                 <div className={'ellipse-image'}>
-                    <Ellipse backgroundColor={'lightblue'} />
+                    <Ellipse backgroundColor={'lightblue'} className={'journey-ellipse'} />
                      <Oval
                         src={reactLogo}
                         alt={this.ovalAltText}

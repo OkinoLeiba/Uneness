@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1em;
+    width: 55em;
+    margin: 0.8em;
 }
 
 .dropdown-button,
@@ -10,6 +11,7 @@
 .dropdown-content {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 80%;
     max-width: 80vw;
     border-radius: 120px;
@@ -35,9 +37,9 @@
 
 
 
-.dropdown-container {
-    position: relative;
-}
+/* .dropdown-container { */
+    /* position: relative; */
+/* } */
 
 /* .dropdown-button { */
     /* border-radius: 8px 8px 0 0; */
@@ -109,6 +111,7 @@
 .dropdown-text {
     margin-bottom: 0.5em;
     font-weight: bold;
+    color: rgb(0, 100, 0);
     text-align: center;
 }
 
@@ -117,8 +120,8 @@
     flex-direction: column;
     justify-content: stretch;
     align-items: start;
-    margin-left: 20px;
-    margin-right: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .dropdown-icon {
