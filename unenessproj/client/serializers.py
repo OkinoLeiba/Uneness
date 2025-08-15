@@ -40,15 +40,14 @@ class ClientSerializer(ModelSerializer):
         old_password = validated_data.pop("old_password", None)
         for att, val in validated_data.items():
             setattr(instance, att, val)
-        if new_password:
-            if not old_password:
-                raise ValidationError(
-                    {
-                        "old_password": "old password is required to update current password"
-                    }
-                )
-            if not instance.check_password(old_password):
-                raise ValidationError({"old_password": "Old password is incorrect"})
-            instance.set_password(new_password)
+        if new_password and not old_password:
+            raise ValidationError(
+                {
+                    "old_password": "old password is required to update current password"
+                }
+            )
+        if not instance.check_password(old_password):
+            raise ValidationError({"old_password": "Old password is incorrect"})
+        instance.set_password(new_password)
         instance.save()
         return instance
