@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/footer.css';
-import instagram from '../src/assets/icons/icons8-instagram.svg';
+import instagram from '../src/assets/icons/icons8-instagram.svg'; 
 import faceBook from '../src/assets/icons/icons8-facebook.svg';
 import linkedIn from '../src/assets/icons/icons8-linkedin.svg';
 import xT from '../src/assets/icons/icons8-twitter.svg';

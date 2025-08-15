@@ -9,7 +9,7 @@ import '../styles/navbar.css';
 
 
 export default class Navbar extends Component {
-  user: boolean = true;
+  user: boolean = false;
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.log(`${error}: ${errorInfo}`)
   };
@@ -17,7 +17,7 @@ export default class Navbar extends Component {
     return (
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/homepage'>ICON</Link>
+          <Link to='/'>ICON</Link>
           <div className='navbar-menu'>
             {this.user ? (
             <>

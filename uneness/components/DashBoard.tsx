@@ -1,6 +1,22 @@
 import React, { Component, ChangeEvent, FormEvent } from 'react';
 import { AuthContext } from '../services/authContextClass';
 
+/**
+ * @typedef {Object} DashboardState
+ * @description Represents the internal state of the Dashboard component.
+ * Used to manage form inputs and feedback messages. 
+ *
+ * @property {string} username - The user's current or updated username.
+ * @property {string} email - The user's current or updated email address.
+ * @property {string} password - The new password entered by the user.
+ * @property {string} confirmPassword - Confirmation of the new password for validation.
+ * @property {string} message - A message string used to display feedback to the user.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-11
+ */
+
 interface DashboardState {
   username: string;
   email: string;
@@ -38,7 +54,7 @@ export default class Dashboard extends Component<object, DashboardState> {
     try {
       await this.context.logout();
     } catch (error) {
-      this.setState({ message: 'Logout failed.' });
+      this.setState({ message: `Logout failed - ${error}` });
     }
   };
 
@@ -53,7 +69,7 @@ export default class Dashboard extends Component<object, DashboardState> {
       await this.context.updateProfile({ username, email });
       this.setState({ message: 'Profile updated successfully!' });
     } catch (error) {
-      this.setState({ message: 'Failed to update profile.' });
+      this.setState({ message: `Failed to update profile - ${error}` });
     }
   };
 
@@ -68,7 +84,7 @@ export default class Dashboard extends Component<object, DashboardState> {
       await this.context.changePassword(password);
       this.setState({ message: 'Password changed successfully!', password: '', confirmPassword: '' });
     } catch (error) {
-      this.setState({ message: 'Failed to change password.' });
+      this.setState({ message: `Failed to change password - ${error}` });
     }
   };
 

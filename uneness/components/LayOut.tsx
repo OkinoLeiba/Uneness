@@ -23,7 +23,7 @@ export default class Layout extends Component<Props> {
                 <Header />
                 {/* <HomePage /> */}
                 <Outlet />
-                {this.props.children}
+                {/* {this.props.children} */}
                 <Footer />
             </>
         );

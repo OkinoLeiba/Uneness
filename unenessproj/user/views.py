@@ -8,7 +8,6 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from .serializers import UserSerializer, ChangePasswordSerializer
 from datetime import datetime, timedelta
-from unenessproj.settings import STATIC_URL
 import os
 
 

@@ -19,16 +19,16 @@ function App() {
   
 
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<ExercisePage  />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/login' element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    // <AuthProvider>
-    //<RouterProvider router={router} />
-    //</AuthProvider> 
+      //<BrowserRouter>
+      //  <Routes>
+      //    <Route path='/' element={<ExercisePage  />} />
+      //    <Route path='/signup' element={<Signup />} />
+      //    <Route path='/login' element={<Login />} />
+      //  </Routes>
+      //</BrowserRouter>
+    <AuthProvider>
+    <RouterProvider router={router} />
+    </AuthProvider> 
    
   )
 }

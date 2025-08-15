@@ -239,6 +239,7 @@ export default class HomePage extends Component<Props>{
     }
 
     filterExercises(): void {
+    
         if (this.searchInput.length > 0) {
             this.filter = true;
             console.log(this.filter)
@@ -247,7 +248,7 @@ export default class HomePage extends Component<Props>{
     }
     setInput(value: string): void {
         this.searchInput = value;
-        console.log(this.searchInput)
+        
         console.log(TEST_DATA.filter(e => {
             return e.name.toLocaleLowerCase().trim() === this.searchInput.toLowerCase().trim()
         }))
@@ -259,7 +260,7 @@ export default class HomePage extends Component<Props>{
             <>
                 <div className={'exercise-container'}>
                     <div className="form-container">
-                        <form className={'exercise-form'}>
+                        <form className={'exercise-form'} onSubmit={this.filterExercises}>
                             <input
                                 type={'search'}
                                 name={'exercise-search'}
@@ -271,7 +272,7 @@ export default class HomePage extends Component<Props>{
                                 type={'submit'}
                                 name={'exercise-search-button'}
                                 title={'exercise-search-button'}
-                                className="exercise-button" onClick={this.filterExercises}>
+                                className="exercise-button">
                                 <FaSearch className="icon-right" />
                             </button>
                         </form>

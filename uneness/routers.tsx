@@ -14,9 +14,9 @@ import PrivateRoute from './components/PrivateRoute';
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <HomePage />,
     children: [
-      { index: true, path: '/homepage', element: <HomePage /> },
+      // { index: true, path: '/homepage', element: <HomePage /> },
       // {path: '/homepage', element: <HomePage />},
       { path: '/login', element: <Login /> },
       { path: '/signup', element: <Signup /> },
