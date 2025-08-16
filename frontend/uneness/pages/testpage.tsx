@@ -28,8 +28,7 @@ export default class Test extends Component {
     randomText = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui nesciunt unde eius possimus eveniet nemo, facilis rerum molestiae temporibus alias ducimus ut officiis accusantium perferendis libero officia similique quo?Amet';
     render() {
         return (
-            <>
-                
+            <div> 
                 <h2>Test!</h2>
                 <Navbar />
                  <Oval
@@ -50,8 +49,8 @@ export default class Test extends Component {
                     className={'test-card'}
                 />
                 <Footer />
-                <SelectDropdown label={'Muscle Beach'} />
-            </>
+                <SelectDropdown name={'Muscle Beach'} dropdownText={''} />
+            </div>
         )
         
   }
