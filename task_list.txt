@@ -2,9 +2,9 @@ Backend:
     Review User App
     Review Serializer
     Debug update method
-    Test Info view in User App
     Test Change Password view
-    Review
+    Get Nutrionix API and Test
+    Test and Build Exercise Table
     
     **Custom User Model**
     Review override of object 
@@ -14,4 +14,8 @@ Backend:
 
 Frontend:
     Research* or Create Calender
-    Address Issue with router
+    Build out Signup HTML and CSS
+    Review CSS 
+    Test Login and Signup - Save Cookie and Local Storage
+    Test Other Routes
+ 
