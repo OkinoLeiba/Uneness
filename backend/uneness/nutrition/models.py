@@ -1,10 +1,10 @@
 from django.db import models
 
 
-### Nutrition Exerise Model ###
+### Nutrition Exercise Model ###
 
 
-class ExericePhoto(models.Model):
+class ExercisePhoto(models.Model):
     highres = models.URLField()
     thumb = models.URLField()
     is_user_uploaded = models.BooleanField(default=False)
@@ -18,7 +18,7 @@ class Exercise(models.Model):
     duration_min = models.FloatField()
     met = models.FloatField()
     nf_calories = models.FloatField()
-    photo = models.OneToOneField(ExericePhoto, on_delete=models.CASCADE, related_name='exercise')
+    photo = models.OneToOneField(ExercisePhoto, on_delete=models.CASCADE, related_name='exercise')
     compendium_code = models.IntegerField()
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
@@ -29,7 +29,6 @@ class Exercise(models.Model):
 
 
 ### Natural Language Food Search ###
-
 
 class Food(models.Model):
     food = models.CharField()
@@ -102,9 +101,7 @@ class Tags(models.Model):
     tag_id = models.IntegerField()
 
 
-
 ### Common Food Model ###
-
 
 class FoodItem(models.Model):
     food_name = models.CharField(max_length=100)
