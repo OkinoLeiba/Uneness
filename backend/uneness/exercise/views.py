@@ -8,12 +8,12 @@ import os
 
 
 class RequestAPIExercise(APIView):
-    """Request list of excerices
+    """Request list of exercises
     Params:
-        request: http request for resources 
+        Request: http request for resources 
 
     Returns:
-        response: json of data and request status
+        Response: json of data and request status
     """
     def get(self, request) -> Response:       
         url = 'https://exercisedb.p.rapidapi.com/exercises'

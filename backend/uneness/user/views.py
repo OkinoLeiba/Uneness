@@ -11,11 +11,11 @@ from datetime import datetime, timedelta
 import os
 
 
-"""
-Provides initial status to frontend when axios creates api instance.
-The instance will make further requests.
-"""
 class StatusView(APIView):
+    """
+    Provides initial status to frontend when axios creates api instance.
+    The instance will make further requests.
+    """
     permission_classes = [permissions.AllowAny]
     
     """Server status response.
@@ -29,17 +29,17 @@ class StatusView(APIView):
         return Response({'message': 'Django Server is Running'}, status=status.HTTP_200_OK)
    
     
-"""
-User view to register new user and attach authentication to user email or unique identifier.
-"""
 class SignUpView(APIView):
+    """
+    User view to register new user and attach authentication to user email or unique identifier.
+    """
     permission_classes = [permissions.AllowAny]
 
     """Create a new user and provide token for authentication.
     Params:
-        request: http request for resources 
+        Request: http request for resources 
     Returns:
-        response: json of data and request status
+        Response: json of data and request status
     """
     def post(self, request) -> Response:
         data = request.data.copy()
@@ -70,18 +70,18 @@ class SignUpView(APIView):
             print('Save Error', e)
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
-"""
-Log in user and provide token for authentication.       
-"""
+      
 class LoginView(APIView):
+    """
+    Log in user and provide token for authentication. 
+    """
     permission_classes = [permissions.AllowAny]
 
     """Login user and provide token for authentication.
     Params:
-        request: http request for resources 
+        Request: http request for resources 
     Returns:
-        response: json of data and request status
+        Response: json of data and request status
     """
     def post(self, request) -> Response:
         data = request.data.copy()
@@ -111,10 +111,11 @@ class LoginView(APIView):
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     
 
-"""
-Log out user and delete token associated with specific user.     
-"""
+     
 class LogoutView(APIView):
+    """
+    Log out user and delete token associated with specific user.
+    """
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
@@ -143,11 +144,11 @@ class PasswordChangeView(APIView):
             token, _ = Token.objects.get_or_create(user=instance)
             return Response({'message': 'Password successfully changed', 'token':token.key}, status=status.HTTP_201_CREATED)
         return Response({'error':'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
-    
-"""
-Update both the user's password and token.     
-"""    
+         
 class ChangePasswordView(APIView):
+    """
+    Update both the user's password and token.
+    """    
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
     
@@ -167,11 +168,11 @@ class ChangePasswordView(APIView):
 
             return Response({'message': 'Password successfully changed', 'token': token.key}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-"""
-Provide data associated with specific user.     
-"""
+   
 class InfoView(APIView):
+    """
+    Provide data associated with specific user.  
+    """
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
