@@ -19,13 +19,13 @@
       "django": true,
       "autoStartBrowser": false,
       "justMyCode": false,
-      "program": "${workspaceFolder}/unenessproj/manage.py"
+      "program": "${workspaceFolder}/backend/uneness/manage.py"
     },
     {
       "name": "Django Debug Single Test",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/unenessproj/manage.py",
+      "program": "${workspaceFolder}/backend/uneness/manage.py",
       "args": ["test", "-n ${file}"],
       "django": true
     }
