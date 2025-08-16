@@ -12,20 +12,22 @@ import os
 
 #refer: https://docx.syndigo.com/developers/docs/natural-language-for-exercise
 
-"""_summary_
-
-Returns:
-        _type_: _description_
-"""
 """
 The API estimate calories burned for various exercises using natural language. 
-The key context is the exerices and time duration.
+The key context is the exercise and time duration.
 Optionally, user demographics like age, gender, weight can be pass as params to make a more 
 accurate estimate for calories burned.
 """
 
-class ExceriseCalorieCount(APIView):
-    def post(self, request, excerice: str, duration: int) -> Response:       
+class ExerciseCalorieCount(APIView):
+    """Retrieve calorie burns based on input data: exercise and duration
+    Params:
+        Exercise: type of exercise
+        Duration: length of time of exercise or repetitions 
+    Returns:
+        Response: json of data and request status
+    """
+    def post(self, request, exercise: str, duration: int) -> Response:       
         url = 'https://trackapi.nutritionix.com/v2/natural/exercise'
         API_ID = os.environ.get('')
         API_KEY = os.environ.get('')
@@ -37,7 +39,7 @@ class ExceriseCalorieCount(APIView):
             'x-app-key': API_KEY,
         },
         body = json.dumps({
-            "query": f"{excerice} for {duration} hour" # TODO: write logic to change base on exericise
+            "query": f"{exercise} for {duration} hour" # TODO: write logic to change base on exercise
         })
         response = requests.get(url, headers=headers, data=body)
         if response.status_code == 200:
@@ -54,11 +56,6 @@ class ExceriseCalorieCount(APIView):
 
 #refer: https://docx.syndigo.com/developers/docs/instant-endpoint
 
-"""_summary_
-
-Returns:
-        _type_: _description_
-"""
 """
 API to populate data from any search interface, including autocomplete, with common foods 
 and branded foods from Nutritionix. This searches their entire database of 600K+ foods. 
@@ -67,8 +64,13 @@ look up the nutrients of the food.
 """
 
 class CommonFoodSearch(APIView):
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
     def get(self, request, food) -> Response:    
-        #TODO: I should be able to pass the query within the reqest body or will pass as param when inovking method   
+        #TODO: I should be able to pass the query within the request body or will pass as param when invoking method   
         url = 'https://trackapi.nutritionix.com/v2/search/instant/?query=hamburger'
         API_ID = os.environ.get('')
         API_KEY = os.environ.get('')
@@ -98,11 +100,6 @@ class CommonFoodSearch(APIView):
 
 #refer: https://docx.syndigo.com/developers/docs/natural-language-for-exercisehttps://docx.syndigo.com/developers/docs/natural-language-for-nutrients
 
-"""_summary_
-
-Returns:
-        _type_: _description_
-"""
 """
 API to get detailed nutrient breakdown of any natural language text.  
 It can also be used in combination with the /search/instant endpoint to provide 
@@ -110,6 +107,11 @@ nutrition information for common foods.
 """
 
 class NaturalLangNutrients(APIView):
+    """_summary_
+    
+    Returns:
+            _type_: _description_
+    """
     def post(self, request, text) -> Response:       
         url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
         API_ID = os.environ.get('')
