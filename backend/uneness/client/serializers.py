@@ -3,11 +3,11 @@ from django.core.exceptions import ValidationError
 from .models import Client
 
 
+"""
+Custom serializer with extra_kwargs parameter without extra fields or 
+overriding other fields in the model.
+"""
 class ClientSerializer(ModelSerializer):
-    """
-    Custom serializer with extra_kwargs parameter without extra fields or 
-    overriding other fields in the model.
-    """
     class Meta:
         model = Client
         fields = "__all__"
