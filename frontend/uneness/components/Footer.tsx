@@ -15,7 +15,7 @@ export default class Footer extends Component {
             <footer>
                 <div className={'footer-content-row'}>
                     <div className="brand-col-gap">
-                        <img src={brandLogo} alt="Brand Logo" width={180} height={80} loading="eager" />
+                        <img src={brandLogo} alt="Brand Logo" className={'brand-col-gap-img'} loading="eager" />
                         <p className={'brand-col-gap-text'}>{this.brandText}</p>
                     </div>
                     <div className="qlinks-col-gap">
