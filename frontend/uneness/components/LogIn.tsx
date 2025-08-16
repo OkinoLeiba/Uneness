@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { StyleContext, type StyleContextType } from './LayOut';
+import brandLogo from '../src/assets/icons/icon-uneness2.svg';
+import '../styles/login.css';
 
 
 interface State {
@@ -7,10 +10,14 @@ interface State {
   message?: string;
 }
 
+interface Props {
+  styleContext: StyleContextType;
+}
+
 // FOR DEBUG
 const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
 
-export default class Login extends Component<object, State> {
+export default class Login extends Component<Props, State> {
   // FOR PRODUCTIONS-maybe
   // Other Option same as DEBUG wih env.production
   login_url = window.location.origin + "/uneness/login";
@@ -43,25 +50,49 @@ export default class Login extends Component<object, State> {
     }
   };
 
+  
+
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h2>Login</h2>
-        <input
-          type="text"
-          placeholder="email"
-          value={this.state.email}
-          onChange={e => this.setState({ email: e.target.value })}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={this.state.password}
-          onChange={e => this.setState({ password: e.target.value })}
-        />
-        <button type="submit">Log in</button>
-        {this.state.message && <p>{this.state.message}</p>}
-      </form>
+      <StyleContext.Consumer>
+        {(styles: StyleContextType) => (
+          <div
+            style={{
+              backgroundImage: styles.backgroundImage,
+              backgroundPosition: styles.backgroundPosition,
+              backgroundRepeat: styles.backgroundRepeat,
+              backgroundSize: styles.backgroundSize,
+              width: styles.width,
+              height: styles.height,
+              minHeight: styles.minHeight
+
+              
+            }}
+            className={'login-container'}
+          >
+            <div className={'login-input'}>
+              <img src={brandLogo} alt="Brand Logo" width={180} height={80} loading="eager" />
+              <form onSubmit={this.handleSubmit}>
+                <h2>Login</h2>
+                <input
+                  type="text"
+                  placeholder="email"
+                  value={this.state.email}
+                  onChange={e => this.setState({ email: e.target.value })}
+                />
+                <input
+                  type="password"
+                  placeholder="password"
+                  value={this.state.password}
+                  onChange={e => this.setState({ password: e.target.value })}
+                />
+                <button type="submit" className={'login-button-round'}>Log in</button>
+                {this.state.message && <p>{this.state.message}</p>}
+              </form>
+            </div>
+          </div>)
+        }
+      </StyleContext.Consumer>
     );
   }
 }
