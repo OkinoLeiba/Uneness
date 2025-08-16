@@ -1,5 +1,6 @@
 import { Component, type ErrorInfo} from 'react';
 import { Link } from 'react-router-dom';
+import brandLogo from '../src/assets/icons/icon-uneness2.svg'
 import '../styles/navbar.css';
 // import Container ../styles/navbar.cssp/Container';
 // import Nav from 'react-bootstrap/Nav';
@@ -9,7 +10,7 @@ import '../styles/navbar.css';
 
 
 export default class Navbar extends Component {
-  user: boolean = true;
+  user: boolean = false;
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.log(`${error}: ${errorInfo}`)
   };
@@ -17,20 +18,19 @@ export default class Navbar extends Component {
     return (
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/homepage'>ICON</Link>
+          <Link to='/homepage'><img src={brandLogo} alt="Brand Logo" width={120} height={30} loading="eager" /></Link>
           <div className='navbar-menu'>
             {this.user ? (
-            <>
-              {/* <Link to='/'>Home</Link> */}
+            <div>
               <Link to='/exercise'>Body</Link>
               <Link to='/journey'>You</Link>
               <Link to='/test'>Mind</Link>
               <Link to='/pillars'>Soul</Link>
-            </>) : (
-            <>
+            </div>) : (
+            <div>
               <Link to='/signup'>Signup</Link>
               <Link to='/login'>Login</Link>
-            </>)
+            </div>)
             }
           </div>
 

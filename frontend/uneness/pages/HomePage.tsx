@@ -1,7 +1,6 @@
 import { Component, type ErrorInfo } from 'react';
 import Ellipse from '../components/Ellipse';
 import Button from '../components/Button';
-import Layout from '../components/Layout';
 import '../styles/home-page.css';
 
 
@@ -28,7 +27,6 @@ export default class HomePage extends Component<Props>{
 
     render() {
         return (
-            <Layout>
             <div className={'home-container'}>
                 <Ellipse backgroundColor={'lightblue'} className={'home-ellipse'} />
                 <div className={'home-text-container'}>
@@ -63,8 +61,7 @@ export default class HomePage extends Component<Props>{
                         className={'home-button-right'}
                     />
                 </div>
-                </div>
-            </Layout>
+            </div>
         )
     }
 }

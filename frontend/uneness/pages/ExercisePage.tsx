@@ -255,8 +255,7 @@ export default class HomePage extends Component<Props>{
 
     render() {
         return (
-            //<Layout>
-            <>
+            <div>
                 <div className={'exercise-container'}>
                     <div className="form-container">
                         <form className={'exercise-form'}>
@@ -296,8 +295,7 @@ export default class HomePage extends Component<Props>{
                         })
                     }
                 </div>
-            </>
-            //</Layout>
+            </div>
         )
     }
 }

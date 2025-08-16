@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/footer.css';
+import brandLogo from '../src/assets/icons/icon-uneness2.svg'
 import instagram from '../src/assets/icons/icons8-instagram.svg';
 import faceBook from '../src/assets/icons/icons8-facebook.svg';
-import linkedIn from '../src/assets/icons/icons8-linkedin.svg';
 import xT from '../src/assets/icons/icons8-twitter.svg';
 import youTube from '../src/assets/icons/icons8-youtube.svg';
 
@@ -15,7 +15,7 @@ export default class Footer extends Component {
             <footer>
                 <div className={'footer-content-row'}>
                     <div className="brand-col-gap">
-                        <img src={'/brand'} alt="Brand Logo" width={50} height={50} loading="eager" />
+                        <img src={brandLogo} alt="Brand Logo" width={180} height={80} loading="eager" />
                         <p className={'brand-col-gap-text'}>{this.brandText}</p>
                     </div>
                     <div className="qlinks-col-gap">

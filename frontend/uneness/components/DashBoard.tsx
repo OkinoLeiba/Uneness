@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent, FormEvent } from 'react';
+import React, { Component, type ChangeEvent, type FormEvent } from 'react';
 import { AuthContext } from '../services/authContextClass';
 
 interface DashboardState {
@@ -38,7 +38,7 @@ export default class Dashboard extends Component<object, DashboardState> {
     try {
       await this.context.logout();
     } catch (error) {
-      this.setState({ message: 'Logout failed.' });
+      this.setState({ message: `Logout failed- ${error}`});
     }
   };
 
@@ -53,7 +53,7 @@ export default class Dashboard extends Component<object, DashboardState> {
       await this.context.updateProfile({ username, email });
       this.setState({ message: 'Profile updated successfully!' });
     } catch (error) {
-      this.setState({ message: 'Failed to update profile.' });
+      this.setState({ message: `Failed to update profile- ${error}`});
     }
   };
 
@@ -61,14 +61,14 @@ export default class Dashboard extends Component<object, DashboardState> {
     e.preventDefault();
     const { password, confirmPassword } = this.state;
     if (password !== confirmPassword) {
-      this.setState({ message: 'Passwords do not match.' });
+      this.setState({ message: 'Passwords do not match.'});
       return;
     }
     try {
       await this.context.changePassword(password);
       this.setState({ message: 'Password changed successfully!', password: '', confirmPassword: '' });
     } catch (error) {
-      this.setState({ message: 'Failed to change password.' });
+      this.setState({ message: `Failed to change password - ${error}`});
     }
   };
 
@@ -119,7 +119,7 @@ export default class Dashboard extends Component<object, DashboardState> {
           <button type="submit">Change Password</button>
         </form>
 
-        {message && <><p>Dashboard Error</p> <p style={{ color: 'green' }}>{message}</p></>}
+        {message && <div><p>Dashboard Error</p> <p style={{ color: 'green' }}>{message}</p></div>}
       </div>
     );
   }

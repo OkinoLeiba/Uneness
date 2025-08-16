@@ -76,7 +76,7 @@ export default class Card extends Component<Props> {
             console.log(this.props.title)
       }
     };
-    //TODO: may need for excerise list and dropdown
+    //TODO: may need for exercise list and dropdown
     shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<Props>): boolean {
         if (this.state !== nextState || this.props !== nextProps) return false;
         return true;
