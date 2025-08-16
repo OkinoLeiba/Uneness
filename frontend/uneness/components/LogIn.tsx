@@ -4,29 +4,33 @@ import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import '../styles/login.css';
 
 
-interface State {
+interface Props {
   email: string;
   password: string;
   message?: string;
-}
 
-interface Props {
   styleContext: StyleContextType;
 }
+
 
 // FOR DEBUG
 const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
 
-export default class Login extends Component<Props, State> {
+export default class Login extends Component<Props> {
   // FOR PRODUCTIONS-maybe
   // Other Option same as DEBUG wih env.production
   login_url = window.location.origin + "/uneness/login";
   
-  state: State = {
-    email: '',
-    password: '',
-    message: '',
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      email: props.email || '',
+      password: props.password ||  '',
+      message: props.message || '',
+
+      styleContext: props.styleContext
+    };
+  }
 
   handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,8 +39,8 @@ export default class Login extends Component<Props, State> {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password,
+          email: this.props.email,
+          password: this.props.password,
         }),
       });
       if (!res.ok) throw new Error('Invalid credentials');
@@ -70,24 +74,24 @@ export default class Login extends Component<Props, State> {
             }}
             className={'login-container'}
           >
-            <div className={'login-input'}>
+            <div className={'login-form-input'}>
               <img src={brandLogo} alt="Brand Logo" width={180} height={80} loading="eager" />
               <form onSubmit={this.handleSubmit}>
-                <h2>Login</h2>
+                <h2>Log In</h2>
                 <input
                   type="text"
                   placeholder="email"
-                  value={this.state.email}
+                  value={this.props.email}
                   onChange={e => this.setState({ email: e.target.value })}
                 />
                 <input
                   type="password"
                   placeholder="password"
-                  value={this.state.password}
+                  value={this.props.password}
                   onChange={e => this.setState({ password: e.target.value })}
                 />
                 <button type="submit" className={'login-button-round'}>Log in</button>
-                {this.state.message && <p>{this.state.message}</p>}
+                {this.props.message && <p>{this.props.message}</p>}
               </form>
             </div>
           </div>)
