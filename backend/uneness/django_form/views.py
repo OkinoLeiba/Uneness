@@ -22,7 +22,7 @@ class IndexView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'index.html'
     
-    def get(self, request):  
+    def get(self, request) -> Response:  
         # render(request=request, template_name='index.html', status=status.HTTP_200_OK)
         return Response(template_name='index.html', status=status.HTTP_200_OK)
         
@@ -31,11 +31,11 @@ class SignUpView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'signup.html'
 
-    def get(self, request):
+    def get(self, request) -> Response:
         form = UserCreationForm()
         return Response({'form': form})
 
-    def post(self, request):
+    def post(self, request) -> Response:
         form = UserCreationForm(request.data)
         print(form)
         if form.is_valid():
@@ -49,11 +49,11 @@ class LogInView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'login.html'
 
-    def get(self, request):
+    def get(self, request) -> Response:
         form = AuthenticationForm()
         return Response({'form': form})
 
-    def post(self, request):
+    def post(self, request) -> Response:
         form = AuthenticationForm(request, data=request.data)
         if form.is_valid():
             client = form.get_user()
@@ -62,11 +62,11 @@ class LogInView(APIView):
         return Response({'form': form}, status=status.HTTP_400_BAD_REQUEST)
     
     
-"""
-Simple view to log out and redirect to login.
-"""
 class LogOutView(APIView):
-    def post(self, request):
+    """
+    Simple view to log out and redirect to login.
+    """
+    def post(self, request) -> Response:
         logout(request)
         return redirect('client:login')
 
@@ -75,11 +75,11 @@ class PasswordChangeView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'password_change_form.html'
 
-    def get(self, request):
+    def get(self, request) -> Response:
         form = PasswordChangeForm(request.client)
         return Response({'form': form})
 
-    def post(self, request):
+    def post(self, request) -> Response:
         form = PasswordChangeForm(request.client, request.data)
         if form.is_valid():
             client = form.save()
@@ -93,7 +93,7 @@ class PasswordChangeDoneView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'password_change_done.html'
 
-    def get(self, request):
+    def get(self, request) -> Response:
         return Response(template_name='password_change_done.html', status=status.HTTP_200_OK)
 
 
@@ -101,11 +101,11 @@ class PasswordResetView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'password_reset_form.html'
 
-    def get(self, request):
+    def get(self, request) -> Response:
         form = PasswordResetForm()
         return Response({'form': form})
 
-    def post(self, request):
+    def post(self, request) -> Response:
         form = PasswordResetForm(request.data)
         if form.is_valid():
             form.save(
@@ -122,7 +122,7 @@ class PasswordResetDoneView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'password_reset_done.html'
 
-    def get(self, request):
+    def get(self, request) -> Response:
         return Response(template_name='password_reset_done.html', status=status.HTTP_200_OK)
 
 
@@ -160,5 +160,5 @@ class PasswordResetCompleteView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'password_reset_complete.html'
 
-    def get(self, request):
+    def get(self, request) -> Response:
         return Response(template_name='password_change_complete.html', status=status.HTTP_200_OK)
