@@ -3,15 +3,16 @@ import { signup, login, logout, getCurrentUser, updateProfile, changePassword, v
 
 
 interface User {
-  id: number;
   username: string;
   email: string;
 }
 
 interface AuthPayload {
-    username?: string;
+    first_name?: string;
+    last_name?: string;
     email: string;
     password: string;
+    password2?: string;
 }
 
 interface AuthContextType {
@@ -53,8 +54,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(response.data.user);
   };
 
-  const handleSignup = async (email: string, username: string, password: string) => {
-    const response = await signup({ email, username, password });
+  const handleSignup = async (email: string, first_name: string, last_name: string, password: string, password2: string) => {
+    const response = await signup({ email, first_name, last_name, password, password2 });
     setUser(response.data.user);
   };
 
