@@ -15,16 +15,6 @@ interface State {
 // FOR DEBUG
 const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
 export default class Login extends Component<State> {
-  // constructor(props: Props) {
-    // super(props);
-    // this.state = {
-      // email: props.email || '',
-      // username: props.username || '',
-      // password: props.password || '',
-      // password2: props.password2 || '',
-      // error: props.error || '',
-    // };
-  // }
 
   state: State = {
     email: '',
@@ -45,7 +35,6 @@ login_url = window.location.origin + "/uneness/login";
     e.preventDefault();
     this.validation();
     if (this.validate) {
-      console.log(this.validate)
       try {
         const res = await fetch(DJANGO_BASE_URL+'user/signup/', {
           method: 'POST',
@@ -57,15 +46,34 @@ login_url = window.location.origin + "/uneness/login";
             password: this.state.password,
           }),
         });
-        if (!res.ok) throw new Error('Invalid credentials');
-        const data = await res.json();
-        console.log(data)
-        localStorage.setItem('token', data.auth_token);
-        this.setState({ error: '' });
+        
+
         this.validate = false;
+
+        if (!res.ok) {
+          if ((await res.text()).includes('user_already_exists')) {
+             throw new Error('User Already Exits');
+          }
+          throw new Error('Invalid credentials');
+        }
+          
+        const data = await res.json();
+
+        console.log(data)
+        console.log(data.token)
+        console.log(res.headers)
+        console.log(res.headers.getSetCookie().find(t => t=='token'))
+        console.log(res.headers.get('set-cookie')); // undefined
+        console.log(document.cookie); // nope
+        document.cookie = `token=${res.headers.getSetCookie()}; path=/; secure=false; httponly=true; samesite=Lax`;
+        localStorage.setItem('token', res.headers.getSetCookie().find(t => t=='token'));
+        sessionStorage.setItem('token', res.headers.getSetCookie().find(t => t=='token'));
+
+        this.setState({ error: '' });
         // Redirect or update UI
       } catch (error) {
-        this.setState({ error: error});
+        console.log(error)
+        this.setState({ error: error.message}); 
       }
     }
   };
@@ -126,7 +134,7 @@ login_url = window.location.origin + "/uneness/login";
                 />
                 <button type="submit">Sign Up</button>
                 {this.validate ? <p>Password does not match!</p> : ''}
-                {this.state.error && <p>{this.state.error}</p>}
+                 {this.state.error && <p>{this.state.error}</p>}
               </form>
             </div>
           </div>)
