@@ -9,6 +9,7 @@ import Login from './components/LogIn';
 import Signup from './components/SignUp';
 import Dashboard from './components/DashBoard';
 import PrivateRoute from './components/PrivateRoute';
+import ErrorPage from './pages/ErrorPage';
 
 
 export const router = createBrowserRouter([
@@ -17,7 +18,9 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, path: 'homepage', element: <HomePage /> },
-      { path: 'login', element: <Login /> },
+      // @ts-expect-error style context not required
+      { path: 'login', element: <Login /> }, 
+      // @ts-expect-error style context not required
       { path: 'signup', element: <Signup /> },
       { path: 'journey', element: <JourneyPage /> },
       { path: 'pillars', element: <PillarsPage /> },
@@ -31,5 +34,6 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+    errorElement: <ErrorPage/>
   },
 ]);
