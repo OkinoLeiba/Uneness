@@ -9,14 +9,6 @@ interface State {
 
 
 export default class ChatWidget extends Component<State> {
-//   constructor(props) {
-    // super(props);
-    // this.state = {
-    //   open: props.open || false,
-    //   messages: props.messages || [],
-    //   input: props.input || '',
-    // };
-//   }
     
     state: State = {
         open: false,
