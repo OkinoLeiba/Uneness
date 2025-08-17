@@ -42,11 +42,11 @@ export default class Dashboard extends Component<object, DashboardState> {
     }
   };
 
-  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ [e.target.name]: e.target.value } as Pick<DashboardState, keyof DashboardState>);
   };
 
-  handleProfileUpdate = async (e: FormEvent) => {
+  handleProfileUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     const { username, email } = this.state;
     try {
@@ -57,7 +57,7 @@ export default class Dashboard extends Component<object, DashboardState> {
     }
   };
 
-  handlePasswordChange = async (e: FormEvent) => {
+  handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault();
     const { password, confirmPassword } = this.state;
     if (password !== confirmPassword) {
