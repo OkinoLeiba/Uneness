@@ -7,7 +7,7 @@ import '../styles/login.css';
 interface Props {
   email: string;
   password: string;
-  message?: string;
+  error?: string;
 
   styleContext: StyleContextType;
 }
@@ -26,7 +26,7 @@ export default class Login extends Component<Props> {
     this.state = {
       email: props.email || '',
       password: props.password ||  '',
-      message: props.message || '',
+      error: props.error || '',
 
       styleContext: props.styleContext
     };
@@ -45,12 +45,14 @@ export default class Login extends Component<Props> {
       });
       if (!res.ok) throw new Error('Invalid credentials');
       const data = await res.json();
-      localStorage.setItem('token', data.access);
+      document.cookie = `token=${res.headers.getSetCookie()}; path=/; secure=false; httponly=true; samesite=Lax`;
+      localStorage.setItem('token', res.headers.getSetCookie().find(t => t=='token'));
+      sessionStorage.setItem('token', res.headers.getSetCookie().find(t => t=='token')); 
       this.setState({ message: '' });
         // Redirect or update UI??
         // TODO: manage on the backend???
     } catch (error) {
-      this.setState({ message: error.message});
+      this.setState({ error: error});
     }
   };
 
@@ -90,7 +92,7 @@ export default class Login extends Component<Props> {
                   value={this.props.password}
                   onChange={e => this.setState({ password: e.target.value })}
                 />
-                <button type="submit" className={'login-button-round'}>Log in</button>
+                <button type="submit" className={'login-btn-round'}>Log in</button>
                 {this.props.message && <p>{this.props.message}</p>}
               </form>
             </div>
