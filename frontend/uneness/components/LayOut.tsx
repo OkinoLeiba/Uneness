@@ -36,7 +36,7 @@ export default class Layout extends Component<Props> {
             backgroundImage: "url('../src/assets/images/soul-body-glow.png')",
             width: 'auto',
             height: '100%',
-            minHeight: '180vh',
+            minHeight: '100vh',
 
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
