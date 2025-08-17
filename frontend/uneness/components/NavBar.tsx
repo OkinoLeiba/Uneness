@@ -21,15 +21,15 @@ export default class Navbar extends Component {
           <Link to='/homepage'><img src={brandLogo} alt="Brand Logo" width={120} height={30} loading="eager" /></Link>
           <div className='navbar-menu'>
             {this.user ? (
-            <div>
+            <div className={'navbar-menu-desktop'}>
               <Link to='/exercise'>Body</Link>
               <Link to='/journey'>You</Link>
               <Link to='/test'>Mind</Link>
               <Link to='/pillars'>Soul</Link>
             </div>) : (
-            <div>
-              <Link to='/signup'>Signup</Link>
-              <Link to='/login'>Login</Link>
+            <div className={'navbar-menu-desktop'}>
+              <Link to='/signup'>SignUp</Link>
+              <Link to='/login'>LogIn</Link>
             </div>)
             }
           </div>
