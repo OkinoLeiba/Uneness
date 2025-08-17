@@ -3,21 +3,24 @@ import { api } from './api';
 // Define TypeScript interfaces for request/response payloads
 // Validate backend responses with runtime checks??
 export interface AuthPayload {
+    first_name?: string;
+    last_name?: string;
     username?: string;
     email: string;
     password: string;
+    password2?: string;
 }
 
 export const signup = async (data: AuthPayload) => {
-  return api.post('signup/', data);
+  return api.post('user/signup/', data);
 };
 
 export const login = async (data: AuthPayload) => {
-  return api.post('login/', data);
+  return api.post('user/login/', data);
 };
 
 export const logout = async () => {
-  return api.post('logout/');
+  return api.post('user/logout/');
 };
 
 export const getCurrentUser = async () => {
@@ -37,7 +40,7 @@ token will be gotten from local storage or cookie
 TODO: consider passing email as well
 */
 export const verifyEmail = async (token: string) => {
-  api.post('verify-email/', token);
+  api.post('user/verify-email/', token);
 };
 
 
