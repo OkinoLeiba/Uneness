@@ -31,7 +31,7 @@
     margin: 0 10em 0 10em;
 }
 
-.exercise-button {
+.exercise-btn {
     display: flex;
     align-items: center;
     justify-content: end;
