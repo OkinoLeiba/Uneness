@@ -268,9 +268,9 @@ export default class HomePage extends Component<Props>{
                             />
                             <button
                                 type={'submit'}
-                                name={'exercise-search-button'}
-                                title={'exercise-search-button'}
-                                className="exercise-button" onClick={this.filterExercises}>
+                                name={'exercise-search-btn'}
+                                title={'exercise-search-btn'}
+                                className="exercise-btn" onClick={this.filterExercises}>
                                 <FaSearch className="icon-right" />
                             </button>
                         </form>

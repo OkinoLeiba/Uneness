@@ -27,7 +27,7 @@ export default class OvalDropdown extends Component<Props, State> {
   render() {
     return (
       <div className="dropdown-container">
-        <button className="dropdown-button" onClick={this.toggleDropdown}>
+        <button className="dropdown-btn" onClick={this.toggleDropdown}>
           <FaPlus className="icon-left" />
           <span className="dropdown-label">{this.props.name}</span>
         </button>

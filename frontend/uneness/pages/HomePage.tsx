@@ -35,7 +35,7 @@ export default class HomePage extends Component<Props>{
                     <h1 className={'home-text-blend'}>Wellness</h1>
                     <p className={'center-text'}>Embrace a holistic approach to well-being through the harmony of mind, body, and soul. Begin your transformative journey toward complete wellness today.</p>
                 </div>
-                <div className={'button-container'}>
+                <div className={'btn-container'}>
                     <Button
                         name={'button'}
                         form={''}
@@ -46,7 +46,7 @@ export default class HomePage extends Component<Props>{
                         height={this.height}
                         elementColor={'rgba(215, 17, 215, 1)'}
                         accessibilityLabel={'Journey button'}
-                        className={'home-button-left'}
+                        className={'home-btn-left'}
                     />
                     <Button
                         name={'button'}
@@ -58,7 +58,7 @@ export default class HomePage extends Component<Props>{
                         height={this.height}
                         elementColor={'rgb(215, 59, 215)'}
                         accessibilityLabel={'More button'}
-                        className={'home-button-right'}
+                        className={'home-btn-right'}
                     />
                 </div>
             </div>

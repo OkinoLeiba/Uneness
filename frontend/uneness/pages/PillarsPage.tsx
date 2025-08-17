@@ -40,7 +40,7 @@ export default class HomePage extends Component<Props>{
                          <Card
                             title={'Mind'}
                             text={this.randomText}
-                            buttonText={'Mind'}
+                            btnText={'Mind'}
                             backgroundColor={'rgba(7, 121, 77, 0.8)'}
                             elementColor={'rgba(8, 15, 91, 0.8)'}
                             srcOval={reactLogo}
@@ -53,7 +53,7 @@ export default class HomePage extends Component<Props>{
                         <Card
                            title={'Body'}
                            text={this.randomText}
-                           buttonText={'Body'}
+                           btnText={'Body'}
                            backgroundColor={'rgba(82, 80, 6, 0.8)'}
                            elementColor={'rgba(88, 120, 7, 0.8)'}
                            srcOval={reactLogo}
@@ -66,7 +66,7 @@ export default class HomePage extends Component<Props>{
                         <Card
                            title={'Soul'}
                            text={this.randomText}
-                           buttonText={'Soul'}
+                           btnText={'Soul'}
                            backgroundColor={'rgba(35, 119, 204, 0.8)'}
                            elementColor={'rgba(11, 68, 85, 0.8)'}
                            srcOval={reactLogo}

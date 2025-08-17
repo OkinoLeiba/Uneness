@@ -61,7 +61,7 @@
     color: rgb(210, 109, 98, 1);
 }
 
-.button-container {
+.btn-container {
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -70,8 +70,8 @@
     margin-bottom: 4em;
 }
 
-.home-button-left,
-.home-button-right {
+.home-btn-left,
+.home-btn-right {
     font-size: 1em;
     background-color: rgb(151, 2, 151);
 

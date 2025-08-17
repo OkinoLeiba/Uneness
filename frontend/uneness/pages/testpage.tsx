@@ -40,7 +40,7 @@ export default class Test extends Component {
                 <Card
                     title={'BODY'}
                     text={this.randomText}
-                    buttonText={'Body-Button'}
+                    btnText={'Body Button'}
                     backgroundColor={'rgba(246, 152, 152, 0.8)'}
                     elementColor={'rgba(255, 0, 0, 0.8)'}
                     srcOval={reactLogo}

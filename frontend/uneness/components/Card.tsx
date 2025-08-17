@@ -16,7 +16,7 @@ import Button from './Button';
  * Button Properties 
  * @property {string} accessibilityLabel - ARIA label for screen readers to describe the button.
  * @property {string} className - CSS class name(s) for styling the button.
- * @property {string} buttonText - Text displayed inside the button.
+ * @property {string} btnText - Text displayed inside the button.
  * @property {string} [elementColor] - Color of the button element; also used for other elements with lighter alpha for the card.
  *
  * @property {number} [width] - Optional width of the card component in pixels.
@@ -39,7 +39,7 @@ interface Props {
     // Button Properties //
     accessibilityLabel: string;
     className: string;
-    buttonText: string;
+    btnText: string;
     // Element Color will be same as Button
     // and [alpha] lighter than Card
     elementColor?: string;
@@ -61,7 +61,7 @@ export default class Card extends Component<Props> {
             altOval: props.altOval || '',
             accessibilityLabel: props.accessibilityLabel || '',
             className: props.className || '',
-            buttonText: props.buttonText || '',
+            btnText: props.btnText || '',
              // Default value width of window and not componenet
              width: props.width || window.innerWidth || '',
         };
@@ -131,11 +131,11 @@ export default class Card extends Component<Props> {
                     }}
                 >{this.props.text}</p>
                 <Button
-                    name={'-button'}
+                    name={'card-btn'}
                     form={''}
                     formTarget={''}
                     href={''}
-                    value={this.props.buttonText}
+                    value={this.props.btnText}
                     // @ts-expect-error width not type ReadOnly object and has state
                     width={this.state.width ? this.state.width / 2 : window.innerWidth / 6}
                     // @ts-expect-error width not type ReadOnly object and has state
