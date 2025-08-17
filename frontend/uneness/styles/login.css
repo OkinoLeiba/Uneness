@@ -11,7 +11,7 @@
     
 }
 
-.login-input {
+.login-form-input {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,34 +24,35 @@
     border-radius: 30%;
     width: 25%;
     height: 400px;
+    gap: 8px;
 }
 
-.login-input img {
+.login-form-input img {
     width: 63%;
     height: fit-content;
     margin-left: 70%;
     margin-right: 50%;
 }
 
-.login-input form {
+.login-form-input form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    margin: 25px;
+    margin: 0;
     padding: 24px 0 16px 0;
     width: auto;
     height: 16%;
     gap: 8px;
 }
 
-.login-input input {
+.login-form-input input {
     border-radius: 10px;
 }
 
-.login-input h2 {
-    margin: 2px 0 2px 0;
+.login-form-input h2 {
+    margin: 0;
 }
 
 .login-button-round {
