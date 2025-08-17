@@ -1,10 +1,13 @@
 import React, { Component, createContext } from 'react';
 import { signup, login, logout, getCurrentUser, updateProfile, changePassword, verifyEmail } from './authServices';
+import type { AxiosPromise, AxiosResponse } from 'axios';
 
 interface AuthPayload {
-    username?: string;
-    email: string;
-    password: string;
+  first_name?: string;
+  last_name?: string;
+  email: string;
+  password: string;
+  password2?: string;
 }
 
 interface AuthProviderProps {
@@ -12,7 +15,6 @@ interface AuthProviderProps {
 }
 
 interface User {
-  id: number;
   username: string;
   email: string;
 }
@@ -25,11 +27,11 @@ interface AuthProviderState {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, username: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<AxiosResponse>; 
+  signup: (email: string, first_name: string, last_name: string, password: string, password2: string) => Promise<AxiosResponse>;
   logout: () => Promise<void>;
   updateProfile: (data: AuthPayload) => Promise<void>;
-  changePassword: (old_password: string, new_password: string) => Promise<void>;
+  changePassword: (old_password: string, new_password: string) => Promise<AxiosResponse>;
   verifyEmail: (token: string) => Promise<void>;
 }
 
@@ -63,11 +65,13 @@ export class AuthProvider extends Component<AuthProviderProps, AuthProviderState
   login = async (email: string, password: string) => {
     const response = await login({ email, password });
     this.setState({ user: response.data.user });
+    return response;
   };
 
-  signup = async (email: string, username: string, password: string) => {
-    const response = await signup({ email, username, password });
+  signup = async (email: string, first_name: string, last_name: string, password: string, password2: string) => {
+    const response = await signup({ email, first_name, last_name, password, password2 });
     this.setState({ user: response.data.user });
+    return response;
   };
 
   logout = async () => {
@@ -81,7 +85,7 @@ export class AuthProvider extends Component<AuthProviderProps, AuthProviderState
   };
 
   changePassword = async (old_password: string, new_password: string) => {
-    await changePassword({ old_password, new_password });
+    return await changePassword({ old_password, new_password });
   };
 
   verifyEmail = async (token: string) => {
