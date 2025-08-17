@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleContext, type StyleContextType } from './LayOut';
+import { AuthContext } from '../services/authContextClass';
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import '../styles/signup.css';
 
@@ -15,6 +16,9 @@ interface State {
 // FOR DEBUG
 const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
 export default class Login extends Component<State> {
+  static contextType = AuthContext;
+  declare context: React.ContextType<typeof AuthContext>;
+
 
   state: State = {
     email: '',
@@ -25,59 +29,80 @@ export default class Login extends Component<State> {
     error: '',
   };
   
-    // FOR PRODUCTIONS-maybe
-// Other Option same as DEBUG wih env.production
-login_url = window.location.origin + "/uneness/login";
+  // FOR PRODUCTIONS-maybe
+  // Other Option same as DEBUG wih env.production
+  login_url = window.location.origin + "/uneness/login";
     
-    validate: boolean = false;
+  validate: boolean = false;
 
+  // handleSubmit = async (e: React.FormEvent) => {
+    // e.preventDefault();
+    // this.validation();
+    // if (this.validate) {
+      // try {
+        // const res = await fetch(DJANGO_BASE_URL+'user/signup/', {
+          // method: 'POST',
+          // headers: { 'Content-Type': 'application/json' },
+          // body: JSON.stringify({
+            // first_name: this.state.firstname,
+            // last_name: this.state.lastname,
+            // email: this.state.email,
+            // password: this.state.password,
+          // }),
+          // credentials: 'include'
+        // });
+        //
+        //
+        // this.validate = false;
+        // if (!res.ok) {
+          // if ((await res.text()).includes('user_already_exists')) {
+            //  throw new Error('User Already Exits');
+          // }
+          // throw new Error('Invalid credentials');
+        // }
+        // const data = await res.json();
+        //
+        // console.log(data)
+        // console.log(data.token)
+        // console.log(res.headers)
+        // console.log(await res.headers.getSetCookie())
+        // console.log(await res.headers.getSetCookie().find(t => t=='token'))
+        // console.log(await res.headers.get('set-cookie')); // undefined
+        // console.log(document.cookie); // nope
+        // document.cookie = `token=${res.headers.getSetCookie()}; path=/; secure=false; httponly=false; samesite=None`;
+        // localStorage.setItem('token', res.headers.getSetCookie().find(t => t=='token'));
+        // sessionStorage.setItem('token', res.headers.getSetCookie().find(t => t=='token'));
+        //
+        // this.setState({ error: '' });
+        //Redirect or update UI
+        // if (res.ok) window.location.href = '/homepage';
+      // } catch (error) {
+        // console.log(error)
+        // this.setState({ error: error.message});
+      // }
+    // }
+  // };
+    
   handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     this.validation();
     if (this.validate) {
       try {
-        const res = await fetch(DJANGO_BASE_URL+'user/signup/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            first_name: this.state.firstname,
-            last_name: this.state.lastname,
-            email: this.state.email,
-            password: this.state.password,
-          }),
-        });
-        
-
+        const res = await this.context.signup(this.state.email, this.state.firstname, this.state.lastname, this.state.password, this.state.password2)
         this.validate = false;
-
-        if (!res.ok) {
-          if ((await res.text()).includes('user_already_exists')) {
-             throw new Error('User Already Exits');
+        console.log(res)
+        if (!(await res.status === 201)) {
+          if ((await res.data).includes('user_already_exists')) {
+            throw new Error('User Already Exits');
           }
           throw new Error('Invalid credentials');
         }
-          
-        const data = await res.json();
-
-        console.log(data)
-        console.log(data.token)
-        console.log(res.headers)
-        console.log(res.headers.getSetCookie().find(t => t=='token'))
-        console.log(res.headers.get('set-cookie')); // undefined
-        console.log(document.cookie); // nope
-        document.cookie = `token=${res.headers.getSetCookie()}; path=/; secure=false; httponly=true; samesite=Lax`;
-        localStorage.setItem('token', res.headers.getSetCookie().find(t => t=='token'));
-        sessionStorage.setItem('token', res.headers.getSetCookie().find(t => t=='token'));
-
-        this.setState({ error: '' });
-        // Redirect or update UI
+        console.log(await res.headers.getSetCookie)
       } catch (error) {
-        console.log(error)
-        this.setState({ error: error.message}); 
+        this.setState({ error: error.message });
       }
     }
-  };
-    
+  }
     validation = () => {
       if (this.state.password === this.state.password2) { this.validate = true; }
     }
@@ -132,7 +157,7 @@ login_url = window.location.origin + "/uneness/login";
                   value={this.state.password2}
                   onChange={e => this.setState({ password2: e.target.value })}
                 />
-                <button type="submit">Sign Up</button>
+                <button type="submit" className={'signup-btn-round'}>Sign Up</button>
                 {this.validate ? <p>Password does not match!</p> : ''}
                  {this.state.error && <p>{this.state.error}</p>}
               </form>
