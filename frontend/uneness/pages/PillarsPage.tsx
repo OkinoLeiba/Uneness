@@ -1,24 +1,26 @@
-import { Component, type ErrorInfo } from 'react';
+import { Component, createRef, type ErrorInfo } from 'react';
 import reactLogo from '../src/assets/icons/react.svg';
 import Card from '../components/Card';
 import '../styles/pillars.css';
 
 
 interface Props {
-    random?: string;
+    width?: number | string;
 }
-
-
-
 
 export default class HomePage extends Component<Props>{
     constructor(props: Props) {
         super(props);
         this.state = {
-            random: props.random || ''
+            width: props.width || 604,
         };
     }
 
+    divRef = createRef<HTMLDivElement>();
+
+    componentDidMount() {
+        if (this.divRef.current) this.setState({width: (this.divRef.current.offsetWidth - 1000)});
+    };
 
     randomText = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui nesciunt unde eius possimus eveniet nemo,\
      facilis rerum molestiae temporibus alias ducimus ut officiis accusantium perferendis libero officia similique quo?Amet';
@@ -35,7 +37,7 @@ export default class HomePage extends Component<Props>{
             <div className={'pillar-container'}> 
                 <h1 className={'pillar-text-bold'}>Three Pillars of Wellness</h1>
                 <p className={'pillar-text'}>{this.pillarText}</p>
-                <div className={'parralax-container'}>
+                <div className={'parallax-container'} ref={this.divRef}>
                     <div className={'mind-container'}>
                          <Card
                             title={'Mind'}
@@ -46,6 +48,7 @@ export default class HomePage extends Component<Props>{
                             srcOval={reactLogo}
                             altOval={this.ovalAltText}
                             accessibilityLabel={'Access Label'}
+                            width={this.state.width}
                             className={'card-mind-center'}
                         />
                     </div>
@@ -59,6 +62,7 @@ export default class HomePage extends Component<Props>{
                            srcOval={reactLogo}
                            altOval={this.ovalAltText}
                            accessibilityLabel={'Access Label'}
+                           width={this.state.width}
                            className={'card-body-center'}
                         />
                     </div>
@@ -72,6 +76,7 @@ export default class HomePage extends Component<Props>{
                            srcOval={reactLogo}
                            altOval={this.ovalAltText}
                            accessibilityLabel={'Access Label'}
+                           width={this.state.width}
                            className={'card-soul-center'}
                         />
                     </div>
