@@ -59,11 +59,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
-    height: 46%;
+    width: 96.5px;
+    height: 36px;;
+    background-color: rgb(2, 40, 53);
     border-radius: 8px;
 
     font-size: 1em;
+
 }
 
 .signup-form-input p {
