@@ -45,7 +45,6 @@ interface Props {
     elementColor?: string;
 
     width?: number;
-
 }
 
 
@@ -62,7 +61,7 @@ export default class Card extends Component<Props> {
             accessibilityLabel: props.accessibilityLabel || '',
             className: props.className || '',
             btnText: props.btnText || '',
-             // Default value width of window and not componenet
+             // Default value width of window and not component
              width: props.width || window.innerWidth || '',
         };
      }
@@ -136,9 +135,9 @@ export default class Card extends Component<Props> {
                     formTarget={''}
                     href={''}
                     value={this.props.btnText}
-                    // @ts-expect-error width not type ReadOnly object and has state
+                    // @ts-expect-error width type ReadOnly object and has state and needs immutability 
                     width={this.state.width ? this.state.width / 2 : window.innerWidth / 6}
-                    // @ts-expect-error width not type ReadOnly object and has state
+                    // @ts-expect-error width type ReadOnly object and has state and needs immutability
                     height={this.state.width ? this.state.width / 9 : window.innerWidth / 28}
                     elementColor={this.props.elementColor}
                     accessibilityLabel={this.props.accessibilityLabel}
