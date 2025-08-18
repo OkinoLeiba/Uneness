@@ -14,7 +14,7 @@ interface State {
 }
 
 // FOR DEBUG
-const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
+//const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
 export default class Login extends Component<State> {
   static contextType = AuthContext;
   declare context: React.ContextType<typeof AuthContext>;
@@ -90,11 +90,11 @@ export default class Login extends Component<State> {
       try {
         this.validate = false;
         const res = await this.context.signup(this.state.email, this.state.firstname, this.state.lastname, this.state.password, this.state.password2)
-        console.log(res.status) 
-        console.log(res.data)
-        console.log(res.headers)
-        console.log(res.statusText)
-        document.cookie = `token=${res.data.token}; path=/; secure=false; httponly=false; samesite=None`;
+        // console.log(res.status) 
+        // console.log(res.data)
+        // console.log(res.headers)
+        // console.log(res.statusText)
+        document.cookie = `token=${res.data.token}; path=/; secure=true; httponly=true; samesite=Lax`;
         localStorage.setItem('token', res.data.token);
         sessionStorage.setItem('token', res.data.token);
         if (!(res.status === 201)) {
@@ -103,7 +103,7 @@ export default class Login extends Component<State> {
           }
           throw new Error('Invalid credentials');
         }
-        
+        if (res.status === 201) window.location.href = '/homepage';
       } catch (error) {
         this.setState({ error: error.message });
       }
