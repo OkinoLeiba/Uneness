@@ -6,8 +6,8 @@
 }
 
 .chat-toggle {
-    background-color: rgba(0, 123, 255, 1);
-    color: rgba(255, 255, 255, 1);
+    background-color: rgba(7, 162, 157, 1);
+    color: rgba(77, 108, 115, 1);
     border: none;
     border-radius: 50%;
     padding: 12px;
@@ -18,8 +18,8 @@
 .chat-box {
     width: 300px;
     height: 400px;
-    background: rgba(255, 255, 255, 1);
-    border: 1px solid rgba(204, 204, 204, 1);
+    background: rgba(7, 162, 157, 1);
+    border: 1px solid rgb(0, 19, 9);
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -28,7 +28,7 @@
 }
 
 .chat-header {
-    background: rgba(0, 123, 255, 1);
+    background: rgba(7, 162, 87, 1);
     color: rgba(255, 255, 255, 1);
     padding: 10px;
     font-weight: bold;
