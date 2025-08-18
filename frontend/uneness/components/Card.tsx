@@ -44,7 +44,8 @@ interface Props {
     // and [alpha] lighter than Card
     elementColor?: string;
 
-    width?: number;
+    width?: number | string;
+    buttonWidth?: number | string;
 }
 
 
@@ -62,7 +63,8 @@ export default class Card extends Component<Props> {
             className: props.className || '',
             btnText: props.btnText || '',
              // Default value width of window and not component
-             width: props.width || window.innerWidth || '',
+            width: props.width || 440,
+            buttonWidth: props.buttonWidth || window.innerWidth || ''
         };
      }
     
@@ -70,9 +72,9 @@ export default class Card extends Component<Props> {
 
     componentDidMount() {
         if (this.boxRef.current) {
-            console.log(this.boxRef.current.offsetWidth)
-            this.setState({ width: this.boxRef.current.offsetWidth });
-            console.log(this.props.title)
+            //console.log(this.boxRef.current.offsetWidth)
+            //console.log(window.innerWidth)
+            this.setState({ buttonWidth: this.boxRef.current.offsetWidth });
       }
     };
     //TODO: may need for exercise list and dropdown
@@ -95,12 +97,12 @@ export default class Card extends Component<Props> {
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: '4px',
+                        gap: '8px',
 
                         border: '2px solid #ccc',
                         borderRadius: '50%', /* Makes it a circle */
-                        width: '400px',      /* Equal width and height important for round circle */
-                        height: '400px',
+                        width: this.props.width,      /* Equal width and height important for round circle */
+                        height:  this.props.width,
 
                         boxShadow: '0 4px 8px rgba(0,0,0,0.1)', /* Optional: card-like shadow */
                         backgroundColor: this.props.backgroundColor,
@@ -119,13 +121,19 @@ export default class Card extends Component<Props> {
                 <h3
                     style={{
                         margin: '4px 0 4px 0',
+                        fontSize: '1em',
+                        wordWrap: 'break-word',
+                        lineHeight: '1em',
+                        color: 'rgba(232, 223, 223, 1)',
                     }}
                 >{this.props.title}</h3>
                 <p
                     style={{
                         margin: '4px 8% 8px 8%',
-                        fontSize: '0.8em',
+                        fontSize: '1em',
                         wordWrap: 'break-word',
+                        lineHeight: '1em',
+                        color: 'rgba(249, 242, 242, 1)',
 
                     }}
                 >{this.props.text}</p>
@@ -136,9 +144,9 @@ export default class Card extends Component<Props> {
                     href={''}
                     value={this.props.btnText}
                     // @ts-expect-error width type ReadOnly object and has state and needs immutability 
-                    width={this.state.width ? this.state.width / 2 : window.innerWidth / 6}
+                    width={this.state.buttonWidth ? this.state.buttonWidth / 6 : window.innerWidth - 432 / 6}
                     // @ts-expect-error width type ReadOnly object and has state and needs immutability
-                    height={this.state.width ? this.state.width / 9 : window.innerWidth / 28}
+                    height={this.state.buttonWidth ? this.state.buttonWidth / 24 : window.innerWidth - 432 / 28}
                     elementColor={this.props.elementColor}
                     accessibilityLabel={this.props.accessibilityLabel}
                     className={this.props.className}
