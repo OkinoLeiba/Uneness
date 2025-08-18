@@ -88,16 +88,22 @@ export default class Login extends Component<State> {
     this.validation();
     if (this.validate) {
       try {
-        const res = await this.context.signup(this.state.email, this.state.firstname, this.state.lastname, this.state.password, this.state.password2)
         this.validate = false;
-        console.log(res)
-        if (!(await res.status === 201)) {
-          if ((await res.data).includes('user_already_exists')) {
+        const res = await this.context.signup(this.state.email, this.state.firstname, this.state.lastname, this.state.password, this.state.password2)
+        console.log(res.status) 
+        console.log(res.data)
+        console.log(res.headers)
+        console.log(res.statusText)
+        document.cookie = `token=${res.data.token}; path=/; secure=false; httponly=false; samesite=None`;
+        localStorage.setItem('token', res.data.token);
+        sessionStorage.setItem('token', res.data.token);
+        if (!(res.status === 201)) {
+          if (res.data.user_already_exists) {
             throw new Error('User Already Exits');
           }
           throw new Error('Invalid credentials');
         }
-        console.log(await res.headers.getSetCookie)
+        
       } catch (error) {
         this.setState({ error: error.message });
       }
