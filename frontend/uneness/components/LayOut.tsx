@@ -1,6 +1,7 @@
 import React, {Component, type JSX} from 'react';
 import Header from './NavBar';
 import Footer from './Footer';
+import ChatWidget from './ChatWidget';
 import { Outlet } from 'react-router-dom';
 
 interface Props {
@@ -36,7 +37,7 @@ export default class Layout extends Component<Props> {
             backgroundImage: "url('../src/assets/images/soul-body-glow.png')",
             width: 'auto',
             height: '100%',
-            minHeight: '100vh',
+            minHeight: '96vh',
 
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -48,6 +49,7 @@ export default class Layout extends Component<Props> {
                     <Header />
                     <Outlet />
                     {this.props.children}
+                    <ChatWidget />
                     <Footer />
                 </div>
             </StyleContext.Provider>
