@@ -4,6 +4,7 @@ import Layout from '../uneness/components/LayOut';
 import HomePage from './pages/HomePage';
 import JourneyPage from './pages/JourneyPage';
 import PillarsPage from './pages/PillarsPage';
+import ExercisePage from './pages/ExercisePage';
 import TestPage from './pages/testpage';
 import Login from './components/LogIn';
 import Signup from './components/SignUp';
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
       { path: 'login', element: <Login /> }, 
       // @ts-expect-error style context not required
       { path: 'signup', element: <Signup /> },
+      {path: 'exercise', element: <ExercisePage />},
       { path: 'journey', element: <JourneyPage /> },
       { path: 'pillars', element: <PillarsPage /> },
       // { path: 'test', element: <TestPage />},
