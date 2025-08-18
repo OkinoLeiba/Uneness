@@ -33,6 +33,7 @@ interface AuthContextType {
   updateProfile: (data: AuthPayload) => Promise<void>;
   changePassword: (old_password: string, new_password: string) => Promise<AxiosResponse>;
   verifyEmail: (token: string) => Promise<void>;
+  getCurrentUser: () => Promise<AxiosResponse>;
 }
 
 
@@ -61,6 +62,8 @@ export class AuthProvider extends Component<AuthProviderProps, AuthProviderState
       this.setState({ loading: false });
     }
   };
+
+  
 
   login = async (email: string, password: string) => {
     const response = await login({ email, password });
@@ -92,6 +95,12 @@ export class AuthProvider extends Component<AuthProviderProps, AuthProviderState
     await verifyEmail(token);
   };
 
+  getCurrentUser = async () => {
+    const response = await getCurrentUser();
+    this.setState({ user: response.data });
+    return response;
+  }
+
   render() {
     const { user, loading } = this.state;
     const { children } = this.props;
@@ -107,6 +116,7 @@ export class AuthProvider extends Component<AuthProviderProps, AuthProviderState
           updateProfile: this.updateProfile,
           changePassword: this.changePassword,
           verifyEmail: this.verifyEmail,
+          getCurrentUser: this.getCurrentUser,
         }}
       >
         {children}
