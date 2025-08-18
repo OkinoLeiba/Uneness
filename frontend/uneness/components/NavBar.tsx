@@ -1,5 +1,6 @@
-import { Component, type ErrorInfo} from 'react';
+import { Component, type ContextType, type ErrorInfo} from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext  } from '../services/authContextClass';
 import brandLogo from '../src/assets/icons/icon-uneness2.svg'
 import '../styles/navbar.css';
 // import Container ../styles/navbar.cssp/Container';
@@ -10,69 +11,94 @@ import '../styles/navbar.css';
 
 
 export default class Navbar extends Component {
-  user: boolean = false;
+  static contextType = AuthContext;
+  declare context: React.ContextType<typeof AuthContext>;
+
+  componentDidMount(): void {
+    console.log({'user': this.context.user})
+    this.context.getCurrentUser().then(res => this.setState({ user: res.data })).catch(() => this.setState({ user: null }));
+    console.log({'user': this.context.user})
+  }
+
+  titleCase(str: string) {
+    if ((str === null) || (str === ''))
+        return false;
+    else
+      str = str.toString();
+      // First and Last Name seperated by underscore
+      str.replace('_', ' ')
+    return str.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() +
+            txt.substring(1).toLowerCase();
+    });
+  }
+
+
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.log(`${error}: ${errorInfo}`)
   };
   render() {
-    return (
-      <nav className='navbar'>
-        <div className='navbar-container'>
-          <Link to='/homepage'><img src={brandLogo} alt="Brand Logo" width={120} height={30} loading="eager" /></Link>
-          <div className='navbar-menu'>
-            {this.user ? (
-            <div className={'navbar-menu-desktop'}>
-              <Link to='/exercise'>Body</Link>
-              <Link to='/journey'>You</Link>
-              <Link to='/test'>Mind</Link>
-              <Link to='/pillars'>Soul</Link>
-            </div>) : (
-            <div className={'navbar-menu-desktop'}>
-              <Link to='/signup'>SignUp</Link>
-              <Link to='/login'>LogIn</Link>
-            </div>)
-            }
+    const { user } = this.context
+    console.log(user)
+      return (
+        <nav className='navbar'>
+          <div className='navbar-container'>
+            <Link to='/homepage'><img src={brandLogo} alt="Brand Logo" width={180} height={50} loading="eager" /></Link>
+            <p>`Welcome, ${this.titleCase(user.username)}`</p>
+            <div className='navbar-menu'>
+              {user ? (
+              <div className={'navbar-menu-desktop'}>
+                <Link to='/exercise'>Body</Link>
+                <Link to='/journey'>You</Link>
+                <Link to='/test'>Mind</Link>
+                <Link to='/pillars'>Soul</Link>
+              </div>) : (
+              <div className={'navbar-menu-desktop'}>
+                <Link to='/signup'>SignUp</Link>
+                <Link to='/login'>LogIn</Link>
+              </div>)
+              }
+            </div>  
+
           </div>
+        </nav>
+      ) 
 
-        </div>
-      </nav>
-    )
+          {/* <div className='navbar-hamburger' onClick={toggleMenu} ref={hamburgerRef}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>  
 
-        {/* <div className='navbar-hamburger' onClick={toggleMenu} ref={hamburgerRef}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+          <ul className={`navbar-mobile-menu ${isOpen ? 'active' : ''}`} ref={menuRef}>
+          <Link to='/' onClick={closeMenu}>Page 1</Link>
+          <Link to='/page2' onClick={closeMenu}>Page 2</Link>
+          <Link to='/page3' onClick={closeMenu}>Page 3</Link>
+          <Link to='/page4' onClick={closeMenu}>Page 4</Link>
+          <Link to='/page5' onClick={closeMenu}>Page 5</Link>
 
-        <ul className={`navbar-mobile-menu ${isOpen ? 'active' : ''}`} ref={menuRef}>
-        <Link to='/' onClick={closeMenu}>Page 1</Link>
-        <Link to='/page2' onClick={closeMenu}>Page 2</Link>
-        <Link to='/page3' onClick={closeMenu}>Page 3</Link>
-        <Link to='/page4' onClick={closeMenu}>Page 4</Link>
-        <Link to='/page5' onClick={closeMenu}>Page 5</Link>
+              <a 
+                href='https://jamesbuckhouse.substack.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+                onClick={closeMenu}
+              >
+              </a>
+
+          </ul>
+        </div> */}
           
-            <a 
-              href='https://jamesbuckhouse.substack.com/'
-              target='_blank'
-              rel='noopener noreferrer'
-              onClick={closeMenu}
-            >
-            </a>
+      {/* <div className='navbar-action'> */}
+    {/* <a */}
+      // className='test-link'
+      // href=''
+      // target='_blank'
+      // rel='noopener noreferrer'>Link 
+    {/* </a> */}
+  {/* </div> */}
           
-        </ul>
-      </div> */}
-    
-    {/* <div className='navbar-action'> */}
-  {/* <a */}
-    // className='test-link'
-    // href=''
-    // target='_blank'
-    // rel='noopener noreferrer'>Link 
-  {/* </a> */}
-{/* </div> */}
-    
+    }
   }
-}
 
 
   // return <Navbar expand='lg' className='bg-body-tertiary'>
