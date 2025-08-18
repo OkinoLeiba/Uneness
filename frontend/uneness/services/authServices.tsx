@@ -1,3 +1,4 @@
+
 import { api } from './api';
 
 // Define TypeScript interfaces for request/response payloads
@@ -11,15 +12,29 @@ export interface AuthPayload {
     password2?: string;
 }
 
+// approach to add config and authorization after instance is made
+// axiosConfig = {
+  // 'Authorization' :
+// }
+
+
+
 export const signup = async (data: AuthPayload) => {
   return api.post('user/signup/', data);
 };
 
 export const login = async (data: AuthPayload) => {
+  // Alter defaults after instance has been created
+  // Token will be used for select methods
+  api.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
   return api.post('user/login/', data);
 };
 
 export const logout = async () => {
+  // Alter defaults after instance has been created
+  // Token will be used for select methods
+  api.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
+  console.log(sessionStorage.getItem('token'))
   return api.post('user/logout/');
 };
 
@@ -32,6 +47,8 @@ export const updateProfile = async (data: Partial<AuthPayload>) => {
 };
 // TODO: validation on the frontend or backend??
 export const changePassword = async (data: { old_password: string; new_password: string }) => {
+  // Alter defaults after instance has been created
+  api.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
   return api.put('user/change-password/', data);
 };
 /*
@@ -43,12 +60,16 @@ export const verifyEmail = async (token: string) => {
   api.post('user/verify-email/', token);
 };
 
+export const csrfTokenRequest = async () => {
+  return api.get('user/csrf/')
+}
 
-// export const signup = (data: AuthPayload) => api.post('signup/', data);
-// export const login = (data: AuthPayload) => api.post('login/', data);
-// export const logout = () => api.post('logout/');
+// export const signup = (data: AuthPayload) => api.post('user/signup/', data);
+// export const login = (data: AuthPayload) => api.post('user/login/', data);
+// export const logout = () => api.post('user/logout/');
 // export const getCurrentUser = () => api.get('user/');
 // export const updateProfile = (data: Partial<AuthPayload>) => api.put('user/', data);
 // export const changePassword = (data: { old_password: string; new_password: string }) =>
 //   api.put('user/change-password/', data);
-// export const verifyEmail = (token: string) => api.post('verify-email/', { token})
+// export const verifyEmail = (token: string) => api.post('user/verify-email/', { token})
+// export const csrfToken = () => api.get('user/csrf');
