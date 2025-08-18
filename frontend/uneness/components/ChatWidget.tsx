@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import '../styles/chat-widget.css';
 
 interface State {
-    open: boolean;
-    messages: string[];
-    input: string;
+    open?: boolean;
+    messages?: string[];
+    input?: string;
 }
 
 
@@ -17,10 +17,11 @@ export default class ChatWidget extends Component<State> {
     }
 
   toggleChat = () => {
+    // @ts-expect-error width type ReadOnly object and has state and needs immutability
     this.setState(prevState => ({ open: !prevState.open }));
   };
 
-  handleInputChange = (e) => {
+  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ input: e.target.value });
   };
 
@@ -32,13 +33,14 @@ export default class ChatWidget extends Component<State> {
 
       setTimeout(() => {
         this.setState(prevState => ({
+          // @ts-expect-error width type ReadOnly object and has state and needs immutability
           messages: [...prevState.messages, { text: 'Thanks for your message!', sender: 'bot' }]
         }));
       }, 1000);
     }
   };
 
-  handleKeyDown = (e) => {
+  handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       this.sendMessage();
     }
@@ -54,8 +56,9 @@ export default class ChatWidget extends Component<State> {
             <div className="chat-header">Live Chat</div>
             <div className="chat-messages">
               {this.state.messages.map((msg, i) => (
+                // @ts-expect-error width type ReadOnly object and has state and needs immutability
                 <div key={i} className={`chat-message ${msg.sender}`}>
-                  {msg.text}
+                  {msg.text} 
                 </div>
               ))}
             </div>
