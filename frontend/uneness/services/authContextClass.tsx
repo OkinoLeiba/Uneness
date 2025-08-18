@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react';
-import { signup, login, logout, getCurrentUser, updateProfile, changePassword, verifyEmail } from './authServices';
-import type { AxiosPromise, AxiosResponse } from 'axios';
+import { signup, login, logout, getCurrentUser, updateProfile, changePassword, verifyEmail, csrfTokenRequest } from './authServices';
+import type { AxiosResponse } from 'axios';
 
 interface AuthPayload {
   first_name?: string;
@@ -34,6 +34,7 @@ interface AuthContextType {
   changePassword: (old_password: string, new_password: string) => Promise<AxiosResponse>;
   verifyEmail: (token: string) => Promise<void>;
   getCurrentUser: () => Promise<AxiosResponse>;
+  csrfTokenRequest: () => Promise<AxiosResponse>;
 }
 
 
@@ -101,6 +102,11 @@ export class AuthProvider extends Component<AuthProviderProps, AuthProviderState
     return response;
   }
 
+  csrfTokenRequest = async () => {
+    const response = await csrfTokenRequest();
+    return response;
+  }
+
   render() {
     const { user, loading } = this.state;
     const { children } = this.props;
@@ -117,6 +123,7 @@ export class AuthProvider extends Component<AuthProviderProps, AuthProviderState
           changePassword: this.changePassword,
           verifyEmail: this.verifyEmail,
           getCurrentUser: this.getCurrentUser,
+          csrfTokenRequest: this.csrfTokenRequest,
         }}
       >
         {children}
