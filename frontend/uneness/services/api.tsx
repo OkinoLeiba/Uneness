@@ -9,5 +9,6 @@ export const api = axios.create({
   withCredentials: true, // using cookies for auth
   headers: {
     'Content-Type': 'application/json',
+    'Authorization': sessionStorage.get('token') ? `Token ${sessionStorage.get('token')}` : ''
   },
 });
