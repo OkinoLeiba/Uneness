@@ -16,7 +16,7 @@ interface State {
 const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
 
 export default class Login extends Component<State> {
-  static context = AuthContext;
+  static contextType = AuthContext;
   declare context: React.ContextType<typeof AuthContext>;
 
   // FOR PRODUCTIONS-maybe
@@ -60,10 +60,19 @@ export default class Login extends Component<State> {
     e.preventDefault();
     // const {email, password} = this.state;
     try {
-      //@ts-expect-errors parameters exists and arguments are passed
-      await this.context.login(email=this.state.email, password=this.state.password)
+      const res = await this.context.login(this.state.email, this.state.password)
+      document.cookie = `token=${res.headers.getSetCookie}; path=/; secure=false; httponly=false; samesite=None`;
+      localStorage.setItem('token', res.headers.getSetCookie.toString());
+      sessionStorage.setItem('token', res.headers.getSetCookie.toString());
+      console.log(res.status)
+      console.log(res.data)
+      console.log(res.headers)
+      console.log(res.statusText)
+      if (!(res.status === 200)) {
+        throw new Error('Invalid credentials');
+      }
     } catch (error) {
-      this.setState({error: error})
+      this.setState({error: error.message})
     }
   }
 
@@ -103,7 +112,7 @@ export default class Login extends Component<State> {
                   value={this.state.password}
                   onChange={e => this.setState({ password: e.target.value })}
                 />
-                <button type="submit" className={'login-btn-round'}>Log in</button>
+                <button type="submit" className={'login-btn-round'}>Log In</button>
                 {this.state.error && <p>{this.state.error}</p>}
               </form>
             </div>
