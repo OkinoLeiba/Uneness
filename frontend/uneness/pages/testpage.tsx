@@ -4,7 +4,10 @@ import Oval from '../components/Oval';
 // import Button from '../components/button';
 import Card from '../components/Card'
 import Footer from '../components/Footer';
-import SelectDropdown from '../components/SelectDropdown'
+import SelectDropdown from '../components/SelectDropdown';
+import ChatWidget from '../components/ChatWidget';
+import VideoModal from '../components/VideoModal';
+
 import reactLogo  from '../src/assets/icons/react.svg';
 
 
@@ -50,6 +53,8 @@ export default class Test extends Component {
                 />
                 <Footer />
                 <SelectDropdown name={'Muscle Beach'} dropdownText={''} />
+                <ChatWidget />
+                <VideoModal videoUrl={'https://youtu.be/dQw4w9WgXcQ?feature=shared'} onClose={true}/>
             </div>
         )
         
