@@ -15,17 +15,45 @@
     padding: 0 24px 0 24px;
 }
 
+.navbar-display {
+    display: block;
+    width: 100rem;
+    margin-block: 0em;
+    margin-inline: 20em;
+    font-size: 1em;
+        
+}
+
 .navbar-menu {
     display: flex;
     flex-direction: row;
     gap: 24px;
-    padding: 16px;
+    padding: 0;
+    margin: 0;
     
+}
+.navbar-menu-desktop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbar-menu-desktop a {
     margin: 8px 0.8em 8px 0.8em;
     font-size: 1em;
+}
+
+.logout-button-icon {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+}
+
+.logout-button-icon svg {
+    width: 16px;
+    height: 16px
 }
 
 
