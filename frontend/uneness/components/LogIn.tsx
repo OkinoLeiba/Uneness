@@ -13,7 +13,7 @@ interface State {
 
 
 // FOR DEBUG
-const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
+//const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
 
 export default class Login extends Component<State> {
   static contextType = AuthContext;
@@ -60,17 +60,18 @@ export default class Login extends Component<State> {
     e.preventDefault();
     // const {email, password} = this.state;
     try {
-      const res = await this.context.login(this.state.email, this.state.password)
-      document.cookie = `token=${res.headers.getSetCookie}; path=/; secure=false; httponly=false; samesite=None`;
-      localStorage.setItem('token', res.headers.getSetCookie.toString());
-      sessionStorage.setItem('token', res.headers.getSetCookie.toString());
-      console.log(res.status)
-      console.log(res.data)
-      console.log(res.headers)
-      console.log(res.statusText)
-      if (!(res.status === 200)) {
+      const res = await this.context?.login(this.state.email, this.state.password);
+      document.cookie = `token=${res?.data.token}; path=/; secure=true; httponly=true; samesite=Lax`;
+      localStorage.setItem('token', res?.data.token);
+      sessionStorage.setItem('token', res?.data.token);
+      // console.log(res.status)
+      // console.log(res.data)
+      // console.log(res.headers)
+      // console.log(res.statusText)
+      if (!(res?.status === 200)) {
         throw new Error('Invalid credentials');
       }
+      if (res?.status === 200) window.location.href = '/homepage';
     } catch (error) {
       this.setState({error: error.message})
     }
