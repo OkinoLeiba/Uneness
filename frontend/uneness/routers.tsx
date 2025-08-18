@@ -12,6 +12,7 @@ import PrivateRoute from './components/PrivateRoute';
 import ErrorPage from './pages/ErrorPage';
 
 
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
       { path: 'signup', element: <Signup /> },
       { path: 'journey', element: <JourneyPage /> },
       { path: 'pillars', element: <PillarsPage /> },
-      { path: 'test', element: <TestPage />},
+      // { path: 'test', element: <TestPage />},
       {
         path: 'dashboard',
         element: (
