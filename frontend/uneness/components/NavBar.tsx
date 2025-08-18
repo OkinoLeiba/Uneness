@@ -1,57 +1,142 @@
-import { Component, type ContextType, type ErrorInfo} from 'react';
+import { Component, type ErrorInfo} from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext  } from '../services/authContextClass';
-import brandLogo from '../src/assets/icons/icon-uneness2.svg'
+import { AuthContext } from '../services/authContextClass';
+import brandLogo from '../src/assets/icons/icon-uneness2.svg';
+import { RiLogoutCircleFill } from "react-icons/ri";
 import '../styles/navbar.css';
+import { logout } from '../services/authServices';
 // import Container ../styles/navbar.cssp/Container';
 // import Nav from 'react-bootstrap/Nav';
 // import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
+interface State {
+  username?: string;
+  email?: string;
+  isLoading?: boolean;
+  logout?: boolean;
+  displayName?: string;
+  welcome?:string;
+}
 
-
-export default class Navbar extends Component {
+export default class Navbar extends Component<State> {
   static contextType = AuthContext;
   declare context: React.ContextType<typeof AuthContext>;
 
-  componentDidMount(): void {
-    console.log({'user': this.context.user})
-    this.context.getCurrentUser().then(res => this.setState({ user: res.data })).catch(() => this.setState({ user: null }));
-    console.log({'user': this.context.user})
-  }
+  state: State = {
+    username: '',
+    email: '',
+    isLoading: true,
+    logout: false,
+    displayName: '',
+    welcome: 'Hello',
+  };
 
-  titleCase(str: string) {
+  async componentDidMount(): Promise<void> {
+    try {
+      const res = await this.context.getCurrentUser();
+      const user = res.data;
+      const displayName = user.user.username
+      ? this.titleCase(user.user.username.replace('_', ' '))
+      : 'Guest';
+      this.setState({
+        username: user.username,
+        email: user.email,
+        isLoading: false,
+        logout: true,
+        displayName: displayName,
+      });
+
+      //console.log(user); // Safe to log here
+      //console.log(this.state.isLoading)
+      //console.log(this.context.user); // If context is updated separately
+    } catch (error) {
+      console.error("Failed to fetch user:", error);
+      this.setState({ user: null, logout: false, isLoading: false });
+    }
+  }
+  
+  // componentDidMount(): void {
+    // this.context.getCurrentUser()
+      // .then(res => {
+        // const user = res.data;
+        // console.log(user)
+        // const userName = user.username && this.titleCase(user.username.replace('_', ' '));
+        // 
+        // this.setState({
+          // user,
+          // userName,
+          // isLoading: false,
+          // logout: true,
+        // });
+        // 
+        // console.log(user);
+        // console.log(this.context.user);
+        // console.log(userName);
+      // })
+      // .catch(error => {
+        // console.error("Error fetching user:", error);
+        // this.setState({
+          // user: null,
+          // userName: '',
+          // isLoading: false,
+          // logout: false,
+        // });
+      // });
+  // }
+
+  titleCase = (str: string): string | boolean => {
     if ((str === null) || (str === ''))
-        return false;
+      return false;
     else
-      str = str.toString();
-      // First and Last Name seperated by underscore
-      str.replace('_', ' ')
+      console.log(str)
+    str = str.toString();
+    console.log(str)
+    // First and Last Name separated by underscore
     return str.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() +
-            txt.substring(1).toLowerCase();
+      return txt.charAt(0).toUpperCase() +
+        txt.substring(1).toLowerCase();
     });
-  }
+  };
 
-
+  onLogout = (): void => {
+    // TODO: consider moving line 103 to line 106 to LogOut.tsx
+    this.context.logout();
+    localStorage.removeItem('token')
+    sessionStorage.removeItem('')
+    this.setState({ logout: false });
+    this.setState({ welcome: `Goodbye, ${this.state.displayName}` });
+    setTimeout(() => {
+      this.setState({ welcome: 'Hello'});
+    }, 5000);
+  };
+ 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.log(`${error}: ${errorInfo}`)
   };
+
   render() {
-    const { user } = this.context
-    console.log(user)
+    // const { user } = this.state.user
       return (
         <nav className='navbar'>
           <div className='navbar-container'>
             <Link to='/homepage'><img src={brandLogo} alt="Brand Logo" width={180} height={50} loading="eager" /></Link>
-            <p>`Welcome, ${this.titleCase(user.username)}`</p>
+            {this.state.logout ?
+              <p className={'navbar-display'}>Welcome, {this.state.displayName}</p> :
+              <p className={'navbar-display'} >{this.state.welcome}</p>}
             <div className='navbar-menu'>
-              {user ? (
+              {this.state.logout ? (
               <div className={'navbar-menu-desktop'}>
                 <Link to='/exercise'>Body</Link>
-                <Link to='/journey'>You</Link>
+                <Link to='/pillars'>You</Link>
                 <Link to='/test'>Mind</Link>
-                <Link to='/pillars'>Soul</Link>
+                <Link to='/journey'>Soul</Link>
+                <button
+                  name={'logout-button'}
+                  title={'logout-button'}
+                  className={'logout-button-icon'}
+                  type={'submit'}
+                  onClick={this.onLogout}><RiLogoutCircleFill /></button>
               </div>) : (
               <div className={'navbar-menu-desktop'}>
                 <Link to='/signup'>SignUp</Link>
