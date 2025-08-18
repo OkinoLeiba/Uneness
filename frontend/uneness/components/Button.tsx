@@ -74,6 +74,7 @@ export default class Button extends Component<Props> {
                     formTarget={this.props.formTarget}
                     name={this.props.name}
                     style={{
+                        // Height and Width are important to button roundness 
                         width:this.props.width,
                         height: this.props.height,
                         borderRadius: '120px',
