@@ -24,11 +24,11 @@ export const logout = async () => {
 };
 
 export const getCurrentUser = async () => {
-  return api.get('user/');
+  return api.get('user/info/');
 };
 
 export const updateProfile = async (data: Partial<AuthPayload>) => {
-  return api.put('user/', data);
+  return api.put('user/info/', data);
 };
 // TODO: validation on the frontend or backend??
 export const changePassword = async (data: { old_password: string; new_password: string }) => {
