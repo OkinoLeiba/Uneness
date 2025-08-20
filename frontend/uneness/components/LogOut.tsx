@@ -1,6 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export class LoggedOut extends Component {
+
+// TODO: consider creating cookie.ts
+export function deleteCookie(
+  name: string,
+  path: string = '/',
+  domain?: string
+): void {
+  const data = new Date().toUTCString();
+  let cookieStr = `${name}=; Path=${path}; Expires=${data};`
+  if (domain) {
+    cookieStr += ` Domain=${domain};`
+  }
+  document.cookie = cookieStr
+}
+
+// Remove all token; if exists
+export function clearAllCookies(): void {
+  document.cookie
+    .split(';')
+    .forEach(cookie => {
+        const name = cookie.split('=')[0].trim();
+        const data = new Date().toUTCString();
+      document.cookie = `${name}=; Path=/; Expires=${data};`;
+    });
+}
+
+export class LoggedOut extends React.Component {
 
     // handleSubmit = async (e: React.FormEvent) => {
     //     e.preventDefault();
@@ -17,6 +43,7 @@ export class LoggedOut extends Component {
 
     //     }
     // }
+    
     componentDidMount(): void {
         localStorage.removeItem('token');
     }
