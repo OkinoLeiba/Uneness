@@ -6,7 +6,7 @@
 }
 
 .chat-toggle {
-    background-color: rgba(7, 162, 157, 1);
+    background-color: rgb(110, 146, 144);
     color: rgba(77, 108, 115, 1);
     border: none;
     border-radius: 50%;
@@ -28,7 +28,7 @@
 }
 
 .chat-header {
-    background: rgba(7, 162, 87, 1);
+    background: rgb(56, 118, 88);
     color: rgba(255, 255, 255, 1);
     padding: 10px;
     font-weight: bold;
@@ -48,12 +48,12 @@
 }
 
 .chat-message.user {
-    background: rgba(225, 245, 254, 1);
+    background: rgba(1, 12, 17, 1);
     align-self: flex-end;
 }
 
 .chat-message.bot {
-    background: rgba(241, 241, 241, 1);
+    background: rgba(1, 12, 17, 1);
     align-self: flex-start;
 }
 
@@ -73,7 +73,7 @@
 .chat-input btn {
     margin-left: 8px;
     padding: 8px 12px;
-    background: rgba(0, 123, 255,1);
+    background: rgb(189, 214, 241);
     color: rgba(255, 255, 255, 1);
     border: none;
     border-radius: 4px;

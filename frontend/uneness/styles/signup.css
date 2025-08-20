@@ -22,8 +22,8 @@
     -webkit-backdrop-filter: invert(100%);
 
     border-radius: 30%;
-    width: 25%;
-    height: 400px;
+    width: 238.8px;
+    height: 300px;
     gap: 10px
 }
 
@@ -41,7 +41,7 @@
     justify-content: center;
 
     margin: 25px;
-    padding: 24px 0 16px 0;
+    padding: 32px 0 16px 0;
     width: auto;
     height: 16%;
     gap: 8px;

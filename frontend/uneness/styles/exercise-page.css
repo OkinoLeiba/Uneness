@@ -3,49 +3,54 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+
 }
 
 .form-container {
     display: flex;
-    flex-direction: row;
-    align-items: end;
-    width: 45em;
+    flex-direction: column;
+    align-items: center;
+    width: 55em;
     margin: 0.8em;
 }
 
 .exercise-form {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content:space-evenly;
 
-    width: 100%;
+    width: 31.5em;
     margin: 0.8em;
     
 }
 
 .exercise-form input {
     position: absolute;
-    background: rgb(161, 64, 155);
-    width: 27%;
+    background-color: rgb(161, 64, 155);
+    width: 40%;
     height: 100%;
-    margin: 0 10em 0 10em;
+    margin: 0 12em 0 8em;
 }
 
 .exercise-btn {
     display: flex;
     align-items: center;
     justify-content: end;
-    margin: 0 3em 0 0;
 
-    width: 80%;
+    width: 100%;
     /* max-width: 80vw; */
     border-radius: 120px;
     background-color: #007bff;
+    padding: 0 8px;
 
     height: 60px;
-    color: white;
     font-size: 1em;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.exercise-btn svg {
+    margin: 6px 4em 0 0;
 }

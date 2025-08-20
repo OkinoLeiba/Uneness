@@ -18,6 +18,7 @@
     height: 300vh;
     /* Enough height to scroll */ 
     transition: all 0.75s cubic-bezier(.71, 0, .33, 1.56) 0ms;
+
     
 }
 

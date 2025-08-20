@@ -18,9 +18,10 @@
 .navbar-display {
     display: block;
     width: 100rem;
-    margin-block: 0em;
-    margin-inline: 20em;
     font-size: 1em;
+    line-height: 0.9em;
+
+    margin: 0 0 12px 0;
         
 }
 
@@ -37,23 +38,25 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin: 0 0 12px 0;
 }
 
 .navbar-menu-desktop a {
-    margin: 8px 0.8em 8px 0.8em;
+    margin: 8px 0.4em 8px 0.4em;
     font-size: 1em;
 }
 
-.logout-button-icon {
+.logout-btn-icon {
     background-color: transparent;
-    margin: 0;
+    margin: 4px 0 0 0;
     padding: 0;
     border: 0 none;
 }
 
-.logout-button-icon svg {
+.logout-btn-icon svg {
     width: 16px;
-    height: 16px
+    height: 16px;
+    
 }
 
 
