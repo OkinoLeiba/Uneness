@@ -1,4 +1,4 @@
-import { Component, type ErrorInfo } from 'react';
+import React, {type ErrorInfo } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/navbar.css';
 
@@ -23,24 +23,24 @@ import '../styles/navbar.css';
  */
 
 interface Props {
-    form?: string ;
-    formTarget?: string ;
+    form?: string;
+    formTarget?: string;
     // type: typeof Button;
-    name: string ;
-    value: string ;
-    href: string ;
+    name: string;
+    value: string;
+    href: string;
 
     width?: number | string;
     height?: number | string; 
     elementColor?: string;
     textColor?: string;
 
-    accessibilityLabel: string ;
+    accessibilityLabel: string;
 
-    className: string ;
+    className: string;
 }
 
-export default class Button extends Component<Props> {
+export default class Button extends React.Component<Props, object> {
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -68,11 +68,11 @@ export default class Button extends Component<Props> {
             <Link
                 to={this.props.href}
             >
-                
                 <button
                     form={this.props.form}
                     formTarget={this.props.formTarget}
                     name={this.props.name}
+                    type={'button'}
                     style={{
                         // Height and Width are important to button roundness 
                         width:this.props.width,
