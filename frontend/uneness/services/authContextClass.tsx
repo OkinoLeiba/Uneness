@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react';
+import React, { createContext } from 'react';
 import { signup, login, logout, getCurrentUser, updateProfile, changePassword, verifyEmail, csrfTokenRequest } from './authServices';
 import type { AxiosResponse } from 'axios';
 
@@ -40,7 +40,7 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export class AuthProvider extends Component<AuthProviderProps, AuthProviderState> {
+export class AuthProvider extends React.Component<AuthProviderProps, AuthProviderState> {
   constructor(props: AuthProviderProps) {
     super(props);
     this.state = {
