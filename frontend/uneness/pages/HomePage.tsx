@@ -1,4 +1,4 @@
-import { Component, type ErrorInfo } from 'react';
+import React, { type ErrorInfo } from 'react';
 import Ellipse from '../components/Ellipse';
 import Button from '../components/Button';
 import '../styles/home-page.css';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 
-export default class HomePage extends Component<Props>{
+export default class HomePage extends React.Component<Props>{
     constructor(props: Props) {
         super(props);
         this.state = {
