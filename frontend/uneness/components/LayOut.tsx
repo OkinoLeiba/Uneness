@@ -1,4 +1,4 @@
-import React, {Component, type JSX} from 'react';
+import React, {type JSX} from 'react';
 import Header from './NavBar';
 import Footer from './Footer';
 import ChatWidget from './ChatWidget';
@@ -24,7 +24,7 @@ export interface StyleContextType {
 
 export const StyleContext = React.createContext<StyleContextType | null>(null);
 
-export default class Layout extends Component<Props> {
+export default class Layout extends React.Component<Props, object> {
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -37,18 +37,20 @@ export default class Layout extends Component<Props> {
             backgroundImage: "url('../src/assets/images/soul-body-glow.png')",
             width: 'auto',
             height: '100%',
-            minHeight: '96vh',
+            minHeight: '80vh',
 
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
+
+            padding: '0 18px',
         };
         return (
             <StyleContext.Provider value={styleContextValue}>
                 <div className={'layout-container'}>
                     <Header />
                     <Outlet />
-                    {this.props.children}
+                    {/* {this.props.children} */}
                     <ChatWidget />
                     <Footer />
                 </div>
