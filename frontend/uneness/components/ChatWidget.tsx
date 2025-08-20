@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../styles/chat-widget.css';
 
 interface State {
@@ -8,7 +8,7 @@ interface State {
 }
 
 
-export default class ChatWidget extends Component<State> {
+export default class ChatWidget extends React.Component<State> {
     
     state: State = {
         open: false,
@@ -27,7 +27,8 @@ export default class ChatWidget extends Component<State> {
 
   sendMessage = () => {
     
-    if (this.state.input.trim()) {
+    if (this.state.input?.trim()) {
+      // @ts-expect-error operator will destruct array
       const newMessages = [...this.state.messages, { text: this.state.input, sender: 'user' }];
       this.setState({ messages: newMessages, input: '' });
 
@@ -50,27 +51,27 @@ export default class ChatWidget extends Component<State> {
 
     return (
       <div className={`chat-container ${this.state.open ? 'open' : ''}`}>
-        <button className="chat-toggle" onClick={this.toggleChat}>💬</button>
+        <button name={'chat-btn'} type={'button'} className={'chat-toggle'} onClick={this.toggleChat}>💬</button>
         {this.state.open && (
-          <div className="chat-box">
-            <div className="chat-header">Live Chat</div>
-            <div className="chat-messages">
-              {this.state.messages.map((msg, i) => (
+          <div className={'chat-box'}>
+            <div className={'chat-header'}>Live Chat</div>
+            <div className={'chat-messages'}>
+              {this.state.messages?.map((msg, i) => (
                 // @ts-expect-error width type ReadOnly object and has state and needs immutability
                 <div key={i} className={`chat-message ${msg.sender}`}>
                   {msg.text} 
                 </div>
               ))}
             </div>
-            <div className="chat-input">
+            <div className={'chat-input'}>
               <input
-                type="text"
+                type={'text'}
                 value={this.state.input}
                 onChange={this.handleInputChange}
                 onKeyDown={this.handleKeyDown}
-                placeholder="Type a message..."
+                placeholder={'Type a message...'}
               />
-              <button onClick={this.sendMessage}>Send</button>
+              <button name={'chat-submit-btn'} type={'button'} onClick={this.sendMessage}>Send</button>
             </div>
           </div>
         )}
