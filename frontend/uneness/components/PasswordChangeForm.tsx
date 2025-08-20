@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 interface State {
   oldPassword: string;
@@ -7,7 +7,7 @@ interface State {
   message: string;
 }
 
-export class PasswordChangeForm extends Component<object, State> {
+export class PasswordChangeForm extends React.Component<object, State> {
   state: State = {
     oldPassword: '',
     newPassword1: '',
@@ -44,24 +44,24 @@ export class PasswordChangeForm extends Component<object, State> {
       <form onSubmit={this.handleSubmit}>
         <h2>Change Password</h2>
         <input
-          type="password"
-          placeholder="Old Password"
+          type={'password'}
+          placeholder={'Old Password'}
           value={this.state.oldPassword}
           onChange={e => this.setState({ oldPassword: e.target.value })}
         />
         <input
-          type="password"
-          placeholder="New Password"
+          type={'password'}
+          placeholder={'New Password'}
           value={this.state.newPassword1}
           onChange={e => this.setState({ newPassword1: e.target.value })}
         />
         <input
-          type="password"
-          placeholder="Confirm New Password"
+          type={'password'}
+          placeholder={'Confirm New Password'}
           value={this.state.newPassword2}
           onChange={e => this.setState({ newPassword2: e.target.value })}
         />
-        <button type="submit">Change Password</button>
+        <button name={'password-btn'} type={'submit'}>Change Password</button>
         {this.state.message && <p>{this.state.message}</p>}
       </form>
     );

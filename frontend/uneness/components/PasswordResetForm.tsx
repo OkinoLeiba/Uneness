@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 interface State {
   email: string;
   message: string ;
 }
 
-export class PasswordResetForm extends Component<object, State> {
+export class PasswordResetForm extends React.Component<object, State> {
   state: State = {
     email: '',
     message: '',
@@ -31,12 +31,12 @@ export class PasswordResetForm extends Component<object, State> {
       <form onSubmit={this.handleSubmit}>
         <h2>Reset Password</h2>
         <input
-          type="email"
-          placeholder="Email"
+          type={'email'}
+          placeholder={'email'}
           value={this.state.email}
           onChange={e => this.setState({ email: e.target.value })}
         />
-        <button type="submit">Send Reset Link</button>
+        <button name={'password-reset-btn'} type={'submit'}>Send Reset Link</button>
         {this.state.message && <p>{this.state.message}</p>}
       </form>
     );

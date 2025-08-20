@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 interface Props {
   uid: string;
@@ -11,7 +11,7 @@ interface State {
   message: string;
 }
 
-export class PasswordResetConfirm extends Component<Props, State> {
+export class PasswordResetConfirm extends React.Component<Props, State> {
   state: State = {
     newPassword1: '',
     newPassword2: '',
@@ -43,18 +43,18 @@ export class PasswordResetConfirm extends Component<Props, State> {
       <form onSubmit={this.handleSubmit}>
         <h2>Set New Password</h2>
         <input
-          type="password"
-          placeholder="New Password"
+          type={'password'}
+          placeholder={'New Password'}
           value={this.state.newPassword1}
           onChange={e => this.setState({ newPassword1: e.target.value })}
         />
         <input
-          type="password"
-          placeholder="Confirm New Password"
+          type={'password'}
+          placeholder={'Confirm New Password'}
           value={this.state.newPassword2}
           onChange={e => this.setState({ newPassword2: e.target.value })}
         />
-        <button type="submit">Reset Password</button>
+        <button name={'password-change--btn'} type={'submit'}>Reset Password</button>
         {this.state.message && <p>{this.state.message}</p>}
       </form>
     );

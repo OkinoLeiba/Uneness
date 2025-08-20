@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../styles/error-page.css'
 
 interface Props {
     code: number;
     message: string;
 }
-export default class ErrorPage extends Component<Props> {
+export default class ErrorPage extends React.Component<Props> {
 
     constructor(props: Props) {
         super(props);

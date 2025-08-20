@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleContext, type StyleContextType } from './LayOut';
 import { AuthContext } from '../services/authContextClass';
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
@@ -15,13 +15,13 @@ interface State {
 // FOR DEBUG
 //const DJANGO_BASE_URL = import.meta.env.VITE_DJANGO_BASE_URL;
 
-export default class Login extends Component<State> {
+export default class Login extends React.Component<object, State> {
   static contextType = AuthContext;
   declare context: React.ContextType<typeof AuthContext>;
 
   // FOR PRODUCTIONS-maybe
   // Other Option same as DEBUG wih env.production
-  login_url = window.location.origin + "/uneness/login";
+  login_url = window.location.origin + '/uneness/login';
   
 
   state: State = {
@@ -73,6 +73,7 @@ export default class Login extends Component<State> {
       }
       if (res?.status === 200) window.location.href = '/homepage';
     } catch (error) {
+      // @ts-expect-error message exit for type error
       this.setState({error: error.message})
     }
   }
@@ -91,34 +92,32 @@ export default class Login extends Component<State> {
               backgroundSize: styles.backgroundSize,
               width: styles.width,
               height: styles.height,
-              minHeight: styles.minHeight
-
-              
+              minHeight: styles.minHeight,
+              padding: styles.padding
             }}
             className={'login-container'}
           >
             <div className={'login-form-input'}>
-              <img src={brandLogo} alt="Brand Logo" width={180} height={80} loading="eager" />
+              <img src={brandLogo} alt={'Brand Logo'} width={180} height={80} loading={'eager'} />
               <form onSubmit={this.handleSubmit}>
                 <h2>Log In</h2>
                 <input
-                  type="text"
-                  placeholder="email"
+                  type={'text'}
+                  placeholder={'email'}
                   value={this.state.email}
                   onChange={e => this.setState({ email: e.target.value })}
                 />
                 <input
-                  type="password"
-                  placeholder="password"
+                  type={'password'}
+                  placeholder={'password'}
                   value={this.state.password}
                   onChange={e => this.setState({ password: e.target.value })}
                 />
-                <button type="submit" className={'login-btn-round'}>Log In</button>
+                <button type={'submit'} className={'login-btn-round'}>Log In</button>
                 {this.state.error && <p>{this.state.error}</p>}
               </form>
             </div>
-          </div>)
-        }
+          </div>)}
       </StyleContext.Consumer>
     );
   }
