@@ -1,4 +1,4 @@
-import { Component, createRef, type ErrorInfo } from 'react';
+import React, { createRef, type ErrorInfo } from 'react';
 import reactLogo from '../src/assets/icons/react.svg';
 import Card from '../components/Card';
 import '../styles/pillars.css';
@@ -8,7 +8,7 @@ interface Props {
     width?: number | string;
 }
 
-export default class HomePage extends Component<Props>{
+export default class HomePage extends React.Component<object, Props>{
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -43,6 +43,7 @@ export default class HomePage extends Component<Props>{
                             title={'Mind'}
                             text={this.randomText}
                             btnText={'Mind'}
+                            href={'/test'}
                             backgroundColor={'rgba(7, 121, 77, 0.8)'}
                             elementColor={'rgba(8, 15, 91, 0.8)'}
                             srcOval={reactLogo}
@@ -57,6 +58,7 @@ export default class HomePage extends Component<Props>{
                            title={'Body'}
                            text={this.randomText}
                            btnText={'Body'}
+                           href={'/exercise'}
                            backgroundColor={'rgba(82, 80, 6, 0.8)'}
                            elementColor={'rgba(88, 120, 7, 0.8)'}
                            srcOval={reactLogo}
@@ -71,6 +73,7 @@ export default class HomePage extends Component<Props>{
                            title={'Soul'}
                            text={this.randomText}
                            btnText={'Soul'}
+                           href={'/journey'}
                            backgroundColor={'rgba(35, 119, 204, 0.8)'}
                            elementColor={'rgba(11, 68, 85, 0.8)'}
                            srcOval={reactLogo}
