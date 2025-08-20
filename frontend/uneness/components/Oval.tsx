@@ -1,4 +1,4 @@
-import { Component, type ErrorInfo} from "react";
+import React, { type ErrorInfo} from "react";
 
 interface Props {
     src?: string ;
@@ -10,7 +10,7 @@ interface Props {
 
 
 
-export default class Oval extends Component<Props>{
+export default class Oval extends React.Component<Props>{
     constructor(props: Props) {
         super(props);
         this.state = {
