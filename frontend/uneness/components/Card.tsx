@@ -1,4 +1,4 @@
-import { Component, createRef, type ErrorInfo } from "react";
+import React, { createRef, type ErrorInfo } from "react";
 import Oval from './Oval';
 import Button from './Button';
 
@@ -31,6 +31,7 @@ interface Props {
     title: string;
     text: string;
     backgroundColor?: string;
+    href?: string;
 
     // Oval Properties //
     srcOval?: string;
@@ -49,13 +50,14 @@ interface Props {
 }
 
 
-export default class Card extends Component<Props> {
+export default class Card extends React.Component<Props, object> {
      constructor(props: Props) {
      super(props);
         this.state = {
             title: props.title || '',
             text: props.text || '',
             backgroundColor: props.backgroundColor || '',
+            href: props.href || '',
             elementColor: props.elementColor || '',
             srcOval: props.srcOval || '',
             altOval: props.altOval || '',
@@ -104,12 +106,18 @@ export default class Card extends Component<Props> {
                         width: this.props.width,      /* Equal width and height important for round circle */
                         height:  this.props.width,
 
-                        boxShadow: '0 4px 8px rgba(0,0,0,0.1)', /* Optional: card-like shadow */
+                        boxShadow: '0 4px 8px rgba(0,0,0,0.1)', /* Card-like shadow */
                         backgroundColor: this.props.backgroundColor,
                         opacity: '0.8',
+
+                        maxWidth: '405px',
+                        maxHeight: '405px',
+
+                        minWidth: '405px',
+                        minHeight: '405px',
                         
                         transition: 'transform 0.3s ease'
-                        //transition&:hover 'transform: scale(1.05)'
+                        //transition:hover 'transform: scale(1.05)'
                     }
                 }
             >
@@ -141,7 +149,7 @@ export default class Card extends Component<Props> {
                     name={'card-btn'}
                     form={''}
                     formTarget={''}
-                    href={''}
+                    href={this.props.href}
                     value={this.props.btnText}
                     // @ts-expect-error width type ReadOnly object and has state and needs immutability 
                     width={this.state.buttonWidth ? this.state.buttonWidth / 6 : window.innerWidth - 432 / 6}
