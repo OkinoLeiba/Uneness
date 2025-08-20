@@ -1,15 +1,17 @@
-import React, { Component, type ChangeEvent, type FormEvent } from 'react';
+import React from 'react';
 import { AuthContext } from '../services/authContextClass';
 
 interface DashboardState {
   username: string;
+  first_name: string;
+  last_name: string;
   email: string;
   password: string;
   confirmPassword: string;
   message: string;
 }
 
-export default class Dashboard extends Component<object, DashboardState> {
+export default class Dashboard extends React.Component<object, DashboardState> {
   static contextType = AuthContext;
   declare context: React.ContextType<typeof AuthContext>;
 
@@ -17,6 +19,8 @@ export default class Dashboard extends Component<object, DashboardState> {
     super(props);
     this.state = {
       username: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -25,6 +29,7 @@ export default class Dashboard extends Component<object, DashboardState> {
   }
   
   componentDidMount() {
+    // TODO: test and review
     const { user } = this.context;
     if (user) {
       this.setState({
@@ -36,7 +41,7 @@ export default class Dashboard extends Component<object, DashboardState> {
 
   handleLogout = async () => {
     try {
-      await this.context.logout();
+      await this.context?.logout();
     } catch (error) {
       this.setState({ message: `Logout failed- ${error}`});
     }
@@ -48,9 +53,9 @@ export default class Dashboard extends Component<object, DashboardState> {
 
   handleProfileUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { username, email } = this.state;
+    const { first_name, last_name, email } = this.state;
     try {
-      await this.context.updateProfile({ username, email });
+      await this.context?.updateProfile({ first_name, last_name, email });
       this.setState({ message: 'Profile updated successfully!' });
     } catch (error) {
       this.setState({ message: `Failed to update profile- ${error}`});
@@ -65,7 +70,7 @@ export default class Dashboard extends Component<object, DashboardState> {
       return;
     }
     try {
-      await this.context.changePassword(password);
+      await this.context?.changePassword(password, confirmPassword);
       this.setState({ message: 'Password changed successfully!', password: '', confirmPassword: '' });
     } catch (error) {
       this.setState({ message: `Failed to change password - ${error}`});
@@ -74,7 +79,7 @@ export default class Dashboard extends Component<object, DashboardState> {
 
   render() {
     const { user, loading } = this.context;
-    const { username, email, password, confirmPassword, message } = this.state;
+    const { first_name, last_name, email, password, confirmPassword, message } = this.state;
 
     if (loading) return <div>Loading dashboard...</div>;
     if (!user) return <div>You are not logged in.</div>;
@@ -83,23 +88,28 @@ export default class Dashboard extends Component<object, DashboardState> {
       <div style={{ padding: '2rem', maxWidth: '600px' }}>
         <h1>Dashboard</h1>
         <p><strong>Logged in as:</strong> {user.username}</p>
-        <button onClick={this.handleLogout}>Logout</button>
+        <button name={'dashboard-btn'} type={'button'} onClick={this.handleLogout}>Logout</button>
 
         <hr />
 
         <h2>Edit Profile</h2>
         <form onSubmit={this.handleProfileUpdate}>
           <label>
-            Username:
-            <input type="text" name="username" value={username} onChange={this.handleChange} />
+            First Name:
+            <input type={'text'} name={'first_name'} value={first_name} onChange={this.handleChange} />
           </label>
           <br />
+           <label>
+             Last Name:
+            <input type={'text'} name={'last_name'} value={last_name} onChange={this.handleChange} />
+           </label>
+           <br />
           <label>
             Email:
-            <input type="email" name="email" value={email} onChange={this.handleChange} />
+            <input type={'email'} name={'email'} value={email} onChange={this.handleChange} />
           </label>
           <br />
-          <button type="submit">Update Profile</button>
+          <button name={'profile-btn'}  type={'submit'}>Update Profile</button>
         </form>
 
         <hr />
@@ -108,15 +118,15 @@ export default class Dashboard extends Component<object, DashboardState> {
         <form onSubmit={this.handlePasswordChange}>
           <label>
             New Password:
-            <input type="password" name="password" value={password} onChange={this.handleChange} />
+            <input type={'password'} name={'password'} value={password} onChange={this.handleChange} />
           </label>
           <br />
           <label>
             Confirm Password:
-            <input type="password" name="confirmPassword" value={confirmPassword} onChange={this.handleChange} />
+            <input type={'password'} name={'confirmPassword'} value={confirmPassword} onChange={this.handleChange} />
           </label>
           <br />
-          <button type="submit">Change Password</button>
+          <button type={'submit'}>Change Password</button>
         </form>
 
         {message && <div><p>Dashboard Error</p> <p style={{ color: 'green' }}>{message}</p></div>}
