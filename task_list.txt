@@ -1,6 +1,5 @@
 Backend:
-    Review User App
-    Review Serializer
+    
     Debug update method
     Test Change Password view
     Get Nutrionix API and Test
@@ -14,8 +13,6 @@ Backend:
 
 Frontend:
     Research* or Create Calender
-    Build out Signup HTML and CSS
     Review CSS 
-    Test Login and Signup - Save Cookie and Local Storage
-    Test Other Routes
+    
  
