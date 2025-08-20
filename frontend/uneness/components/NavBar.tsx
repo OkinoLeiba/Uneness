@@ -1,10 +1,10 @@
-import { Component, type ErrorInfo} from 'react';
+import React, { type ErrorInfo} from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../services/authContextClass';
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import { RiLogoutCircleFill } from "react-icons/ri";
+import Cookies from 'js-cookie';
 import '../styles/navbar.css';
-import { logout } from '../services/authServices';
 // import Container ../styles/navbar.cssp/Container';
 // import Nav from 'react-bootstrap/Nav';
 // import Navbar from 'react-bootstrap/Navbar';
@@ -19,7 +19,7 @@ interface State {
   welcome?:string;
 }
 
-export default class Navbar extends Component<State> {
+export default class Navbar extends React.Component<object, State> {
   static contextType = AuthContext;
   declare context: React.ContextType<typeof AuthContext>;
 
@@ -34,9 +34,9 @@ export default class Navbar extends Component<State> {
 
   async componentDidMount(): Promise<void> {
     try {
-      const res = await this.context.getCurrentUser();
-      const user = res.data;
-      const displayName = user.user.username
+      const res = await this.context?.getCurrentUser();
+      const user = res?.data;
+      const displayName = user.user.username 
       ? this.titleCase(user.user.username.replace('_', ' '))
       : 'Guest';
       this.setState({
@@ -44,7 +44,7 @@ export default class Navbar extends Component<State> {
         email: user.email,
         isLoading: false,
         logout: true,
-        displayName: displayName,
+        displayName: String(displayName),
       });
 
       //console.log(user); // Safe to log here
@@ -52,7 +52,7 @@ export default class Navbar extends Component<State> {
       //console.log(this.context.user); // If context is updated separately
     } catch (error) {
       console.error("Failed to fetch user:", error);
-      this.setState({ user: null, logout: false, isLoading: false });
+      this.setState({ username: '', logout: false, isLoading: false });
     }
   }
   
@@ -101,9 +101,12 @@ export default class Navbar extends Component<State> {
 
   onLogout = (): void => {
     // TODO: consider moving line 103 to line 106 to LogOut.tsx
-    this.context.logout();
+    this.context?.logout();
     localStorage.removeItem('token')
-    sessionStorage.removeItem('')
+    sessionStorage.removeItem('token')
+    // Utilizing js-cookie
+    Cookies.remove('sessionid', { path: '/' });
+    Cookies.remove('csrftoken', { path: '/' });
     this.setState({ logout: false });
     this.setState({ welcome: `Goodbye, ${this.state.displayName}` });
     setTimeout(() => {
@@ -132,9 +135,9 @@ export default class Navbar extends Component<State> {
                 <Link to='/test'>Mind</Link>
                 <Link to='/journey'>Soul</Link>
                 <button
-                  name={'logout-button'}
-                  title={'logout-button'}
-                  className={'logout-button-icon'}
+                  name={'logout-btn'}
+                  title={'logout-btn'}
+                  className={'logout-btn-icon'}
                   type={'submit'}
                   onClick={this.onLogout}><RiLogoutCircleFill /></button>
               </div>) : (
