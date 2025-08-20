@@ -1,31 +1,40 @@
-import React, { Component, type MouseEventHandler } from 'react';
+import React from 'react';
 import '../styles/video-modal.css';
 
 interface Props {
-    videoUrl: string;
-    close?: boolean;
+    videoUrl?: string;
+    onClose?: () => void;
+    open: boolean;
 }
 
-export default class VideoModal extends Component<Props> {
+// interface State {
+    // 
+// }
+
+export default class VideoModal extends React.Component<Props, object> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            videoUrl: props.videoUrl || '',
-            close: props.close || true,
-        
+            open: props.open || false,  
         };
     } 
 
-    onClose = () => {
-        this.setState(close, () => false);
+    handleClose = () => {
+        // Invoke the parent’s method
+        this.props.onClose?.();
     }
+    // onClose = () => {
+        // this.setState(open, () => false);
+    // }
 
   render() {
     return (
-        <div className="video-overlay">
-            {close ? (
+        <div>
+        {
+        this.props.open ? (
+            <div className="video-overlay">
                 <div className="video-content">
-                  <button className="close-btn" onClick={this.onClose}>×</button>
+                  <button name={'close-video-btn'} type={'button'} className="close-btn" onClick={this.handleClose}>×</button>
                         {/* <iframe 
                     // width="100%"
                     // height="100%"
@@ -37,7 +46,7 @@ export default class VideoModal extends Component<Props> {
                     <iframe
                         width="100%"
                         height="100%"
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=OGOP4KUpldhsN8mA"
+                        src={this.props.videoUrl}
                         title="YouTube video player"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -45,8 +54,9 @@ export default class VideoModal extends Component<Props> {
                         allowFullScreen
                     />
                 </div>
+            </div> 
             ): null} 
-        </div> 
+       </div>
     );
   }
 }

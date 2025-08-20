@@ -1,10 +1,12 @@
-import { Component, type ErrorInfo } from 'react';
+import React, { type ErrorInfo } from 'react';
 import SelectDropdown from '../components/SelectDropdown';
+import { StyleContext, type StyleContextType } from '../components/LayOut';
+import VideoModal from '../components/VideoModal';
 import { FaSearch } from 'react-icons/fa'; // Example icons
-// import TestData from '../src/assets/TestExerciseData'
 
-import Layout from '../components/Layout';
+// import TestData from '../src/assets/TestExerciseData'
 import '../styles/exercise-page.css';
+
 
 const TEST_DATA = [
   {
@@ -205,22 +207,40 @@ const TEST_DATA = [
 
 
 interface Props {
-    src?: string;
-    alt?: string;
-    // searchInput?: string;
+  src?: string;
+  alt?: string;
+  searchInput?: string;
+  
+  modalOpen: boolean;
+  videoUrl: string;
 }
 
 
-export default class HomePage extends Component<Props>{
+export default class HomePage extends React.Component<object, Props>{
     constructor(props: Props) {
         super(props);
         this.state = {
-            // searchInput: props.searchInput || '',
+          src: props.src || '',
+          alt: props.alt || '',
+          searchInput: props.searchInput || '',
+
+          modalOpen: props.modalOpen || false,
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?si=OGOP4KUpldhsN8mA',
         };
     }
 
-    searchInput: string = '';
+    
     filter: boolean = true;
+  
+
+    openModal = () => {
+      this.setState({ modalOpen: true });
+      console.log(this.state.modalOpen)
+    };
+
+    closeModal = () => {
+    this.setState({ modalOpen: false });
+    };
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
         console.log(`${error}: ${errorInfo}`)
@@ -238,66 +258,63 @@ export default class HomePage extends Component<Props>{
         });
     }
 
-    filterExercises(): void {
-        if (this.searchInput.length > 0) {
-            this.filter = true;
-            console.log(this.filter)
-        }
-        this.filter = false;
-    }
     setInput(value: string): void {
-        this.searchInput = value;
-        console.log(this.searchInput)
-        console.log(TEST_DATA.filter(e => {
-            return e.name.toLocaleLowerCase().trim() === this.searchInput.toLowerCase().trim()
-        }))
+        this.setState({ searchInput: value });
     }
 
-    render() {
-        return (
-            <div>
-                <div className={'exercise-container'}>
-                    <div className="form-container">
-                        <form className={'exercise-form'}>
-                            <input
-                                type={'search'}
-                                name={'exercise-search'}
-                                id={'exercise-search'}
-                                placeholder={''}
-                                onChange={e => this.setInput(e.target.value)}
-                            />
-                            <button
-                                type={'submit'}
-                                name={'exercise-search-btn'}
-                                title={'exercise-search-btn'}
-                                className="exercise-btn" onClick={this.filterExercises}>
-                                <FaSearch className="icon-right" />
-                            </button>
-                        </form>
-                    </div>           
-                    {
-                        !this.filter ?     
-                        TEST_DATA.map(e => {
-                            return <SelectDropdown
-                                    name={this.titleCase(e.name).toString()}
-                                    dropdownText={e.description}
-                                    key={e.name.replace('', '-')}
-                            />
-                        }) : 
-                        TEST_DATA.filter(e => {
-                            return e.name.toLocaleLowerCase().trim() === this.searchInput.toLowerCase().trim()
-                        }).map(e => {
-                            return <SelectDropdown
-                                    name={this.titleCase(e.name).toString()}
-                                    dropdownText={e.description}
-                                key={e.name.replace('', '-')}
-                            />
-                        })
-                    }
-                </div>
+  render() {
+    return (
+      <StyleContext.Consumer>
+        {(styles: StyleContextType) => (
+          <div
+            style={{
+              backgroundImage: styles.backgroundImage,
+              backgroundPosition: styles.backgroundPosition,
+              backgroundRepeat: styles.backgroundRepeat,
+              backgroundSize: styles.backgroundSize,
+              width: styles.width,
+              height: styles.height,
+              minHeight: styles.minHeight,
+              margin: styles.padding
+            }}
+            className={'exercise-container'}
+          >
+            <div className="form-container">
+              <form className={'exercise-form'}>
+                <input
+                  type={'search'}
+                  name={'exercise-search'}
+                  id={'exercise-search'}
+                  placeholder={''}
+                  onChange={e => this.setInput(e.target.value)}
+                />
+                <button
+                  type={'submit'}
+                  name={'exercise-search-btn'}
+                  title={'exercise-search-btn'}
+                  className="exercise-btn">
+                  <FaSearch className="icon-right" />
+                </button>
+              </form>
             </div>
-        )
-    }
+            {
+              TEST_DATA.filter(e => {
+                return e.name.toLocaleLowerCase().trim().includes(this.state.searchInput.trim().toLowerCase())
+              }).map(e => {
+                return <SelectDropdown
+                  name={this.titleCase(e.name).toString()}
+                  dropdownText={e.description}
+                  onOpen={this.openModal}
+                  key={e.name.replace('', '-')}
+                />
+              })
+            }
+            <VideoModal videoUrl={this.state.videoUrl} open={this.state.modalOpen} onClose={this.closeModal} />
+          </div>
+        )}
+      </StyleContext.Consumer>
+    );
+  }
 }
 
 // this.filterExercises ?     
@@ -317,3 +334,4 @@ export default class HomePage extends Component<Props>{
     // return <p>No exercise of that name exists.</p>
     // />
 // })
+
