@@ -1,4 +1,4 @@
-import { Component, type ErrorInfo } from "react";
+import React, { type ErrorInfo } from "react";
 import imgEllipse from '../src/assets/images/pink-purple-flowers.jpg';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 
 
-export default class Ellipse extends Component<Props>{
+export default class Ellipse extends React.Component<Props>{
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -48,8 +48,7 @@ export default class Ellipse extends Component<Props>{
                     style={{
                         borderRadius: '50%',
                         boxShadow: '0 0 2px 1px rgba(0, 140, 186, 0.5)'
-                    }}
-                    
+                    }}     
                 />
             </div>
         )
