@@ -265,17 +265,17 @@ export default class HomePage extends React.Component<object, Props>{
   render() {
     return (
       <StyleContext.Consumer>
-        {(styles: StyleContextType) => (
+        {(styles: StyleContextType | null) => (
           <div
             style={{
-              backgroundImage: styles.backgroundImage,
-              backgroundPosition: styles.backgroundPosition,
-              backgroundRepeat: styles.backgroundRepeat,
-              backgroundSize: styles.backgroundSize,
-              width: styles.width,
-              height: styles.height,
-              minHeight: styles.minHeight,
-              margin: styles.padding
+              backgroundImage: styles!.backgroundImage,
+              backgroundPosition: styles!.backgroundPosition,
+              backgroundRepeat: styles!.backgroundRepeat,
+              backgroundSize: styles!.backgroundSize,
+              width: styles!.width,
+              height: styles!.height,
+              minHeight: styles!.minHeight,
+              margin: styles!.padding
             }}
             className={'exercise-container'}
           >
@@ -299,7 +299,7 @@ export default class HomePage extends React.Component<object, Props>{
             </div>
             {
               TEST_DATA.filter(e => {
-                return e.name.toLocaleLowerCase().trim().includes(this.state.searchInput.trim().toLowerCase())
+                return e.name.toLocaleLowerCase().trim().includes(this.state.searchInput!.trim().toLowerCase())
               }).map(e => {
                 return <SelectDropdown
                   name={this.titleCase(e.name).toString()}
