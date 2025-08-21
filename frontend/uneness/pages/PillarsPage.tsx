@@ -1,4 +1,5 @@
 import React, { createRef, type ErrorInfo } from 'react';
+// @ts-expect-error module exists
 import reactLogo from '../src/assets/icons/react.svg';
 import Card from '../components/Card';
 import '../styles/pillars.css';
