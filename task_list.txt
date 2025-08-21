@@ -1,9 +1,7 @@
 Backend:
     
     Debug update method
-    Test Change Password view
     Get Nutrionix API and Test
-    Test and Build Exercise Table
     
     **Custom User Model**
     Review override of object 
