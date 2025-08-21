@@ -1,6 +1,7 @@
 import React, { type ErrorInfo} from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../services/authContextClass';
+// @ts-expect-error module exists
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import { RiLogoutCircleFill } from "react-icons/ri";
 import Cookies from 'js-cookie';
