@@ -86,7 +86,7 @@ export default class  extends React.Component<Props, State>{
     const imageStyle: React.CSSProperties = {
       maxWidth: '100%',
       maxHeight: '100%',
-      objectFit: 'contain',
+      objectFit: 'fill',
 
       width: '100%',
       height: '100%',
