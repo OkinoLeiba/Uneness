@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleContext, type StyleContextType } from './LayOut';
 import { AuthContext } from '../services/authContextClass';
+// @ts-expect-error module exists
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import '../styles/signup.css';
 
@@ -103,6 +104,7 @@ export default class Login extends React.Component<object, State> {
           }
           throw new Error('Invalid credentials');
         }
+        alert('Thank you, your account has been created.')
         if (res?.status === 201) window.location.href = '/homepage';
       } catch (error) {
         this.setState({ error: error.message });
@@ -116,16 +118,16 @@ export default class Login extends React.Component<object, State> {
   render() {
     return (
       <StyleContext.Consumer>
-        {(styles: StyleContextType) => (
+        {(styles: StyleContextType | null) => (
           <div
             style={{
-              backgroundImage: styles.backgroundImage,
-              backgroundPosition: styles.backgroundPosition,
-              backgroundRepeat: styles.backgroundRepeat,
-              backgroundSize: styles.backgroundSize,
-              width: styles.width,
-              height: styles.height,
-              minHeight: styles.minHeight
+              backgroundImage: styles!.backgroundImage,
+              backgroundPosition: styles!.backgroundPosition,
+              backgroundRepeat: styles!.backgroundRepeat,
+              backgroundSize: styles!.backgroundSize,
+              width: styles!.width,
+              height: styles!.height,
+              minHeight: styles!.minHeight
             }}
             className={'signup-container'}
           >
