@@ -1,8 +1,11 @@
 import React, { type ErrorInfo} from "react";
 
+
 interface Props {
-    src?: string ;
-    alt: string ;
+    src?: string;
+    alt: string;
+    
+    size?: number | string;
 
     elementColor?: string ;
 }
@@ -16,6 +19,7 @@ export default class Oval extends React.Component<Props>{
         this.state = {
           src: props.src || '',
           alt: props.alt,
+          size: props.size || 100,
           backgroundColor: props.elementColor || '',
         };
     }
@@ -33,8 +37,8 @@ export default class Oval extends React.Component<Props>{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    width: 100,
-                    height: 100,
+                    width: this.props.size,
+                    height: this.props.size,
                     borderRadius:'50%',
                 }}
             >
