@@ -1,14 +1,15 @@
 import React, {createRef} from 'react';
-import Navbar from '../components/NavBar';
+// import Navbar from '../components/NavBar';
 import Oval from '../components/Oval';
 // import Button from '../components/button';
-import Card from '../components/Card'
-import Footer from '../components/Footer';
-import SelectDropdown from '../components/SelectDropdown';
-import ChatWidget from '../components/ChatWidget';
-import VideoModal from '../components/VideoModal';
+// import Card from '../components/Card'
+// import Footer from '../components/Footer';
+// import SelectDropdown from '../components/SelectDropdown';
+// import ChatWidget from '../components/ChatWidget';
+// import VideoModal from '../components/VideoModal';
 import ImageSlider from '../components/ImageSlider';
-import yogaImage from '../src/assets/images/group-yoga-exercise.jpg';
+// import yogaImage from '../src/assets/images/group-yoga-exercise.jpg';
+// @ts-expect-error module exists
 import reactLogo  from '../src/assets/icons/react.svg';
 
 
