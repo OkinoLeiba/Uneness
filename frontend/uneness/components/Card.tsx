@@ -124,6 +124,7 @@ export default class Card extends React.Component<Props, object> {
                 <Oval
                     src={this.props.srcOval}
                     alt={this.props.altOval}
+                    size={100}
                     elementColor={this.props.elementColor}
                 />
                 <h3
@@ -149,7 +150,7 @@ export default class Card extends React.Component<Props, object> {
                     name={'card-btn'}
                     form={''}
                     formTarget={''}
-                    href={this.props.href}
+                    href={this.props.href || ''}
                     value={this.props.btnText}
                     // @ts-expect-error width type ReadOnly object and has state and needs immutability 
                     width={this.state.buttonWidth ? this.state.buttonWidth / 6 : window.innerWidth - 432 / 6}
