@@ -34,7 +34,7 @@ export default class ChatWidget extends React.Component<State> {
 
       setTimeout(() => {
         this.setState(prevState => ({
-          // @ts-expect-error width type ReadOnly object and has state and needs immutability
+          // @ts-expect-error operator will destruct array
           messages: [...prevState.messages, { text: 'Thanks for your message!', sender: 'bot' }]
         }));
       }, 1000);
@@ -57,7 +57,7 @@ export default class ChatWidget extends React.Component<State> {
             <div className={'chat-header'}>Live Chat</div>
             <div className={'chat-messages'}>
               {this.state.messages?.map((msg, i) => (
-                // @ts-expect-error width type ReadOnly object and has state and needs immutability
+                // @ts-expect-error messages is type ReadOnly object and has state and needs immutability
                 <div key={i} className={`chat-message ${msg.sender}`}>
                   {msg.text} 
                 </div>
