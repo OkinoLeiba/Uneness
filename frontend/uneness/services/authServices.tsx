@@ -8,7 +8,7 @@ export interface AuthPayload {
     last_name?: string;
     username?: string;
     email: string;
-    password: string;
+    password?: string;
     password2?: string;
 }
 
@@ -48,6 +48,7 @@ export const updateProfile = async (data: Partial<AuthPayload>) => {
 // TODO: validation on the frontend or backend??
 export const changePassword = async (data: { old_password: string; new_password: string }) => {
   // Alter defaults after instance has been created
+  // Token will be used for select methods
   api.defaults.headers.common['Authorization'] = sessionStorage.getItem('token');
   return api.put('user/change-password/', data);
 };
