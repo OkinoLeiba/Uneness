@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/select-dropdown.css'; // We'll define styles here
 import { FaPlus, FaHeart } from 'react-icons/fa'; // Example icons
-import { MdOndemandVideo, MdOutlineTextSnippet } from "react-icons/md";
+import { MdOndemandVideo, MdOutlineTextSnippet } from 'react-icons/md';
 
 interface Props {
  name: string;

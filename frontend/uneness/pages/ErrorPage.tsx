@@ -26,7 +26,7 @@ export default class ErrorPage extends React.Component<Props> {
         <div className={'error-container'}>
           <h1 className={'error-code'}>{this.props.code}</h1>
           <p className={'error-message'}>{this.props.message}</p>
-          <a href="/homepage" className={'error-link'}>Go back home</a>
+          <a href='/homepage' className={'error-link'}>Go back home</a>
         </div>
       );
     }

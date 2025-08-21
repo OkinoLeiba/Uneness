@@ -27,7 +27,7 @@ if (csrfToken) {
  */
 // spaces might be an issue
 // function getCookie(name) {
-  // const cookieStr = document.cookie; // "csrftoken=abc123; sessionid=xyz456"
+  // const cookieStr = document.cookie; // 'csrftoken=abc123; sessionid=xyz456'
   // const pairs = cookieStr.split('; ').map(c => c.split('='));
   // for (const [key, val] of pairs) {
     // if (key === name) {

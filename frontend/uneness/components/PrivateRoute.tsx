@@ -10,7 +10,7 @@ const PrivateRoute: React.FC<Props> = ({ children }): JSX.Element => {
     const { user, loading } = useAuth();
 
     if (loading) return <div>Loading...</div>;
-    if (!user) return <Navigate to="/uneness/components/LogIn" replace />;
+    if (!user) return <Navigate to='/uneness/components/LogIn' replace />;
 
     return children;
 };

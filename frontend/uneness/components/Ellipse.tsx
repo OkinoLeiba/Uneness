@@ -1,4 +1,4 @@
-import React, { type ErrorInfo } from "react";
+import React, { type ErrorInfo } from 'react';
 // @ts-expect-error module exists
 import imgEllipse from '../src/assets/images/pink-purple-flowers.jpg';
 

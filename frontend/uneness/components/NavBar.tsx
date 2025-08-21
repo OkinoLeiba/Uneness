@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../services/authContextClass';
 // @ts-expect-error module exists
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
-import { RiLogoutCircleFill } from "react-icons/ri";
+import { RiLogoutCircleFill } from 'react-icons/ri';
 import Cookies from 'js-cookie';
 import '../styles/navbar.css';
 // import Container ../styles/navbar.cssp/Container';
@@ -52,7 +52,7 @@ export default class Navbar extends React.Component<object, State> {
       //console.log(this.state.isLoading)
       //console.log(this.context.user); // If context is updated separately
     } catch (error) {
-      console.error("Failed to fetch user:", error);
+      console.error('Failed to fetch user:', error);
       this.setState({ username: '', logout: false, isLoading: false });
     }
   }
@@ -76,7 +76,7 @@ export default class Navbar extends React.Component<object, State> {
         // console.log(userName);
       // })
       // .catch(error => {
-        // console.error("Error fetching user:", error);
+        // console.error('Error fetching user:', error);
         // this.setState({
           // user: null,
           // userName: '',
@@ -124,7 +124,7 @@ export default class Navbar extends React.Component<object, State> {
       return (
         <nav className='navbar'>
           <div className='navbar-container'>
-            <Link to='/homepage'><img src={brandLogo} alt="Brand Logo" width={180} height={50} loading="eager" /></Link>
+            <Link to='/homepage'><img src={brandLogo} alt='Brand Logo' width={180} height={50} loading='eager' /></Link>
             {this.state.logout ?
               <p className={'navbar-display'}>Welcome, {this.state.displayName}</p> :
               <p className={'navbar-display'} >{this.state.welcome}</p>}

@@ -1,4 +1,4 @@
-import React, { createRef, type ErrorInfo } from "react";
+import React, { createRef, type ErrorInfo } from 'react';
 import Oval from './Oval';
 import Button from './Button';
 

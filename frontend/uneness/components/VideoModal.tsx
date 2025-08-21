@@ -32,25 +32,25 @@ export default class VideoModal extends React.Component<Props, object> {
         <div>
         {
         this.props.open ? (
-            <div className="video-overlay">
-                <div className="video-content">
-                  <button name={'close-video-btn'} type={'button'} className="close-btn" onClick={this.handleClose}>×</button>
+            <div className='video-overlay'>
+                <div className='video-content'>
+                  <button name={'close-video-btn'} type={'button'} className='close-btn' onClick={this.handleClose}>×</button>
                         {/* <iframe 
-                    // width="100%"
-                    // height="100%"
+                    // width='100%'
+                    // height='100%'
                     // src={this.props.videoUrl}
-                    // title="Video Player"
-                    // frameBorder="0"
+                    // title='Video Player'
+                    // frameBorder='0'
                     // allowFullScreen
                     // /> */}
                     <iframe
-                        width="100%"
-                        height="100%"
+                        width='100%'
+                        height='100%'
                         src={this.props.videoUrl}
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
+                        title='YouTube video player'
+                        frameBorder='0'
+                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                        referrerPolicy='strict-origin-when-cross-origin'
                         allowFullScreen
                     />
                 </div>
