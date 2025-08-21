@@ -9,7 +9,6 @@ import Oval from '../components/Oval';
 // import VideoModal from '../components/VideoModal';
 import ImageSlider from '../components/ImageSlider';
 // import yogaImage from '../src/assets/images/group-yoga-exercise.jpg';
-// @ts-expect-error module exists
 import reactLogo  from '../src/assets/icons/react.svg';
 
 

@@ -1,5 +1,34 @@
 import React from 'react';
 
+/**
+ * @typedef {Object} Props
+ * @description Props required for securely resetting a user's password.
+ *
+ * Authentication
+ * @property {string} uid - Unique identifier for the user, typically provided by the backend.
+ * @property {string} token - Security token used to validate the password reset request.
+ *
+ * @author Okino
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
+/**
+ * @typedef {Object} State
+ * @description State object for managing password reset form inputs and feedback.
+ *
+ * Password Fields
+ * @property {string} newPassword1 - First entry of the new password.
+ * @property {string} newPassword2 - Second entry of the new password for confirmation.
+ *
+ * Feedback Message
+ * @property {string} message - Message displayed to the user (e.g., success or error feedback).
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
 interface Props {
   uid: string;
   token: string;

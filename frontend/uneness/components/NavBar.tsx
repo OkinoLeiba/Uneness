@@ -1,7 +1,6 @@
 import React, { type ErrorInfo} from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../services/authContextClass';
-// @ts-expect-error module exists
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import { RiLogoutCircleFill } from 'react-icons/ri';
 import Cookies from 'js-cookie';
@@ -10,6 +9,27 @@ import '../styles/navbar.css';
 // import Nav from 'react-bootstrap/Nav';
 // import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
+
+/**
+ * @typedef {Object} State
+ * @description Represents the state of a user session and UI feedback in an application.
+ *
+ * User Information
+ * @property {string} [username] - Optional username associated with the current session.
+ * @property {string} [email] - Optional email address of the user.
+ * @property {string} [displayName] - Optional display name shown in the UI.
+ *
+ * Session Status
+ * @property {boolean} [isLoading] - Indicates whether a process (e.g. fetching data) is currently in progress.
+ * @property {boolean} [logout] - Flag to determine if the user has logged out.
+ *
+ * UI Feedback
+ * @property {string} [welcome] - Optional welcome message displayed to the user.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
 
 interface State {
   username?: string;

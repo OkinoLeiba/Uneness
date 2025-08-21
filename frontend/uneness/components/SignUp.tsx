@@ -1,9 +1,29 @@
 import React from 'react';
 import { StyleContext, type StyleContextType } from './LayOut';
 import { AuthContext } from '../services/authContextClass';
-// @ts-expect-error module exists
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import '../styles/signup.css';
+
+/**
+ * @typedef {Object} State
+ * @description State object for managing user registration form inputs and error feedback.
+ *
+ * User Information
+ * @property {string} email - The user's email address.
+ * @property {string} first_name - The user's first name.
+ * @property {string} last_name - The user's last name.
+ *
+ * Password Fields
+ * @property {string} password - The user's chosen password.
+ * @property {string} password2 - Confirmation entry for the password.
+ *
+ * Error Handling
+ * @property {string} error - Error message to display in case of validation or submission failure.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
 
 interface State {
     email: string;
@@ -107,6 +127,7 @@ export default class Login extends React.Component<object, State> {
         alert('Thank you, your account has been created.')
         if (res?.status === 201) window.location.href = '/homepage';
       } catch (error) {
+        //@ts-expect-error error will have state 
         this.setState({ error: error.message });
       }
     }

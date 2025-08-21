@@ -1,7 +1,31 @@
 import React from 'react';
 import { AuthContext } from '../services/authContextClass';
 
-interface DashboardState {
+/**
+ * @typedef {Object} State
+ * @description State object for managing the dashboard form inputs and feedback.
+ *
+ * User Identification
+ * @property {string} username - The unique username for the account.
+ * @property {string} first_name - The user's first name.
+ * @property {string} last_name - The user's last name.
+ *
+ * Contact Information
+ * @property {string} email - The user's email address.
+ *
+ * Authentication Fields
+ * @property {string} password - The user's password entry.
+ * @property {string} confirmPassword - Confirmation entry for the user's password.
+ *
+ * Feedback Message
+ * @property {string} message - Informational or error message to display on the dashboard.
+ *
+ * @author Okino
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
+interface State {
   username: string;
   first_name: string;
   last_name: string;
@@ -11,11 +35,11 @@ interface DashboardState {
   message: string;
 }
 
-export default class Dashboard extends React.Component<object, DashboardState> {
+export default class Dashboard extends React.Component<object, State> {
   static contextType = AuthContext;
   declare context: React.ContextType<typeof AuthContext>;
 
-  constructor(props: DashboardState) {
+  constructor(props: State) {
     super(props);
     this.state = {
       username: '',
@@ -48,7 +72,7 @@ export default class Dashboard extends React.Component<object, DashboardState> {
   };
 
   handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ [e.target.name]: e.target.value } as Pick<DashboardState, keyof DashboardState>);
+    this.setState({ [e.target.name]: e.target.value } as Pick<State, keyof State>);
   };
 
   handleProfileUpdate = async (e: React.FormEvent) => {

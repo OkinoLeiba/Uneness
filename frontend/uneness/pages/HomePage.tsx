@@ -3,6 +3,19 @@ import Ellipse from '../components/Ellipse';
 import Button from '../components/Button';
 import '../styles/home-page.css';
 
+/**
+ * @typedef {Object} Props
+ * @description Props for a basic image component with optional source and alt text for accessibility.
+ *
+ * Image Attributes
+ * @property {string} [src] - Optional source URL for the image.
+ * @property {string} [alt] - Optional alternative text describing the image content.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
 
 interface Props {
     src?: string;
@@ -40,7 +53,7 @@ export default class HomePage extends React.Component<Props>{
                         name={'button'}
                         form={''}
                         formTarget={''}
-                        href={''}
+                        href={'/journey'}
                         value={'Start Your Journey'}
                         width={this.width}
                         height={this.height}
@@ -52,7 +65,7 @@ export default class HomePage extends React.Component<Props>{
                         name={'button'}
                         form={''}
                         formTarget={''}
-                        href={''}
+                        href={'/pillar'}
                         value={'Learn More'}
                         width={this.width}
                         height={this.height}

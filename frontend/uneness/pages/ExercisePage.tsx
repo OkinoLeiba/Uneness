@@ -205,6 +205,27 @@ const TEST_DATA = [
   },
 ];
 
+/**
+ * @typedef {Object} Props
+ * @description Props for a media-enabled modal component that supports image, video, and search input.
+ *
+ * Image Properties
+ * @property {string} [src] - Optional source URL for an image displayed in the modal.
+ * @property {string} [alt] - Optional alternative text for the image, used for accessibility.
+ *
+ * Search Functionality
+ * @property {string} [searchInput] - Optional search input string used for filtering or querying content.
+ *
+ * Modal Control
+ * @property {boolean} modalOpen - Determines whether the modal is currently visible.
+ *
+ * Media Content
+ * @property {string} videoUrl - URL to the video resource displayed within the modal.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
 
 interface Props {
   src?: string;

@@ -1,6 +1,24 @@
 import React from 'react';
 import '../styles/video-modal.css';
 
+/**
+ * @typedef {Object} Props
+ * @description Props for a modal or popup component that optionally displays a video and supports close interaction.
+ *
+ * Media Content
+ * @property {string} [videoUrl] - Optional URL to a video resource displayed within the component.
+ *
+ * Interaction
+ * @property {function(): void} [onClose] - Optional callback function triggered when the component is closed.
+ *
+ * Visibility
+ * @property {boolean} open - Determines whether the component is currently visible.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
 interface Props {
     videoUrl?: string;
     onClose?: () => void;

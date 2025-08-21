@@ -4,6 +4,19 @@ import Footer from './Footer';
 import ChatWidget from './ChatWidget';
 import { Outlet } from 'react-router-dom';
 
+/**
+ * @typedef {Object} Props
+ * @description Configuration for a styled UI component container.
+ *
+ * Styling Properties
+ * @property {string} backgroundColor - Background color of the component.
+ * @property {string} className - CSS class name(s) applied to the component.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
 interface Props {
     children?: JSX.Element;
 
@@ -34,7 +47,7 @@ export default class Layout extends React.Component<Props, object> {
 
     render() {
         const styleContextValue: StyleContextType = {
-            backgroundImage: 'url('../src/assets/images/soul-body-glow.png')',
+            backgroundImage: "url('../src/assets/images/soul-body-glow.png')",
             width: 'auto',
             height: '100%',
             minHeight: '80vh',

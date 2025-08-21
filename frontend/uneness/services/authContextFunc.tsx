@@ -2,6 +2,55 @@ import React, { createContext, useEffect, useState } from 'react';
 import { signup, login, logout, getCurrentUser, updateProfile, changePassword, verifyEmail, csrfTokenRequest } from './authServices';
 import type { AxiosResponse } from 'axios';
 
+/**
+ * @typedef {Object} User
+ * @description Basic user identity information used in authentication context.
+ *
+ * @property {string} username - Unique identifier for the user.
+ * @property {string} email - Email address associated with the user account.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
+/**
+ * @typedef {Object} AuthPayload
+ * @description Payload structure for user registration and profile updates.
+ *
+ * @property {string} [first_name] - Optional first name of the user.
+ * @property {string} [last_name] - Optional last name of the user.
+ * @property {string} email - Email address used for authentication or updates.
+ * @property {string} [password] - Optional password for login or profile change.
+ * @property {string} [password2] - Optional confirmation password for validation.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
+/**
+ * @typedef {Object} AuthContextType
+ * @description Context interface for managing authentication state and operations.
+ *
+ * State
+ * @property {User|null} user - Currently authenticated user or null if not logged in.
+ * @property {boolean} loading - Indicates whether authentication operations are in progress.
+ *
+ * Methods
+ * @property {function(string, string): Promise<AxiosResponse>} login - Authenticates a user with email and password.
+ * @property {function(string, string, string, string, string): Promise<AxiosResponse>} signup - Registers a new user with full credentials.
+ * @property {function(): Promise<void>} logout - Logs out the current user.
+ * @property {function(AuthPayload): Promise<void>} updateProfile - Updates user profile with provided data.
+ * @property {function(string, string): Promise<void>} changePassword - Changes the user's password using old and new values.
+ * @property {function(string): Promise<void>} verifyEmail - Verifies the user's email using a token.
+ * @property {function(): Promise<AxiosResponse>} getCurrentUser - Retrieves the current authenticated user from the server.
+ * @property {function(): Promise<AxiosResponse>} csrfTokenRequest - Requests a CSRF token for secure form submissions.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
 
 interface User {
   username: string;

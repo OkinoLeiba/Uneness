@@ -1,5 +1,23 @@
 
 import { api } from './api';
+/**
+ * @typedef {Object} AuthPayload
+ * @description Payload structure used for user registration, profile updates, or authentication-related operations.
+ *
+ * Personal Information
+ * @property {string} [first_name] - Optional first name of the user.
+ * @property {string} [last_name] - Optional last name of the user.
+ * @property {string} [username] - Optional unique username for the user account.
+ *
+ * Contact & Credentials
+ * @property {string} email - Email address used for login or communication.
+ * @property {string} [password] - Optional password for authentication or account setup.
+ * @property {string} [password2] - Optional confirmation password for validation.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
 
 // Define TypeScript interfaces for request/response payloads
 // Validate backend responses with runtime checks??

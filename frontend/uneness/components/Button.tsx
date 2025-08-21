@@ -74,7 +74,7 @@ export default class Button extends React.Component<Props, object> {
                     name={this.props.name}
                     type={'button'}
                     style={{
-                        // Height and Width are important to button roundness 
+                        // Height and Width are important to button roundness or shape
                         width:this.props.width,
                         height: this.props.height,
                         borderRadius: '120px',

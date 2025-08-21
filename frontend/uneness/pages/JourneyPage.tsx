@@ -3,10 +3,20 @@ import { StyleContext, type StyleContextType } from '../components/LayOut';
 import Oval from '../components/Oval';
 //import Ellipse from '../components/Ellipse';
 import ImageSlider from '../components/ImageSlider';
-// @ts-expect-error module exists
 import yogaImage from '../src/assets/images/group-yoga-exercise.jpg';
 import '../styles/journey.css';
 
+/**
+ * @typedef {Object} Props
+ * @description Props for a component that accepts an optional random string value, typically used for testing, uniqueness, or placeholder content.
+ *
+ * Miscellaneous
+ * @property {string} [random] - Optional string value that can represent a random identifier, token, or label.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
 
 interface Props {
     random?: string;

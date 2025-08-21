@@ -1,6 +1,24 @@
 import React from 'react';
 import '../styles/chat-widget.css';
 
+/**
+ * @typedef {Object} State
+ * @description Internal UI state for a toggleable messaging component.
+ *
+ * Visibility State
+ * @property {boolean} [open] - Indicates whether the component (e.g., modal or panel) is currently open.
+ *
+ * Messages State
+ * @property {string[]} [messages] - Array of message strings to display in the component.
+ *
+ * Input State
+ * @property {string} [input] - Current text value entered by the user.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
 interface State {
     open?: boolean;
     messages?: string[];
@@ -28,7 +46,6 @@ export default class ChatWidget extends React.Component<State> {
   sendMessage = () => {
     
     if (this.state.input?.trim()) {
-      // @ts-expect-error operator will destruct array
       const newMessages = [...this.state.messages, { text: this.state.input, sender: 'user' }];
       this.setState({ messages: newMessages, input: '' });
 

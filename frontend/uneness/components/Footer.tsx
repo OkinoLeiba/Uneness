@@ -1,15 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/footer.css';
-// @ts-expect-error module exists
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
-// @ts-expect-error module exists
 import instagram from '../src/assets/icons/icons8-instagram.svg';
-// @ts-expect-error module exists
 import faceBook from '../src/assets/icons/icons8-facebook.svg';
-// @ts-expect-error module exists
 import xT from '../src/assets/icons/icons8-twitter.svg';
-// @ts-expect-error module exists
 import youTube from '../src/assets/icons/icons8-youtube.svg';
 
 export default class Footer extends React.Component {

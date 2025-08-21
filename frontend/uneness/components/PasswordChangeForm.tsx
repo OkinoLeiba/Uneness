@@ -1,5 +1,22 @@
 import React from 'react';
 
+/**
+ * @typedef {Object} State
+ * @description State object for managing password change functionality in a user interface.
+ *
+ * Password Fields
+ * @property {string} oldPassword - The user's current password.
+ * @property {string} newPassword1 - The first entry of the new password.
+ * @property {string} newPassword2 - The second entry of the new password for confirmation.
+ *
+ * Feedback Message
+ * @property {string} message - Message displayed to the user (e.g., success or error feedback).
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
 interface State {
   oldPassword: string;
   newPassword1: string;

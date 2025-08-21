@@ -1,6 +1,18 @@
 import React, { type ErrorInfo } from 'react';
-// @ts-expect-error module exists
 import imgEllipse from '../src/assets/images/pink-purple-flowers.jpg';
+
+/**
+ * @typedef {Object} Props
+ * @description Configuration for a styled UI component container.
+ *
+ * Styling Properties
+ * @property {string} backgroundColor - Background color of the component.
+ * @property {string} className - CSS class name(s) applied to the component.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
 
 interface Props {
     backgroundColor: string;

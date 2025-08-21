@@ -1,9 +1,24 @@
 import React from 'react';
 import { StyleContext, type StyleContextType } from './LayOut';
 import { AuthContext } from '../services/authContextClass';
-// @ts-expect-error module exists
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import '../styles/login.css';
+
+/**
+ * @typedef {Object} State
+ * @description State object for a login/authentication form.
+ *
+ * User Credentials
+ * @property {string} email - The user's email address for authentication.
+ * @property {string} password - The user's password entry.
+ *
+ * Error Handling
+ * @property {string} [error] - Optional error message to display on login failure.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
 
 
 interface State {
@@ -74,6 +89,7 @@ export default class Login extends React.Component<object, State> {
       }
       if (res?.status === 200) window.location.href = '/homepage';
     } catch (error) {
+      // @ts-expect-error error will have state
       this.setState({error: error.message})
     }
   }
