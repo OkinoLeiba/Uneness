@@ -2,6 +2,8 @@
   width: 100vw;
   margin: 0 auto;
   text-align: center;
+
+  color: rgba(0, 0, 0, 1);
 }
 
 .logo {
