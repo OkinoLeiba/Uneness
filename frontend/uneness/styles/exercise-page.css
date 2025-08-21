@@ -28,7 +28,7 @@
 .exercise-form input {
     position: absolute;
     background-color: rgb(161, 64, 155);
-    width: 40%;
+    width: 20%;
     height: 100%;
     margin: 0 12em 0 8em;
 }
