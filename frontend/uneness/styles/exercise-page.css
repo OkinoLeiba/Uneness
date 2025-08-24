@@ -27,7 +27,7 @@
 
 .exercise-form input {
     position: absolute;
-    background-color: rgb(161, 64, 155);
+    background-color: rgba(161, 64, 155,1);
     width: 20%;
     height: 100%;
     margin: 0 12em 0 8em;
@@ -41,7 +41,7 @@
     width: 100%;
     /* max-width: 80vw; */
     border-radius: 120px;
-    background-color: #007bff;
+    background-color: rgba(0, 123, 255, 1);
     padding: 0 8px;
 
     height: 60px;

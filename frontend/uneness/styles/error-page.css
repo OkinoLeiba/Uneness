@@ -27,7 +27,7 @@
     
 .error-link {
     font-size: 18px;
-    color: rgb(140, 181, 97);
+    color: rgba(140, 181, 97, 1);
     text-decoration: 'none';
 }
 

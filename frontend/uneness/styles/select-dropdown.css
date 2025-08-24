@@ -15,13 +15,13 @@
     width: 80%;
     max-width: 80vw;
     border-radius: 120px;
-    background-color: #007bff;
+    background-color: rgba(0, 123, 255,1);
   
 }
 
 .dropdown-btn {
     height: 60px;
-    color: white;
+    color: rgba(255, 255, 255, 1);
     font-size: 1em;
     border: none;
     cursor: pointer;
@@ -32,7 +32,7 @@
     border: 2px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
     padding: 1em;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 
@@ -85,7 +85,7 @@
 .dropdown-icon {
     font-size: 1.5em;
     vertical-align: middle;
-    color: #007bff;
+    color: rgba(0, 123, 255, 1);
     cursor: pointer;
     transition: transform 0.2s ease;
     /* transition: max-height 0.3s ease, opacity 0.3s ease; */
@@ -111,7 +111,7 @@
 .dropdown-text {
     margin-bottom: 0.5em;
     font-weight: bold;
-    color: rgb(0, 100, 0);
+    color: rgba(0, 100, 0, 1);
     text-align: center;
 }
 
@@ -126,14 +126,14 @@
 
 .dropdown-icon {
     font-size: 1.5em;
-    color: #007bff;
+    color: rgba(0, 123, 255, 1);
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
 .dropdown-icon:hover {
     transform: scale(1.2);
-    color: #0056b3;
+    color: rgba(0, 86, 179, 1);
 }
 
 .icon-btn {
@@ -143,7 +143,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color:rgb(6, 89, 122)
+    background-color:rgba(6, 89, 122, 1)
 
 }
 

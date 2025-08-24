@@ -25,7 +25,7 @@
 .pillar-text-bold {
     font-size: 4.8em;
     margin: 0;
-    background: linear-gradient(to right, rgba(139, 100, 134, 0.495), rgb(202, 123, 135));
+    background: linear-gradient(to right, rgba(139, 100, 134, 0.495), rgba(202, 123, 135, 1));
     color: transparent;
     background-clip: text;
 }

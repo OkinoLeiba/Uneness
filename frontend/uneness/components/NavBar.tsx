@@ -53,6 +53,8 @@ export default class Navbar extends React.Component<object, State> {
     welcome: 'Hello',
   };
 
+  activeDesktop: boolean = false;
+
   async componentDidMount(): Promise<void> {
     try {
       const res = await this.context?.getCurrentUser();
@@ -140,36 +142,35 @@ export default class Navbar extends React.Component<object, State> {
   };
 
   render() {
-    // const { user } = this.state.user
       return (
         <nav className='navbar'>
-          <div className='navbar-container'>
-            <Link to='/homepage'><img src={brandLogo} alt='Brand Logo' width={180} height={50} loading='eager' /></Link>
-            {this.state.logout ?
-              <p className={'navbar-display'}>Welcome, {this.state.displayName}</p> :
-              <p className={'navbar-display'} >{this.state.welcome}</p>}
-            <div className='navbar-menu'>
-              {this.state.logout ? (
-              <div className={'navbar-menu-desktop'}>
-                <Link to='/exercise'>Body</Link>
-                <Link to='/pillars'>You</Link>
-                <Link to='/test'>Mind</Link>
-                <Link to='/journey'>Soul</Link>
-                <button
-                  name={'logout-btn'}
-                  title={'logout-btn'}
-                  className={'logout-btn-icon'}
-                  type={'submit'}
-                  onClick={this.onLogout}><RiLogoutCircleFill /></button>
-              </div>) : (
-              <div className={'navbar-menu-desktop'}>
-                <Link to='/signup'>SignUp</Link>
-                <Link to='/login'>LogIn</Link>
-              </div>)
-              }
-            </div>  
+            <div className='navbar-container'>
+              <Link to='/homepage'><img src={brandLogo} alt='Brand Logo' width={180} height={50} loading='eager' /></Link>
+            
+              {this.state.logout ?
+                  <p className={'navbar-display'}>Welcome, {this.state.displayName}</p> :
+                  <p className={'navbar-display'}>{this.state.welcome}</p>}
 
-          </div>
+              <div className={'navbar-menu'}>
+              {this.state.logout ? (
+                <div className={'navbar-menu-desktop'}>
+                  <Link to='/exercise'>Body</Link>
+                  <Link to='/pillars'>You</Link>
+                  <Link to='/test'>Mind</Link>
+                  <Link to='/journey'>Soul</Link>
+                  <button
+                    name={'logout-btn'}
+                    title={'logout-btn'}
+                    className={'logout-btn-icon'}
+                    type={'submit'}
+                    onClick={this.onLogout}><RiLogoutCircleFill /></button>
+                </div>) : (
+                <div className={'navbar-menu-desktop'}>
+                  <Link to='/signup'>SignUp</Link>
+                  <Link to='/login'>LogIn</Link>
+                </div>)}
+              </div>
+            </div> 
         </nav>
       ) 
 

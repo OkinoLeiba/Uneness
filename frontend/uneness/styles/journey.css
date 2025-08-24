@@ -52,16 +52,20 @@
 .section-text-container {
     display: flex;
     flex-direction: column;
-    line-height: 16px;
+    line-height: 20px;
     width: 100%   
 }
 
 .section-text-container h3 {
-    background: linear-gradient(to bottom, rgba(113, 255, 100, 1), rgb(115, 102, 199));
+    background: linear-gradient(to bottom, rgba(113, 255, 100, 1), rgba(115, 102, 199, 1));
     text-align: start;
     color: transparent;
     background-clip: text;
     font-weight: bold;
+}
+
+.section-text-container p {
+    margin: 0;
 }
 
 .ellipse-image {

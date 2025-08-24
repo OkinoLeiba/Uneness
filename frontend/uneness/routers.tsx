@@ -20,11 +20,9 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'homepage', element: <HomePage /> },
-      // @ts-expect-error style context not required
       { path: 'login', element: <Login /> }, 
-      // @ts-expect-error style context not required
       { path: 'signup', element: <Signup /> },
-      {path: 'exercise', element: <ExercisePage />},
+      { path: 'exercise', element: <ExercisePage />},
       { path: 'journey', element: <JourneyPage /> },
       { path: 'pillars', element: <PillarsPage /> },
       { path: 'test', element: <TestPage />},
