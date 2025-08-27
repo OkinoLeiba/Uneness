@@ -1,0 +1,24 @@
+.transform-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    gap: 8px;
+
+    background: linear-gradient(to right, rgba(100, 34, 34, 1), rgba(164, 23, 45, 1));
+}
+
+.transform-container h3 {
+    background: linear-gradient(to bottom, rgba(113, 255, 100, 1), rgba(115, 102, 199, 1));
+    color: transparent;
+    background-clip: text;
+}
+
+.transform-container p {
+    margin: 0 0 8px 0;
+}
+
+.transform-container a {
+    /* background:rgba(148, 141, 189,1); */
+}
