@@ -3,6 +3,7 @@ import { StyleContext, type StyleContextType } from '../components/LayOut';
 import Oval from '../components/Oval';
 //import Ellipse from '../components/Ellipse';
 import ImageSlider from '../components/ImageSlider';
+import Transform from '../components/Transform';
 import yogaImage from '../src/assets/images/group-yoga-exercise.jpg';
 import '../styles/journey.css';
 
@@ -109,6 +110,7 @@ export default class HomePage extends React.Component<object, Props>{
                                 elementColor={'rgba(83, 66, 109, 0.8)'}
                             />
                         </div>
+                        <Transform />
                     </div>)}
         </StyleContext.Consumer>
         )
