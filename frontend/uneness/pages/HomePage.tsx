@@ -69,7 +69,7 @@ export default class HomePage extends React.Component<Props>{
                         value={'Learn More'}
                         width={this.width}
                         height={this.height}
-                        elementColor={'rgb(215, 59, 215)'}
+                        elementColor={'rgba(215, 59, 215, 1)'}
                         accessibilityLabel={'More button'}
                         className={'home-btn-right'}
                     />
