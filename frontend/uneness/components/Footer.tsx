@@ -23,8 +23,8 @@ export default class Footer extends React.Component {
                         <Link to='/homepage'>Home</Link>
                         <Link to='/mind'>Mind</Link>
                         <Link to='/exercise'>Body</Link>
-                        <Link to='/you'>You</Link>
-                        <Link to='/soul'>Soul</Link>
+                        <Link to='/pillars'>You</Link>
+                        <Link to='/journey'>Soul</Link>
                     </div>
                     <div className='support-col-gap'>
                         <h3 className={'link-text'}>Support</h3>
