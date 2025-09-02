@@ -8,7 +8,7 @@ import '../styles/pillars.css';
  * @description Props for a component that supports customizable width styling.
  *
  * Dimension
- * @property {number|string} [width] - Optional width of the component, specified in pixels or percentage (e.g., `300`, `"100%"`).
+ * @property {number|string} [width] - Optional width of the component, specified in pixels or percentage (e.g., `300`, `'100%'`).
  *
  * @author Okino Kamali Leiba
  * @version 1.0

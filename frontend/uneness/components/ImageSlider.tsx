@@ -6,8 +6,8 @@ import '../styles/image-slider.css';
  * @description Configuration for an oval toggle slider component that switches between two images inside a circular knob.
  *
  * Track Properties
- * @property {string|number} width - Width of the slider track (e.g., "100%", 300).
- * @property {string|number} height - Height of the slider track (e.g., "50px", 50).
+ * @property {string|number} width - Width of the slider track (e.g., '100%', 300).
+ * @property {string|number} height - Height of the slider track (e.g., '50px', 50).
  * @property {string} [backgroundColor] - Optional background color of the track.
  *
  * Knob Properties

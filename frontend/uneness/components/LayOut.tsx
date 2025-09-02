@@ -47,7 +47,7 @@ export default class Layout extends React.Component<Props, object> {
 
     render() {
         const styleContextValue: StyleContextType = {
-            backgroundImage: "url('../src/assets/images/soul-body-glow.png')",
+            backgroundImage: 'url("../src/assets/images/soul-body-glow.png")',
             width: 'auto',
             height: '100%',
             minHeight: '80vh',

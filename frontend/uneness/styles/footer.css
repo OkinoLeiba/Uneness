@@ -97,9 +97,9 @@ brand-col-gap-img {
             grid-template-rows: auto auto auto;
             /* Three rows */
             grid-template-areas:
-                "brand-col-gap brand-col-gap"
-                "qlinks-col-gap support-col-gap"
-                "contact-col-gap contact-col-gap";
+                'brand-col-gap brand-col-gap'
+                'qlinks-col-gap support-col-gap'
+                'contact-col-gap contact-col-gap';
            
         }
     
