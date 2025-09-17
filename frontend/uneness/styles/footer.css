@@ -72,7 +72,7 @@ brand-col-gap-img {
 @media all and (min-width: 480px) and (max-width: 768px) {}  
 
 
-@media all and (max-width: 480px) {
+@media all and (max-width: 585px) {
     .footer-content-row {
         display: flex;
         flex-direction: column;
