@@ -48,6 +48,7 @@ export default class HomePage extends React.Component<object, Props>{
         return (
             <StyleContext.Consumer>
                 {(styles: StyleContextType | null) => (
+                    <div className='col-page-container'>
                     <div
                         style={{
                           backgroundImage: styles!.backgroundImage,
@@ -110,8 +111,10 @@ export default class HomePage extends React.Component<object, Props>{
                                 elementColor={'rgba(83, 66, 109, 0.8)'}
                             />
                         </div>
-                        <Transform />
-                    </div>)}
+                        
+                    </div>
+                    <Transform />
+                </div>)}
         </StyleContext.Consumer>
         )
     }
