@@ -1,10 +1,12 @@
-import React, { type ErrorInfo} from 'react';
+import React, {createRef, type ErrorInfo} from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../services/authContextClass';
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import { RiLogoutCircleFill } from 'react-icons/ri';
 import Cookies from 'js-cookie';
+import NavDropDown from './NavDropDown';
 import '../styles/navbar.css';
+
 // import Container ../styles/navbar.cssp/Container';
 // import Nav from 'react-bootstrap/Nav';
 // import Navbar from 'react-bootstrap/Navbar';
@@ -26,6 +28,9 @@ import '../styles/navbar.css';
  * UI Feedback
  * @property {string} [welcome] - Optional welcome message displayed to the user.
  *
+ * DropDown Menu Option
+ * @property {boolen} [isMenu] - Determines dropdown menu option based on screen size
+ * 
  * @author Okino Kamali Leiba
  * @version 1.0
  * @since 2025-08-21
@@ -37,7 +42,8 @@ interface State {
   isLoading?: boolean;
   logout?: boolean;
   displayName?: string;
-  welcome?:string;
+  welcome?: string;
+  isMenu: boolean;
 }
 
 export default class Navbar extends React.Component<object, State> {
@@ -51,7 +57,10 @@ export default class Navbar extends React.Component<object, State> {
     logout: false,
     displayName: '',
     welcome: 'Hello',
+    isMenu: true,
   };
+
+  menuRef = createRef<HTMLDivElement>();
 
   activeDesktop: boolean = false;
 
@@ -77,6 +86,8 @@ export default class Navbar extends React.Component<object, State> {
       console.error('Failed to fetch user:', error);
       this.setState({ username: '', logout: false, isLoading: false });
     }
+
+    if (this.menuRef.current && this.menuRef.current.offsetWidth <= 480) this.setState({ isMenu: true });
   }
   
   // componentDidMount(): void {
@@ -144,32 +155,33 @@ export default class Navbar extends React.Component<object, State> {
   render() {
       return (
         <nav className='navbar'>
-            <div className='navbar-container'>
+          <div ref={this.menuRef}  className='navbar-container'>
               <Link to='/homepage'><img src={brandLogo} alt='Brand Logo' width={180} height={50} loading='eager' /></Link>
             
               {this.state.logout ?
                   <p className={'navbar-display'}>Welcome, {this.state.displayName}</p> :
                   <p className={'navbar-display'}>{this.state.welcome}</p>}
-
-              <div className={'navbar-menu'}>
-              {this.state.logout ? (
-                <div className={'navbar-menu-desktop'}>
-                  <Link to='/exercise'>Body</Link>
-                  <Link to='/pillars'>You</Link>
-                  <Link to='/test'>Mind</Link>
-                  <Link to='/journey'>Soul</Link>
-                  <button
-                    name={'logout-btn'}
-                    title={'logout-btn'}
-                    className={'logout-btn-icon'}
-                    type={'submit'}
-                    onClick={this.onLogout}><RiLogoutCircleFill /></button>
-                </div>) : (
-                <div className={'navbar-menu-desktop'}>
-                  <Link to='/signup'>SignUp</Link>
-                  <Link to='/login'>LogIn</Link>
-                </div>)}
-              </div>
+            {this.state.isMenu ? (
+              <NavDropDown menuItem={this.state.logout ? ['SignUp', 'Login'] : ['Body', 'Mind', 'Soul']}/>) : (
+                <div className={'navbar-menu'}>
+                {this.state.logout ? (
+                  <div className={'navbar-menu-desktop'}>
+                    <Link to='/exercise'>Body</Link>
+                    <Link to='/pillars'>You</Link>
+                    <Link to='/test'>Mind</Link>
+                    <Link to='/journey'>Soul</Link>
+                    <button
+                      name={'logout-btn'}
+                      title={'logout-btn'}
+                      className={'logout-btn-icon'}
+                      type={'submit'}
+                      onClick={this.onLogout}><RiLogoutCircleFill /></button>
+                  </div>) : (
+                  <div className={'navbar-menu-desktop'}>
+                    <Link to='/signup'>SignUp</Link>
+                    <Link to='/login'>LogIn</Link>
+                  </div>)}
+              </div>)}
             </div> 
         </nav>
       ) 
