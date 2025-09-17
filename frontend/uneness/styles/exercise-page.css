@@ -20,17 +20,16 @@
     align-items: center;
     justify-content:space-evenly;
 
-    width: 31.5em;
+    width: 90%;
     margin: 0.8em;
-    
 }
 
 .exercise-form input {
-    position: absolute;
+    position: relative;
     background-color: rgba(161, 64, 155,1);
-    width: 20%;
-    height: 100%;
-    margin: 0 12em 0 8em;
+    width: 78%;
+    height: 40%;
+    margin: 0;
 }
 
 .exercise-btn {
@@ -38,11 +37,12 @@
     align-items: center;
     justify-content: end;
 
-    width: 100%;
+    width: inherit;
     /* max-width: 80vw; */
     border-radius: 120px;
     background-color: rgba(0, 123, 255, 1);
-    padding: 0 8px;
+    padding: 0;
+    gap: 8px;
 
     height: 60px;
     font-size: 1em;
