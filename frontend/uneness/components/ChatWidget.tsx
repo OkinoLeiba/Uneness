@@ -3,7 +3,7 @@ import '../styles/chat-widget.css';
 
 /**
  * @typedef {Object} State
- * @description Internal UI state for a toggleable messaging component.
+ * @description Internal UI state for a toggle-able messaging component.
  *
  * Visibility State
  * @property {boolean} [open] - Indicates whether the component (e.g., modal or panel) is currently open.
