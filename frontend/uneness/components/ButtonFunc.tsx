@@ -40,7 +40,7 @@ interface Props {
     className: string;
 }
 
-const Button: React.FC<Props> = (props) => {
+const Button: React.FC<Props> = (props): React.ReactNode | null => {
     return (
         <Link
             to={props.href}
