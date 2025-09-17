@@ -21,7 +21,7 @@ export default class Footer extends React.Component {
                     <div className='qlinks-col-gap'>
                         <h3 className={'link-text'}>Quick Links</h3>
                         <Link to='/homepage'>Home</Link>
-                        <Link to='/mind'>Mind</Link>
+                        <Link to='/test'>Mind</Link>
                         <Link to='/exercise'>Body</Link>
                         <Link to='/pillars'>You</Link>
                         <Link to='/journey'>Soul</Link>
