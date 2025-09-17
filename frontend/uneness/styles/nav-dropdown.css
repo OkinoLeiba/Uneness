@@ -1,0 +1,51 @@
+.nav-dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    margin-left: 7em;
+    gap: 4px;
+}
+
+.hamburger-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.hamburger {
+    background-color: rgba(138, 43, 226, 1);
+    border-radius:25%;
+    width: 24px;
+    height: 4px;
+    margin: 0;
+    padding: 0;
+
+}
+
+.menu-mobile-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+    top: 49px
+}
+
+.menu-item {
+    background-color: rgba(53, 69, 84, 1);
+    color: rgb(29, 15, 15);
+    font-size: 1em;
+    margin: 0.8px;
+    padding: 4px;
+    width: 11em;
+    height: 24px; 
+    border-radius: 16px;
+}
+
+.menu-item:hover {
+    opacity: 0.8;
+}
