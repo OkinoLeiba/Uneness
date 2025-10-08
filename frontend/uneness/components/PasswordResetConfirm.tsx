@@ -8,7 +8,7 @@ import React from 'react';
  * @property {string} uid - Unique identifier for the user, typically provided by the backend.
  * @property {string} token - Security token used to validate the password reset request.
  *
- * @author Okino
+ * @author Okino Kamali Leiba
  * @version 1.0
  * @since 2025-08-21
  */

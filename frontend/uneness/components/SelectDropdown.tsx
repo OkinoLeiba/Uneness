@@ -17,7 +17,7 @@ import { MdOndemandVideo, MdOutlineTextSnippet } from 'react-icons/md';
  * Interaction
  * @property {function(): void} onOpen - Callback function triggered when the dropdown is opened.
  *
- * @author Okino
+ * @author Okino Kamali Leiba
  * @version 1.0
  * @since 2025-08-21
  */
@@ -52,7 +52,7 @@ export default class OvalDropdown extends React.Component<Props, State> {
     };
   }
 
-  toggleDropdown = () => {
+  toggleDropdown = (): void => {
     this.setState(prev => ({ isOpen: !prev.isOpen }));
   };
 
