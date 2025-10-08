@@ -260,7 +260,7 @@ export default class HomePage extends React.Component<object, Props>{
     };
 
     closeModal = () => {
-    this.setState({ modalOpen: false });
+      this.setState({ modalOpen: false });
     };
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
@@ -268,20 +268,24 @@ export default class HomePage extends React.Component<object, Props>{
     }
 
     titleCase(str: string) {
-        if ((str === null) || (str === ''))
-            return false;
-        else
-            str = str.toString();
+      if ((str === null) || (str === ''))
+          return false;
+      else
+          str = str.toString();
 
-        return str.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() +
-                txt.substring(1).toLowerCase();
-        });
+      return str.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() +
+              txt.substring(1).toLowerCase();
+      });
     }
 
     setInput(value: string): void {
-        this.setState({ searchInput: value });
+      this.setState({ searchInput: value });
     }
+  
+  searchExercise(e: React.FormEvent) {
+    e.preventDefault(); 
+  }
 
   render() {
     return (
@@ -300,21 +304,21 @@ export default class HomePage extends React.Component<object, Props>{
             }}
             className={'exercise-container'}
           >
-            <div className="form-container">
-              <form className={'exercise-form'}>
-                <input
-                  type={'search'}
-                  name={'exercise-search'}
-                  id={'exercise-search'}
-                  placeholder={''}
-                  onChange={e => this.setInput(e.target.value)}
-                />
+            <div className="dropdown-container">
+              <form className={'exercise-form'} onSubmit={this.searchExercise}>
                 <button
                   type={'submit'}
                   name={'exercise-search-btn'}
                   title={'exercise-search-btn'}
                   className="exercise-btn">
-                  <FaSearch className="icon-right" />
+                    <input
+                      type={'search'}
+                      name={'exercise-search'}
+                      id={'exercise-search'}
+                      placeholder={''}
+                      onChange={e => this.setInput(e.target.value)}
+                    />
+                    <FaSearch className="icon-right" />
                 </button>
               </form>
             </div>
