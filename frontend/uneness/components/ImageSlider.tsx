@@ -54,7 +54,7 @@ interface State {
   isOn: boolean;
 }
 
-export default class extends React.Component<Props, State>{
+export default class ImageSlider extends React.Component<Props, State>{
   state: State = {
     isOn: false,
   };
@@ -72,7 +72,7 @@ export default class extends React.Component<Props, State>{
 
   /*
   Took different approach and added css properties to class component 
-  minimal css properties were needed and could be managed local
+  minimal css properties were needed and could be managed locally
   */
 
   render() {
@@ -89,10 +89,8 @@ export default class extends React.Component<Props, State>{
     const { isOn } = this.state;
 
     // Normalize width/height to CSS strings props declared sting and number
-    const widthValue =
-      typeof width === 'number' ? `${width}px` : width;
-    const heightValue =
-      typeof height === 'number' ? `${height}px` : height;
+    const widthValue = typeof width === 'number' ? `${width}px` : width;
+    const heightValue = typeof height === 'number' ? `${height}px` : height;
 
     // Style for the oval track
     const trackStyle: React.CSSProperties = {
@@ -145,14 +143,14 @@ export default class extends React.Component<Props, State>{
           />
         </div>
         {/*<label className={'switch'}>
-  Label
-  <input
-  type={'checkbox'}
-  name={'img-slider-checkbox'}
-  required
-  className={'img-slider-checkbox'} />
-  <span className={'slider round'}></span>
-</label> */}
+          Label
+          <input
+          type={'checkbox'}
+          name={'img-slider-checkbox'}
+          required
+          className={'img-slider-checkbox'} />
+          <span className={'slider round'}></span>
+        </label> */}
       </div>
     );
   }
