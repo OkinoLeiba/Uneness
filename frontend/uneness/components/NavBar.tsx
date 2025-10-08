@@ -54,13 +54,13 @@ export default class Navbar extends React.Component<object, State> {
     username: '',
     email: '',
     isLoading: true,
-    logout: false,
+    logout: true,
     displayName: '',
     welcome: 'Hello',
     isMenu: true,
   };
 
-  menuRef = createRef<HTMLDivElement>();
+  menuRef: React.RefObject<HTMLDivElement | null> = createRef<HTMLDivElement>();
 
   activeDesktop: boolean = false;
 
@@ -69,13 +69,13 @@ export default class Navbar extends React.Component<object, State> {
       const res = await this.context?.getCurrentUser();
       const user = res?.data;
       const displayName = user.user.username 
-      ? this.titleCase(user.user.username.replace('_', ' '))
-      : 'Guest';
+        ? this.titleCase(user.user.username.replace('_', ' '))
+        : 'Guest';
       this.setState({
-        username: user.username,
-        email: user.email,
-        isLoading: false,
-        logout: true,
+        username: user.user.username,
+        email: user.user.email,
+        isLoading: true,
+        logout: false,
         displayName: String(displayName),
       });
 
@@ -84,7 +84,7 @@ export default class Navbar extends React.Component<object, State> {
       //console.log(this.context.user); // If context is updated separately
     } catch (error) {
       console.error('Failed to fetch user:', error);
-      this.setState({ username: '', logout: false, isLoading: false });
+      this.setState({ username: '', logout: true, isLoading: false });
     }
 
     if (this.menuRef.current && this.menuRef.current.offsetWidth <= 480) this.setState({ isMenu: true });
@@ -124,7 +124,7 @@ export default class Navbar extends React.Component<object, State> {
       return false;
     else
       console.log(str)
-    str = str.toString();
+    str =  str.toString();
     console.log(str)
     // First and Last Name separated by underscore
     return str.replace(/\w\S*/g, function (txt) {
@@ -158,7 +158,7 @@ export default class Navbar extends React.Component<object, State> {
           <div ref={this.menuRef}  className='navbar-container'>
               <Link to='/homepage'><img src={brandLogo} alt='Brand Logo' width={180} height={50} loading='eager' /></Link>
             
-              {this.state.logout ?
+              {!this.state.logout ?
                   <p className={'navbar-display'}>Welcome, {this.state.displayName}</p> :
                   <p className={'navbar-display'}>{this.state.welcome}</p>}
             {this.state.isMenu ? (
