@@ -70,7 +70,7 @@ export default class Card extends React.Component<Props, object> {
         };
      }
     
-    boxRef = createRef<HTMLDivElement>();
+    boxRef: React.RefObject<HTMLDivElement | null> = createRef<HTMLDivElement>();
 
     componentDidMount() {
         if (this.boxRef.current) {
