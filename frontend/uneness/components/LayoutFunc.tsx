@@ -1,0 +1,62 @@
+import React, {type JSX} from 'react';
+import Header from './NavBar';
+import Footer from './Footer';
+import ChatWidget from './ChatWidget';
+import { Outlet } from 'react-router-dom';
+
+/**
+ * @typedef {Object} Props
+ * @description Configuration for a styled UI component container.
+ *
+ * Styling Properties
+ * @property {string} backgroundColor - Background color of the component.
+ * @property {string} className - CSS class name(s) applied to the component.
+ *
+ * @author Okino Kamali Leiba
+ * @version 1.0
+ * @since 2025-08-21
+ */
+
+interface Props {
+    children?: JSX.Element;
+
+}
+
+export interface StyleContextType {
+    backgroundImage: string;
+    width: number | string;
+    height: number | string;
+    minHeight: number | string;
+    backgroundPosition: string;
+    backgroundRepeat: string;
+    backgroundSize: number | string;
+    backgroundColor?: string;
+    textColor?: string;
+    padding?: number | string;
+}
+
+const StyleContext = React.createContext<StyleContextType | null>(null);
+
+export const Layout: React.FC<Props> = (): React.ReactNode | null => {
+        const styleContextValue: StyleContextType = {
+        backgroundImage: 'url("../src/assets/images/soul-body-glow.png")',
+        width: 'auto',
+        height: '100%',
+        minHeight: '80vh',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        padding: '0 18px',
+    };
+    return (
+        <StyleContext.Provider value={styleContextValue}>
+            <div className={'layout-container'}>
+                <Header />
+                <Outlet />
+                {/* {props.children} */}
+                <ChatWidget />
+                <Footer />
+            </div>
+        </StyleContext.Provider>
+    );
+}
