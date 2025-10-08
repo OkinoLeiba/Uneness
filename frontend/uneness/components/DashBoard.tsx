@@ -20,7 +20,7 @@ import { AuthContext } from '../services/authContextClass';
  * Feedback Message
  * @property {string} message - Informational or error message to display on the dashboard.
  *
- * @author Okino
+ * @author Okino Kamali Leiba
  * @version 1.0
  * @since 2025-08-21
  */
@@ -39,8 +39,8 @@ export default class Dashboard extends React.Component<object, State> {
   static contextType = AuthContext;
   declare context: React.ContextType<typeof AuthContext>;
 
-  constructor(props: State) {
-    super(props);
+  constructor(state: State) {
+    super(state);
     this.state = {
       username: '',
       first_name: '',
@@ -54,20 +54,22 @@ export default class Dashboard extends React.Component<object, State> {
   
   componentDidMount() {
     // TODO: test and review
-    const { user } = this.context;
+    const user =  {username: 'testuser', email: 'testuser@email.com' }
+    //const user = this.context && this.context.user ? this.context.user : undefined;
     if (user) {
       this.setState({
         username: user.username,
         email: user.email,
       });
     }
+    console.log(this.state.username);
   }
 
   handleLogout = async () => {
     try {
       await this.context?.logout();
     } catch (error) {
-      this.setState({ message: `Logout failed- ${error}`});
+      this.setState({ message: `Logout failed - ${error}`});
     }
   };
 
@@ -78,11 +80,12 @@ export default class Dashboard extends React.Component<object, State> {
   handleProfileUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     const { first_name, last_name, email } = this.state;
+    const username = first_name + '_' + last_name;
     try {
-      await this.context?.updateProfile({ first_name, last_name, email });
+      await this.context?.updateProfile({ username, first_name, last_name, email });
       this.setState({ message: 'Profile updated successfully!' });
     } catch (error) {
-      this.setState({ message: `Failed to update profile- ${error}`});
+      this.setState({ message: `Failed to update profile - ${error}`});
     }
   };
 
@@ -102,14 +105,28 @@ export default class Dashboard extends React.Component<object, State> {
   };
 
   render() {
-    const { user, loading } = this.context;
+    const user =  {username: 'testuser', email: 'testuser@email.com' }
+    // const user = this.context && this.context.user ? this.context.user : undefined;
+    const loading = this.context?.loading ?? undefined;
     const { first_name, last_name, email, password, confirmPassword, message } = this.state;
 
     if (loading) return <div>Loading dashboard...</div>;
-    if (!user) return <div>You are not logged in.</div>;
+    // if (!user) return <div>You are not logged in.</div>;
 
     return (
-      <div style={{ padding: '2rem', maxWidth: '600px' }}>
+      <div style={{
+
+        padding: '1rem',
+        margin: '0.5rem',
+        maxWidth: '600px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '30%',
+        width: '100vw',
+        backgroundColor: 'rgba(113, 197, 151, 0.305)',
+      }}>
         <h1>Dashboard</h1>
         <p><strong>Logged in as:</strong> {user.username}</p>
         <button name={'dashboard-btn'} type={'button'} onClick={this.handleLogout}>Logout</button>
@@ -141,7 +158,7 @@ export default class Dashboard extends React.Component<object, State> {
         <h2>Change Password</h2>
         <form onSubmit={this.handlePasswordChange}>
           <label>
-            New Password:
+            New Password: 
             <input type={'password'} name={'password'} value={password} onChange={this.handleChange} />
           </label>
           <br />
