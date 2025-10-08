@@ -58,6 +58,7 @@ interface User {
 }
 
 interface AuthPayload {
+    user_name?: string;
     first_name?: string;
     last_name?: string;
     email: string;
