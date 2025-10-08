@@ -11,6 +11,8 @@
     "strictFunctionTypes": false,
     "strictNullChecks": false,
 
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
