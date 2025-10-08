@@ -27,16 +27,16 @@ export default class HomePage extends React.Component<object, Props>{
         };
     }
 
-    divRef = createRef<HTMLDivElement>();
+    divRef: React.RefObject<HTMLDivElement | null> = createRef<HTMLDivElement>();
 
     componentDidMount() {
         if (this.divRef.current) this.setState({width: (this.divRef.current.offsetWidth - 1000)});
     };
 
-    randomText = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui nesciunt unde eius possimus eveniet nemo,\
+    randomText: string = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui nesciunt unde eius possimus eveniet nemo,\
      facilis rerum molestiae temporibus alias ducimus ut officiis accusantium perferendis libero officia similique quo?Amet';
-    ovalAltText = 'Oval shape with icon at the center representing either mind, body, or soul.'
-    pillarText = 'Discover how mind, body, and soul work together to create everlasting well-being and personal transformation.';
+    ovalAltText: string = 'Oval shape with icon at the center representing either mind, body, or soul.'
+    pillarText: string = 'Discover how mind, body, and soul work together to create everlasting well-being and personal transformation.';
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
         console.log(`${error}: ${errorInfo}`)

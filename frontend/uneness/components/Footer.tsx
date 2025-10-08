@@ -8,7 +8,7 @@ import xT from '../src/assets/icons/icons8-twitter.svg';
 import youTube from '../src/assets/icons/icons8-youtube.svg';
 
 export default class Footer extends React.Component {
-    brandText = 'The journey to holistic wellness through mind, body, and soul harmony. Discover the path to your best self.';
+    brandText: string = 'The journey to holistic wellness through mind, body, and soul harmony. Discover the path to your best self.';
 
     render() {
         return (

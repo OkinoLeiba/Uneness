@@ -3,6 +3,7 @@ import { StyleContext, type StyleContextType } from './LayOut';
 import { AuthContext } from '../services/authContextClass';
 import brandLogo from '../src/assets/icons/icon-uneness2.svg';
 import '../styles/login.css';
+import { AxiosResponse } from 'axios';
 
 /**
  * @typedef {Object} State
@@ -37,7 +38,7 @@ export default class Login extends React.Component<object, State> {
 
   // FOR PRODUCTIONS-maybe
   // Other Option same as DEBUG wih env.production
-  login_url = window.location.origin + '/uneness/login';
+  // login_url: string = window.location.origin + '/uneness/login';
   
 
   state: State = {
@@ -47,7 +48,7 @@ export default class Login extends React.Component<object, State> {
   };
   
 
-  // handleSubmit = async (e: React.FormEvent) => {
+  // handleSubmit = async (e: React.FormEvent): void => {
     // e.preventDefault();
     // try {
       // const res = await fetch(DJANGO_BASE_URL+'user/login/', {
@@ -72,11 +73,11 @@ export default class Login extends React.Component<object, State> {
     // }
   // };
   
-  handleSubmit = async (e: React.FormEvent) => {
+  handleSubmit = async (e: React.FormEvent): void => {
     e.preventDefault();
     // const {email, password} = this.state;
     try {
-      const res = await this.context?.login(this.state.email, this.state.password);
+      const res: AxiosResponse | undefined = await this.context?.login(this.state.email, this.state.password);
       document.cookie = `token=${res?.data.token}; path=/; secure=true; httponly=true; samesite=Lax`;
       localStorage.setItem('token', res?.data.token);
       sessionStorage.setItem('token', res?.data.token);

@@ -39,12 +39,11 @@ export default class ChatWidget extends React.Component<State> {
     this.setState(prevState => ({ open: !prevState.open }));
   };
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({ input: e.target.value });
   };
 
-  sendMessage = () => {
-    
+  sendMessage = (): void => {   
     if (this.state.input?.trim()) {
       const newMessages = [...this.state.messages, { text: this.state.input, sender: 'user' }];
       this.setState({ messages: newMessages, input: '' });
@@ -58,7 +57,7 @@ export default class ChatWidget extends React.Component<State> {
     }
   };
 
-  handleKeyDown = (e: React.KeyboardEvent) => {
+  handleKeyDown = (e: React.KeyboardEvent): void => {
     if (e.key === 'Enter') {
       this.sendMessage();
     }

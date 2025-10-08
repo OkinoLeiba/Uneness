@@ -37,7 +37,7 @@ export default class VideoModal extends React.Component<Props, object> {
         };
     } 
 
-    handleClose = () => {
+    handleClose = (): void => {
         // Invoke the parent’s method
         this.props.onClose?.();
     }

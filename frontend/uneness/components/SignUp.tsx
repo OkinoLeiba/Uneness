@@ -56,7 +56,7 @@ export default class Login extends React.Component<object, State> {
     
   validate: boolean = false;
 
-  // handleSubmit = async (e: React.FormEvent) => {
+  // handleSubmit = async (e: React.FormEvent): Promise<void> => {
     // e.preventDefault();
     // this.validation();
     // if (this.validate) {
@@ -104,7 +104,7 @@ export default class Login extends React.Component<object, State> {
     // }
   // };
     
-  handleSubmit = async (e: React.FormEvent) => {
+  handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     this.validation();
     if (this.validate) {
