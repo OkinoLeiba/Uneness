@@ -18,13 +18,13 @@ interface Props {
   children: JSX.Element;
 }
 
-const PrivateRoute: React.FC<Props> = ({ children }): JSX.Element => {
+const PrivateRoute: React.FC<Props> = (props): JSX.Element => {
     const { user, loading } = useAuth();
 
     if (loading) return <div>Loading...</div>;
     if (!user) return <Navigate to='/uneness/components/LogIn' replace />;
 
-    return children;
+    return props.children;
 };
 
 export default PrivateRoute;
