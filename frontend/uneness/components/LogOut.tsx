@@ -1,11 +1,11 @@
 import React from 'react';
 
-export class LoggedOut extends React.Component {
+export class LogOut extends React.Component {
 
     // handleSubmit = async (e: React.FormEvent) => {
     //     e.preventDefault();
     //     try {
-    //         const res = await fetch('user/logut/', {
+    //         const res = await fetch('user/logout/', {
     //             method: 'POST',
     //             headers: { 'Content-Type': 'application/json' }
     //         });
