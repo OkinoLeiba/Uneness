@@ -73,7 +73,7 @@ export default class Login extends React.Component<object, State> {
     // }
   // };
   
-  handleSubmit = async (e: React.FormEvent): void => {
+  handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     // const {email, password} = this.state;
     try {
