@@ -71,15 +71,3 @@ export default class Layout extends React.Component<Props, object> {
         );
     }
 }
-
-// const Layout = ({ children }) => {
-//   return (
-    // <div>
-      {/* <Header /> */}
-      {/* {children} */}
-      {/* <Footer /> */}
-    {/* </div> */}
-//   );
-// }
-// 
-// export default Layout;
