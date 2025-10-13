@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/password.css';
 
 /**
  * @typedef {Object} State
@@ -78,7 +79,9 @@ export class PasswordChangeForm extends React.Component<object, State> {
           value={this.state.newPassword2}
           onChange={e => this.setState({ newPassword2: e.target.value })}
         />
-        <button name={'password-btn'} type={'submit'}>Change Password</button>
+        <button name={'password-btn'} type={'submit'} style={{
+          width: 'max-content'
+        }}>Change Password</button>
         {this.state.message && <p>{this.state.message}</p>}
       </form>
     );
