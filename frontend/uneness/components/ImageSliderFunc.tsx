@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styles '../styles/image-slider.css';
+import '../styles/image-slider.css';
 
 /**
  * @typedef {Object} Props

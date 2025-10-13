@@ -60,3 +60,5 @@ export const Layout: React.FC<Props> = (): React.ReactNode | null => {
         </StyleContext.Provider>
     );
 }
+
+export default Layout;
