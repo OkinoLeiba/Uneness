@@ -1,11 +1,12 @@
 import React from 'react';
+import '../styles/password.css';
 
 /**
  * @typedef {Object} Props
- * @description Props required for securely resetting a user's password.
+ * @description Functionality to change user's password, props required for securely resetting a user's password.
  *
  * Authentication
- * @property {string} uid - Unique identifier for the user, typically provided by the backend.
+ * @property {string} uid - Unique identifier for the user, typically provided by the backend, user email will be used.
  * @property {string} token - Security token used to validate the password reset request.
  *
  * @author Okino Kamali Leiba
@@ -29,6 +30,8 @@ import React from 'react';
  * @since 2025-08-21
  */
 
+// Onus of authentication and identifying user will be placed in calling object making old password unnecessary
+// The unique identifier for user will be email
 interface Props {
   uid: string;
   token: string;
@@ -47,15 +50,17 @@ export class PasswordResetConfirm extends React.Component<Props, State> {
     message: '',
   };
 
+  
+
   handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const res = await fetch(`password/reset/confirm/`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${props.token}` },
         body: JSON.stringify({
           uid: this.props.uid,
-          token: this.props.token,
+          // token: this.props.token,
           new_password1: this.state.newPassword1,
           new_password2: this.state.newPassword2,
         }),
