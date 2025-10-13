@@ -52,7 +52,7 @@ export default class Login extends React.Component<object, State> {
   
   // FOR PRODUCTIONS-maybe
   // Other Option same as DEBUG wih env.production
-  login_url = window.location.origin + '/uneness/login';
+  // login_url = window.location.origin + '/uneness/login';
     
   validate: boolean = false;
 
